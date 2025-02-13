@@ -2,39 +2,70 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Book;
 use Illuminate\Http\Request;
+use App\Models\Book;
 
 class BookController extends Controller
 {
-    // Könyv hozzáadása
+
+    public function getBook($id)
+    {
+        $book = Book::find($id);
+
+        if (!$book) {
+            return response()->json(['error' => 'Book not found'], 404);
+        }
+
+        return response()->json($book, 200);
+    }
+
+    public function getAllBooks()
+    {
+        $books = Book::all();
+
+        return response()->json($books, 200);
+    }
+
     public function addBook(Request $request)
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'author' => 'required|string|max:255',
-            'year' => 'required|integer',
+            'quantity' => 'required|integer|min:1',
+            'is_return_required' => 'boolean',
         ]);
 
-        $book = Book::create($validated);
+        $book = Book::create([
+            'title' => $validated['title'],
+            'author' => $validated['author'],
+            'quantity' => $validated['quantity'],
+            'is_return_required' => $validated['is_return_required'] ?? false,
+        ]);
 
-        return response()->json(['message' => 'Book added successfully', 'book' => $book], 201);
+        return response()->json($book, 201);
     }
 
-    // Könyv lista lekérdezése
-    public function getBooks()
-    {
-        $books = Book::all();
-        return response()->json($books);
-    }
-
-    // Könyv státusz módosítása (pl. visszaszedendő)
-    public function updateBookStatus($id, Request $request)
+    public function updateBook(Request $request, $id)
     {
         $book = Book::findOrFail($id);
-        $book->status = $request->status;
-        $book->save();
 
-        return response()->json(['message' => 'Book status updated successfully']);
+        $validated = $request->validate([
+            'title' => 'nullable|string|max:255',
+            'author' => 'nullable|string|max:255',
+            'quantity' => 'nullable|integer|min:1',
+            'is_return_required' => 'nullable|boolean',
+        ]);
+
+        $book->update(array_filter($validated));
+
+        return response()->json($book, 200);
+    }
+
+    public function deleteBook($id)
+    {
+        $book = Book::findOrFail($id);
+        $book->delete();
+
+        return response()->json(null, 204);
     }
 }

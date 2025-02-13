@@ -1,44 +1,49 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DeputyController;
+use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\LibraryAssistantController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\BookAssignmentController;
+use App\Http\Controllers\BookReturnController;
+use App\Http\Controllers\BookLoanController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\LibrarianController;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+// Middleware with auth:sanctum
+Route::middleware('auth:sanctum')->group(function () {
+    // Deputy routes
+    Route::post('deputy/register-teacher', [DeputyController::class, 'registerTeacher']);
+    Route::post('deputy/assign-book', [DeputyController::class, 'assignBook']);
 
-Route::post('register', [AuthController::class, 'register']);
-Route::post('login', [AuthController::class, 'login']);
+    // Teacher routes
+    Route::post('teacher/collect-books', [TeacherController::class, 'collectBooks']);
 
-// Csak bejelentkezett felhasználóknak
-Route::middleware('auth:api')->get('me', [AuthController::class, 'me']);
+    // Administrator routes
+    Route::post('administrator/validate-return', [AdministratorController::class, 'validateReturn']);
 
-
-// Admin felhasználóknak
-Route::middleware(['auth:api', 'role:admin'])->group(function () {
+    // Book routes
     Route::post('books', [BookController::class, 'addBook']);
+    Route::put('books/{id}', [BookController::class, 'updateBook']);
+    Route::delete('books/{id}', [BookController::class, 'deleteBook']);
+    Route::get('books/{id}', [BookController::class, 'getBook']);
+    Route::get('books', [BookController::class, 'getAllBooks']);
+
+    // Book assignment and return routes
+    Route::post('assign-books', [BookAssignmentController::class, 'assignBooks']);
+    Route::post('books/{book_id}/return', [BookReturnController::class, 'returnBook']);
+
+    // Book loans routes
+    Route::post('book-loans', [BookLoanController::class, 'borrowBook']);
+    Route::put('book-loans/{id}/return', [BookLoanController::class, 'returnBook']);
+    Route::get('book-loans/user/{user_id}', [BookLoanController::class, 'getUserLoans']);
 });
 
-// Könyvtárosoknak
-Route::middleware(['auth:api', 'role:librarian'])->group(function () {
-    Route::put('books/{id}', [BookController::class, 'updateBookStatus']);
-});
-
-// Minden bejelentkezett felhasználónak
-Route::middleware('auth:api')->get('books', [BookController::class, 'getBooks']);
-
-
-// Admin felhasználóknak
-Route::middleware([RoleMiddleware::class.':admin'])->group(function () {
-    Route::post('books', [BookController::class, 'addBook']);
-});
-
-Route::middleware('auth:api')->group(function () {
-    Route::post('books', [BookController::class, 'addBook']);
-    Route::get('books', [BookController::class, 'getBooks']);
-    Route::put('books/{id}', [BookController::class, 'updateBookStatus']);
-});
-
-
+// Public routes (without authentication)
+Route::post("register", [UserController::class, "register"]);
+Route::post('auth/register-deputy', [AuthController::class, 'registerDeputy']);
+Route::post('auth/register', [AuthController::class, 'register']);
+Route::post('auth/create-deputy', [AuthController::class, 'createDeputy']);
+Route::post('auth/create-teacher-or-administrator', [AuthController::class, 'createTeacherOrAdministrator']);

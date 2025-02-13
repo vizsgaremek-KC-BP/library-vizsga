@@ -2,57 +2,30 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Tymon\JWTAuth\Contracts\JWTSubject; // Importálni kell a JWTSubject interfészt
 
-class User extends Authenticatable implements JWTSubject  // Itt implementálni kell a JWTSubject interfészt
+class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    // A modell kitöltése
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'role',  // szerepkör, amely lehet admin, librarian vagy teacher
+        'name', 'email', 'password',
     ];
 
-    // A jelszó hashelése
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
-
-    // A role változó a jogosultság kezelésére
-    const ROLE_ADMIN = 'admin';
-    const ROLE_LIBRARIAN = 'librarian';
-    const ROLE_TEACHER = 'teacher';
-
-    // Meghatározzuk, hogy mely mezők lehetnek tömegesen kitöltve
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
-
-    /**
-     * Get the identifier that will be stored in the JWT.
-     *
-     * @return mixed
-     */
-    public function getJWTIdentifier()
+    public function isDeputy()
     {
-        return $this->getKey(); // Ez a felhasználó egyedi azonosítója (pl. ID)
+        return $this->role === 'deputy';
     }
 
-    /**
-     * Get the custom claims for the JWT.
-     *
-     * @return array
-     */
-    public function getJWTCustomClaims()
+    public function isTeacher()
     {
-        return []; // További egyedi adatokat adhatsz hozzá, ha szükséges
+        return $this->role === 'teacher';
+    }
+
+    public function isAdministrator()
+    {
+        return $this->role === 'administrator';
     }
 }
