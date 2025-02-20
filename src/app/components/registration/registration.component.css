@@ -1,0 +1,48 @@
+html{
+    background: linear-gradient(to left, rgb(11, 11, 88) ,#7878A2 , transparent 100%);
+}
+body {
+    background-image: url("kulkerlogo.png");
+    background-color: transparent;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 94.3vh;
+    width: 100vh;
+    margin: 0;
+    position: relative;
+}
+#register{    
+    width: 50vh;
+    left: 130vh;
+    position: absolute;
+    text-align: justify;
+    top: 20vh;
+    border: 3px solid rgba(119, 215, 232, 0.8);
+    border-radius: 25px;
+    padding: 10px;
+    background-color: rgba(119, 215, 232, 0.6);
+}
+
+h2{
+    text-align: center;
+    color: #343c3d;
+}
+input{
+    border-radius: 25px;
+    color: #343c3d;
+    padding-bottom: 10px;
+    margin-bottom: 3vh;
+}
+label{
+    color: #343c3d;
+}
+button{
+    color: #F7EEDD;
+    border-radius: 25px;
+    background-color: #343c3d;
+    
+}
+a{
+    color: #343c3d;
+}

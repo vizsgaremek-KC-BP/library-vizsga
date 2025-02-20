@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <div id="register">
+    <form (ngSubmit)="register()">
+      <h2>Register new account</h2>
+      <br>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Email address:</label>
+          <input  name="userName" type="text" class="form-control" aria-describedby="emailHelp" [(ngModel)]="emailAddress">
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Username:</label>
+          <input  name="userName" type="text" class="form-control"aria-describedby="emailHelp" [(ngModel)]="userName">
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password:</label>
+          <input  name="passWord" type="password" class="form-control" [(ngModel)]="passWord">
+        </div>
+        <button type="submit" class="btn btn-primary">Register</button>
+        <br>
+        <a [routerLink]="['/login']">Already have an account, Log In now!</a>
+      </form>
+    </div>
+</body>
+</html>
