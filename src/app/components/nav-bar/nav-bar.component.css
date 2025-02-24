@@ -4,7 +4,7 @@ nav{
 }
 /* #aeddf5 */
 a, button{
-    color: #F7EEDD;
+    color: #efeae2;
 }
 #translateHU{
     left: 202vh;
@@ -16,3 +16,6 @@ a, button{
     position: absolute;
     border-radius: 50vh;
 }
+/* button:visited{
+    background-color: #3b5ad4;
+} */

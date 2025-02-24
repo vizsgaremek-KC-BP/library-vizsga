@@ -7,21 +7,21 @@
 <body class="rounded">
   <div id="login">
     <form (ngSubmit)="login()">
-      <h2>Log In to your account</h2>
+      <h2>Jelentkezz be!</h2>
       <br>
         <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Username:</label>
-          <input name="userName" type="text" class="form-control" id="userName" aria-describedby="emailHelp" [(ngModel)]="userName">
+          <label for="exampleInputEmail1" class="form-label">Oktatási azonosító szám:</label>
+          <input name="oktAz" type="text" class="form-control" id="oktAz" aria-describedby="emailHelp" [(ngModel)]="userName">
         </div>
         <br>
         <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Password:</label>
+          <label for="exampleInputPassword1" class="form-label">Jelszó:</label>
           <input name="passWord" type="password" class="form-control" id="passWord" [(ngModel)]="passWord">
         </div>
         <br>
-        <button type="submit" class="btn">Log In</button>
+        <button type="submit" class="btn">Bejelentkezés</button>
         <br>
-        <a [routerLink]="['/register']">Don't have an account, register now!</a>
+        <a [routerLink]="['/register']">Nincs még fiókod, regisztrálj most!</a>
       </form>
   </div>
 </body>

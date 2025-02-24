@@ -20,7 +20,7 @@ export class LogInComponent {
       }else{
         alert("Login Failed");
       }
-    }
+  }
   constructor(public auth:AuthenticationService, private router: Router) { }
 
   

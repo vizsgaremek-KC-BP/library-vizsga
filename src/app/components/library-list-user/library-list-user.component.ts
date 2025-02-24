@@ -13,8 +13,8 @@ export class LibraryListUserComponent {
     constructor(public auth: AuthenticationService, private router: Router, loginComp:LogInComponent) {
       this.userName = localStorage.getItem('userName') || '';
 
-      if (!this.auth.isLoggedIn()) {
-        this.router.navigate(['/login']);
-      }
+      // if (!this.auth.isLoggedIn()) {
+      //   this.router.navigate(['/login']);
+      // }
     }
 }

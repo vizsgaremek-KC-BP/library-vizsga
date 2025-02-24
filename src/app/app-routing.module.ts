@@ -5,8 +5,9 @@ import { LogInComponent } from './components/log-in/log-in.component';
 import { AboutComponent } from './components/about/about.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { LibraryListUserComponent } from './components/library-list-user/library-list-user.component';
-import { LibraryListAdministratorComponent } from './components/library-list-administrator/library-list-administrator.component';
 import { LibraryListAdminComponent } from './components/library-list-admin/library-list-admin.component';
+import { BooksComponent } from './components/books/books.component';
+import { StudentsComponent } from './components/students/students.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -14,8 +15,9 @@ const routes: Routes = [
   { path: 'login', component: LogInComponent },
   { path: 'register', component: RegistrationComponent },
   { path: 'about', component: AboutComponent },
+  { path: 'books', component: BooksComponent },
+  { path: 'students', component: StudentsComponent },
   { path: 'libraryUser', component: LibraryListUserComponent },
-  { path: 'libraryAdministrator', component: LibraryListAdministratorComponent },
   { path: 'libraryAdmin', component: LibraryListAdminComponent },
 
 ];
