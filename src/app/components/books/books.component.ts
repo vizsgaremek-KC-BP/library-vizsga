@@ -37,10 +37,7 @@ export class BooksComponent implements OnInit {
       this.translate.use(lang);
     }
   
-    ngOnInit(): void {
-        
-      }
-    
+    ngOnInit(): void {}
   
     createBook(): void {
       if (this.books.title && this.books.price > 0) {
