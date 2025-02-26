@@ -4,68 +4,61 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Book;
+use App\Models\BookType;
 
 class BookController extends Controller
 {
-
-    public function getBook($id)
+    public function index()
     {
-        $book = Book::find($id);
+        $books = Book::with('bookType')->get();
+
+        return response()->json($books);
+    }
+
+    public function show($id)
+    {
+        $book = Book::with('bookType')->find($id);
 
         if (!$book) {
-            return response()->json(['error' => 'Book not found'], 404);
+            return response()->json(['message' => 'Book not found'], 404);
         }
 
-        return response()->json($book, 200);
+        return response()->json($book);
     }
 
-    public function getAllBooks()
+    public function store(Request $request)
     {
-        $books = Book::all();
-
-        return response()->json($books, 200);
-    }
-
-    public function addBook(Request $request)
-    {
-        $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'author' => 'required|string|max:255',
-            'quantity' => 'required|integer|min:1',
-            'is_return_required' => 'boolean',
+        $request->validate([
+            'book_id' => 'required|exists:book_types,id',
+            'inventory_number' => 'required|string|unique:books,inventory_number'
         ]);
 
-        $book = Book::create([
-            'title' => $validated['title'],
-            'author' => $validated['author'],
-            'quantity' => $validated['quantity'],
-            'is_return_required' => $validated['is_return_required'] ?? false,
-        ]);
+        $book = Book::create($request->all());
 
-        return response()->json($book, 201);
+        return response()->json([
+            'message' => 'Book added successfully',
+            'book' => $book
+        ], 201);
     }
 
-    public function updateBook(Request $request, $id)
+    public function update(Request $request, Book $book)
     {
-        $book = Book::findOrFail($id);
-
-        $validated = $request->validate([
-            'title' => 'nullable|string|max:255',
-            'author' => 'nullable|string|max:255',
-            'quantity' => 'nullable|integer|min:1',
-            'is_return_required' => 'nullable|boolean',
+        $request->validate([
+            'inventory_number' => 'sometimes|string|unique:books,inventory_number,' . $book->id
         ]);
 
-        $book->update(array_filter($validated));
+        $book->update($request->all());
 
-        return response()->json($book, 200);
+        return response()->json([
+            'message' => 'Book updated successfully',
+            'book' => $book
+        ]);
     }
 
-    public function deleteBook($id)
+    public function destroy(Book $book)
     {
-        $book = Book::findOrFail($id);
         $book->delete();
 
-        return response()->json(null, 204);
+        return response()->json(['message' => 'Book deleted successfully']);
     }
 }

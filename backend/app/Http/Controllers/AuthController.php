@@ -1,61 +1,70 @@
 <?php
+
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
-    // Deputy regist
-    public function registerDeputy(Request $request)
+    public function register(Request $request)
     {
-        // Validate
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
+            'email' => 'required|email|unique:users|max:255',
+            'edu_id' => 'required|string|unique:users|regex:/^7\d{10}$/',
+            'password' => [
+                'required',
+                'string',
+                'min:8',
+                'confirmed',
+                'regex:/[A-Z]/',
+                'regex:/[a-z]/',
+                'regex:/[0-9]/'
+            ],
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()], 422);
+            return response()->json(['errors' => $validator->errors()], 422);
         }
 
-        // User create
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'edu_id' => $request->edu_id,
             'password' => Hash::make($request->password),
         ]);
 
-        // Role settings
-        $user->assignRole('deputy');
-
-        return response()->json(['message' => 'Deputy user registered successfully.']);
+        return response()->json(['message' => 'User registered successfully'], 201);
     }
 
-    // Teacher or Administrator regist
-    public function createTeacherOrAdministrator(Request $request)
+    public function login(Request $request)
     {
-        // Role validate
-        $this->authorize('create', User::class);
 
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
             'password' => 'required|string|min:8',
-            'role' => 'required|string|in:teacher,library_assistant',
         ]);
 
-        // User create
-        $user = User::create([
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-            'password' => Hash::make($validated['password']),
-            'role' => $validated['role'],
-        ]);
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
 
-        return response()->json($user, 201);
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user || !Hash::check($request->password, $user->password)) {
+            return response()->json(['message' => 'Hibás bejelentkezési adatok'], 401);
+        }
+
+        $token = $user->createToken('auth_token')->plainTextToken;
+
+        return response()->json([
+            'message' => 'Sikeres bejelentkezés!',
+            'token' => $token,
+            'user' => $user
+        ], 200);
     }
 }

@@ -1,12 +1,24 @@
 <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-        <button class="nav-link" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true" [routerLink]="['/home']">Home</button>
+        <button class="nav-link" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true" routerLink="/home">Home</button>
+        
         <button class="nav-link" id="nav-login-tab" data-bs-toggle="tab" data-bs-target="#nav-login" type="button" role="tab" aria-controls="nav-login" aria-selected="false" [routerLink]="['/login']" *ngIf="!auth.isLoggedIn()">login</button>
 
-        <button class="nav-link" id="nav-library-tab" data-bs-toggle="tab" data-bs-target="#nav-library" type="button" role="tab" aria-controls="nav-library" aria-selected="false" [routerLink]="['/library']" *ngIf="auth.isLoggedIn()">library</button>
+        <button class="nav-link" id="nav-library-tab" data-bs-toggle="tab" data-bs-target="#nav-library" type="button" role="tab" aria-controls="nav-library" aria-selected="false" [routerLink]="['/libraryUser']" *ngIf="auth.isLoggedIn() && auth.isDiak()">library</button>
+
+        <button class="nav-link" id="nav-books-tab" data-bs-toggle="tab" data-bs-target="#nav-library" type="button" role="tab" aria-controls="nav-library" aria-selected="false" [routerLink]="['/books']" *ngIf="auth.isLoggedIn() && auth.isKonyvtaros()">books</button>
+
+        <button class="nav-link" id="nav-students-tab" data-bs-toggle="tab" data-bs-target="#nav-library" type="button" role="tab" aria-controls="nav-library" aria-selected="false" [routerLink]="['/students']" *ngIf="auth.isLoggedIn() && auth.isKonyvtaros()">students</button>
+
+        <button class="nav-link" id="nav-library-tab" data-bs-toggle="tab" data-bs-target="#nav-library" type="button" role="tab" aria-controls="nav-library" aria-selected="false" [routerLink]="['/libraryAdmin']" *ngIf="auth.isLoggedIn() && auth.isKonyvtaros()">library</button>
 
         <button class="nav-link" id="nav-about-tab" data-bs-toggle="tab" data-bs-target="#nav-about" type="button" role="tab" aria-controls="nav-about" aria-selected="false" [routerLink]="['/about']">about</button>
         
         <button class="nav-link" id="nav-logout-tab" data-bs-toggle="tab" data-bs-target="#nav-logout" type="button" role="tab" aria-controls="nav-logout" aria-selected="false" [routerLink]="['/home']" *ngIf="auth.isLoggedIn()" (click)="logOut()">logout</button>
+
+
+        <button class="nav-link" id="translateEN" data-bs-toggle="tab" data-bs-target="#nav-library" type="button" role="tab" aria-controls="nav-library" aria-selected="false">EN</button>
+        <button class="nav-link" id="translateHU" data-bs-toggle="tab" data-bs-target="#nav-library" type="button" role="tab" aria-controls="nav-library" aria-selected="false">HU</button>
+
     </div>
 </nav>

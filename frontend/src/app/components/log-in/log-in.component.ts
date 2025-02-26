@@ -16,11 +16,11 @@ export class LogInComponent {
   public login() {
       if (this.auth.login(this.userName, this.passWord)){
 
-        this.router.navigate(['library']);
+        this.router.navigate(['libraryUser']);
       }else{
         alert("Login Failed");
       }
-    }
+  }
   constructor(public auth:AuthenticationService, private router: Router) { }
 
   

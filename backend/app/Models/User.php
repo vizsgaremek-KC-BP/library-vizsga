@@ -2,30 +2,27 @@
 
 namespace App\Models;
 
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    /** @use HasFactory<\Database\Factories\UserFactory> */
+    use HasApiTokens, HasFactory, Notifiable;
 
     protected $fillable = [
-        'name', 'email', 'password',
-    ];
+                            'name',
+                            'email',
+                            'edu_id',
+                            'password'
+                        ];
 
-    public function isDeputy()
-    {
-        return $this->role === 'deputy';
-    }
+    protected $hidden = [
+                            'password',
+                            'remember_token'
+                        ];
 
-    public function isTeacher()
-    {
-        return $this->role === 'teacher';
-    }
-
-    public function isAdministrator()
-    {
-        return $this->role === 'administrator';
-    }
 }

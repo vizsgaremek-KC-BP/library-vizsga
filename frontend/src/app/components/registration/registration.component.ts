@@ -10,9 +10,9 @@ import { Router } from '@angular/router';
 export class RegistrationComponent {
   userName = "";
   passWord = "";
-  emailAddress = "";
+  studentId = "";
   public register() {
-      if (this.auth.register(this.userName, this.passWord, this.emailAddress)) {
+      if (this.auth.register(this.userName, this.passWord, this.studentId)) {
 
         this.router.navigate(['home']);
       }else{

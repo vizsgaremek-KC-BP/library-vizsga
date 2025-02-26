@@ -5,20 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+  <div id="register">
     <form (ngSubmit)="register()">
-        <div class="mb-3">Email address
-          <label for="exampleInputEmail1" class="form-label"></label>
-          <input  name="userName" type="text" class="form-control" aria-describedby="emailHelp" [(ngModel)]="emailAddress">
+      <h2>Register new account</h2>
+      <br>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Oktatási azonosító szám:</label>
+          <input  name="studentId" type="text" class="form-control" aria-describedby="emailHelp" [(ngModel)]="studentId">
         </div>
-        <div class="mb-3">Username
-          <label for="exampleInputEmail1" class="form-label"></label>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Felhasználónév:</label>
           <input  name="userName" type="text" class="form-control"aria-describedby="emailHelp" [(ngModel)]="userName">
         </div>
         <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <label for="exampleInputPassword1" class="form-label">Jelszó:</label>
           <input  name="passWord" type="password" class="form-control" [(ngModel)]="passWord">
         </div>
-        <button type="submit" class="btn btn-primary" >Submit</button>
+        <button type="submit" class="btn btn-primary">Register</button>
+        <br>
+        <a [routerLink]="['/login']">Already have an account, Log In now!</a>
       </form>
+    </div>
 </body>
 </html>

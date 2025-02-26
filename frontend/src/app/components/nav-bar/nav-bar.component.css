@@ -1,0 +1,21 @@
+nav{
+    background-color: #7878A2;
+    border-radius: 5px;
+}
+/* #aeddf5 */
+a, button{
+    color: #efeae2;
+}
+#translateHU{
+    left: 202vh;
+    position: absolute;
+    border-radius: 50vh;
+}
+#translateEN{
+    left: 194vh;
+    position: absolute;
+    border-radius: 50vh;
+}
+/* button:visited{
+    background-color: #3b5ad4;
+} */

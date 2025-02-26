@@ -4,19 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body>
+<body class="rounded">
+  <div id="login">
     <form (ngSubmit)="login()">
-        <div class="mb-3">Username
-          <label for="exampleInputEmail1" class="form-label"></label>
-          <input  name="userName" type="text" class="form-control" id="userName" aria-describedby="emailHelp" [(ngModel)]="userName">
-        </div>
+      <h2>Jelentkezz be!</h2>
+      <br>
         <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Password</label>
-          <input  name="passWord" type="password" class="form-control" id="passWord" [(ngModel)]="passWord">
+          <label for="exampleInputEmail1" class="form-label">Oktatási azonosító szám:</label>
+          <input name="oktAz" type="text" class="form-control" id="oktAz" aria-describedby="emailHelp" [(ngModel)]="userName">
         </div>
-        <button type="submit" class="btn btn-primary" >Login</button>
         <br>
-        <a [routerLink]="['/register']">Don't have an account, register now!</a>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Jelszó:</label>
+          <input name="passWord" type="password" class="form-control" id="passWord" [(ngModel)]="passWord">
+        </div>
+        <br>
+        <button type="submit" class="btn">Bejelentkezés</button>
+        <br>
+        <a [routerLink]="['/register']">Nincs még fiókod, regisztrálj most!</a>
       </form>
+  </div>
 </body>
 </html>

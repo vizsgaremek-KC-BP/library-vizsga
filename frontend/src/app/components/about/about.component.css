@@ -1,0 +1,64 @@
+html{
+    background: linear-gradient(to left, rgb(11, 11, 88) ,#7878A2 , transparent 100%);
+}
+body {
+    background-image: url("kulkerlogo.png");
+    background-color: transparent;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 94.3vh;
+    width: 100vh;
+    margin: 0;
+    position: relative;
+}
+#about{
+    width: 95vh;
+    left: 110vh;
+    position: absolute;
+    text-align: justify;
+    border-radius: 25px;
+    padding: 10px;
+    background-image: linear-gradient(to right, white, lightgrey);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+#lista{
+    width: 45vh;
+    left: 160vh;
+    position: absolute;
+    text-align: justify;
+    top: 40vh;
+    border-radius: 25px;
+    padding: 10px;
+    color:lightgrey;
+    background-color: rgba(212, 169, 253, 0.6);
+}
+#fejlesztok{
+    width: 95vh;
+    left: 110vh;
+    position: absolute;
+    text-align: justify;
+    top: 75vh;
+    border-radius: 25px;
+    padding: 10px;
+    background-image: linear-gradient(to right, white, lightgrey);
+    -webkit-background-clip: text;
+    color: transparent;
+    font-size: 12px;
+}
+ul{
+    padding: 10px;
+    border-radius: 25px;
+    list-style-type: disc;
+    margin-left: 20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+a{
+    color: #b3d6db;
+}
+#adatok{
+    margin-bottom: 0px;
+}
