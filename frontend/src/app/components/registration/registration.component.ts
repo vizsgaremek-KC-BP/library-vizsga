@@ -11,14 +11,12 @@ export class RegistrationComponent {
   userName = "";
   passWord = "";
   studentId = "";
+  passWordConfirm = "";
+  email = "";
   public register() {
-      if (this.auth.register(this.userName, this.passWord, this.studentId)) {
-
-        this.router.navigate(['home']);
-      }else{
-        alert("Register Failed");
-      }
-    }
+      this.auth.register(this.userName, this.email, this.studentId, this.passWord, this.passWordConfirm);
+      
+      this.router.navigate(['login']);
+  }
   constructor(public auth:AuthenticationService, private router: Router) { }
-
 }

@@ -10,16 +10,24 @@
       <h2>Register new account</h2>
       <br>
         <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Oktatási azonosító szám:</label>
-          <input  name="studentId" type="text" class="form-control" aria-describedby="emailHelp" [(ngModel)]="studentId">
-        </div>
-        <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Felhasználónév:</label>
           <input  name="userName" type="text" class="form-control"aria-describedby="emailHelp" [(ngModel)]="userName">
         </div>
         <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Email:</label>
+          <input  name="email" type="text" class="form-control" aria-describedby="emailHelp" [(ngModel)]="email">
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Oktatási azonosító szám:</label>
+          <input  name="studentId" type="text" class="form-control" aria-describedby="emailHelp" [(ngModel)]="studentId">
+        </div>
+        <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">Jelszó:</label>
           <input  name="passWord" type="password" class="form-control" [(ngModel)]="passWord">
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Jelszó megerősítés:</label>
+          <input  name="passWordConfirm" type="password" class="form-control" [(ngModel)]="passWordConfirm">
         </div>
         <button type="submit" class="btn btn-primary">Register</button>
         <br>

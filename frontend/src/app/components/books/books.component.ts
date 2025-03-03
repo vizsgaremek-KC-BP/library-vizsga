@@ -9,6 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrl: './books.component.css'
 })
 export class BooksComponent implements OnInit {
+  bookArray: any[] = [];
   setEditBook() {
     this.editBooks = !this.editBooks;
   }
@@ -17,12 +18,18 @@ export class BooksComponent implements OnInit {
     titles: any = {};
   
     modifiedBook: any = {
+      book_id: 0,
+      book_type: {
+        id: 0,
+        title: '',
+        author: '',
+        price: 0,
+        copies: 0,
+      },
+      created_at: '',
       id: 0,
-      whId: '',
-      title: '',
-      author: '',
-      price: 0,
-      quantity: 0
+      inventory_number: '',
+      updated_at: '',
     };
   
     constructor(
@@ -30,6 +37,13 @@ export class BooksComponent implements OnInit {
       private config: ConfigService,
       private translate: TranslateService
     ) {
+      db.getBook().subscribe(data => {
+        this.bookArray = data;
+        console.log(this.bookArray);
+      });
+
+
+
       this.translate.setDefaultLang('en');
       this.translate.use('en');
     }
@@ -41,7 +55,7 @@ export class BooksComponent implements OnInit {
   
     createBook(): void {
       if (this.books.title && this.books.price > 0) {
-        this.db.addBook(this.books).subscribe(
+        this.db.addBook().subscribe(
           data => {
             console.log('Könyv hozzáadva', data);
           },
@@ -55,7 +69,7 @@ export class BooksComponent implements OnInit {
     }
   
     modifyBook(): void{
-      this.db.updateBook(this.modifiedBook.id, this.modifiedBook).subscribe(
+      this.db.updateBook().subscribe(
         data => {
           console.log('Könyv frissítve', data);
         },
@@ -66,7 +80,7 @@ export class BooksComponent implements OnInit {
     }
   
     deleteBook(): void{
-      this.db.deleteBook(this.books.id).subscribe(
+      this.db.deleteBook().subscribe(
         data => {
           console.log('Könyv törölve', data);
         },

@@ -5,30 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <div class="container">
         <div class="row d-flex justify-content-between">
             
             <div class="col-md-5 text-center p-3">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th scope="col">Raktári szám</th>
                                 <th scope="col">Cím</th>
                                 <th scope="col">Szerző</th>
                                 <th scope="col">Ár (Ft)</th>
                                 <th scope="col">Pédány</th>
+                                <th scope="col">Raktári szám</th>
                                 <th scope="col" colspan="2">
                                     <button type="button" class="btn btn-danger" (click)="createBook()">Hozzáad</button>
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td><p>{{books.whId}}</p></td>
-                                <td>{{books.title}}</td>
-                                <td>{{books.author}}</td>
-                                <td>{{books.price}}</td>
-                                <td>{{books.quantity}}</td>
+                            <tr *ngFor="let book of bookArray">
+                                <!-- <td>{{book.book_type.title}}</td> -->
+                                <!-- <td>{{book.book_type.author}}</td> -->
+                                <!-- <td>{{book.book_type.price}}</td> -->
+                                <!-- <td>{{book.book_type.copies}}</td> -->
+                                <td>{{book.inventory_number}}</td>
                                 <td>
                                     <button type="button" class="btn btn-danger" (click)="modifyBook()">Szerkesztés</button>
                                 </td>
@@ -40,7 +39,5 @@
                     </table>
             </div>
         </div>
-    </div>
-
 </body>
 </html>

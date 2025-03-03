@@ -11,15 +11,16 @@ import { AuthenticationService } from '../../services/authentication.service';
   providedIn:'root'
 })
 export class LogInComponent {
-  userName = "";
+  email = "";
   passWord = "";
   public login() {
-      if (this.auth.login(this.userName, this.passWord)){
-
+    this.auth.login(this.email, this.passWord).then(message => {
+      if(localStorage.getItem('role') == 'student'){
         this.router.navigate(['libraryUser']);
-      }else{
-        alert("Login Failed");
+      }else if(localStorage.getItem('role') == 'admin'){
+        this.router.navigate(['libraryAdmin']);
       }
+    }).catch(error => alert(error));
   }
   constructor(public auth:AuthenticationService, private router: Router) { }
 
