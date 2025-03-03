@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::create('books', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('book_id')->constrained('book_types')->onDelete('cascade');
+            $table->foreignId('book_type_id')->constrained('book_types')->onDelete('cascade');
             $table->string('inventory_number')->unique();
             $table->timestamps();
         });

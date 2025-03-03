@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\BookTypeController;
 use App\Http\Controllers\LoanController;
 use App\Http\Controllers\AdminController;
 
@@ -22,5 +23,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/loans', [AdminController::class, 'listLoans']);
         Route::post('/loans/approve/{loan}', [AdminController::class, 'approveReturn']);
         Route::post('/loans/reject/{loan}', [AdminController::class, 'rejectReturn']);
+        Route::post('/book-types', [BookTypeController::class, 'store']);
     });
 });

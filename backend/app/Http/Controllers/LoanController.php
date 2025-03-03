@@ -51,9 +51,15 @@ class LoanController extends Controller
         ]);
     }
 
-    public function requestReturn(BorrowedBook $loan)
+    public function requestReturn(Request $request, $loan_id)
     {
         $user = Auth::user();
+
+        $loan = BorrowedBook::find($loan_id);
+
+        if (!$loan) {
+            return response()->json(['message' => 'Loan not found'], 404);
+        }
 
         if ($loan->user_id !== $user->id) {
             return response()->json(['message' => 'You cannot return a book on behalf of someone else'], 403);
@@ -70,4 +76,34 @@ class LoanController extends Controller
             'loan' => $loan
         ]);
     }
+    public function returnBook(Request $request, $loan_id)
+    {
+        $user = Auth::user();
+
+        $loan = BorrowedBook::find($loan_id);
+
+        if (!$loan) {
+            return response()->json(['message' => 'Loan not found'], 404);
+        }
+
+        if ($loan->user_id !== $user->id) {
+            return response()->json(['message' => 'You cannot return a book on behalf of someone else'], 403);
+        }
+
+        if ($loan->status !== 'borrowed' && $loan->status !== 'requested_return') {
+            return response()->json(['message' => 'This book has already been returned'], 400);
+        }
+
+        $book = Book::find($loan->book_id);
+        if ($book) {
+            $book->bookType->increment('copies');
+        }
+
+        $loan->delete();
+
+        return response()->json([
+            'message' => 'Book returned successfully'
+        ]);
+    }
+
 }

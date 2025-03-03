@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\BorrowedBook;
+use App\Models\Book;
 use App\Models\BookType;
 
 class AdminController extends Controller
 {
-
     public function listLoans()
     {
-        $loans = BorrowedBook::with('user', 'book.bookType')->get();
+        $loans = BorrowedBook::with(['user', 'book.bookType'])->get();
 
         return response()->json($loans);
     }
@@ -24,7 +24,9 @@ class AdminController extends Controller
 
         $loan->update(['status' => 'returned']);
 
-        $loan->book->bookType->increment('copies');
+        if ($loan->book && $loan->book->bookType) {
+            $loan->book->bookType->increment('copies');
+        }
 
         return response()->json(['message' => 'Return approved']);
     }
@@ -39,4 +41,5 @@ class AdminController extends Controller
 
         return response()->json(['message' => 'Return request rejected']);
     }
+
 }

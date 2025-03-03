@@ -9,10 +9,10 @@ class Book extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['book_id', 'inventory_number'];
+    protected $fillable = ['book_type_id', 'inventory_number'];
 
     public function bookType()
     {
-        return $this->belongsTo(BookType::class, 'book_id');
+        return $this->belongsTo(BookType::class);
     }
 }
