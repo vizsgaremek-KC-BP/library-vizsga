@@ -1,4 +1,4 @@
-INSERT INTO books (book_id, inventory_number) VALUES 
+INSERT INTO books (book_types_id, inventory_number) VALUES 
 (1,'SI-NPI1AMF-001'),
 (1,'SI-NPI1AMF-002'),
 (1,'SI-NPI1AMF-003'),

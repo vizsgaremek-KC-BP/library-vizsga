@@ -22,11 +22,11 @@ class AdminController extends Controller
             return response()->json(['message' => 'This loan is not pending return approval'], 400);
         }
 
-        $loan->update(['status' => 'returned']);
-
         if ($loan->book && $loan->book->bookType) {
             $loan->book->bookType->increment('copies');
         }
+
+        $loan->delete();
 
         return response()->json(['message' => 'Return approved']);
     }

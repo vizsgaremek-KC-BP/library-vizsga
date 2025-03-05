@@ -12,7 +12,7 @@ if (!$books) {
     die("Hiba: Nem sikerült beolvasni a books.json fájlt!\n");
 }
 
-$sql = "INSERT INTO books (book_id, inventory_number) VALUES \n";
+$sql = "INSERT INTO books (book_types_id, inventory_number) VALUES \n";
 
 foreach ($books as $index => $book) {
     [$inventoryPrefix, $title, $author, $price, $copies] = $book;
@@ -30,5 +30,5 @@ file_put_contents($outputFile, $sql);
 
 echo "SQL beszúrások legenerálva! Nézd meg az insert_books.sql fájlt.\n";
 
-//php generate_sql.php
+//php Adatbazis/generate_sql.php
 

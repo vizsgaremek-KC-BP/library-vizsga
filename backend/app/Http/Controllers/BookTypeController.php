@@ -8,10 +8,16 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class BookTypeController extends Controller
-{
+{    
+    public function index()
+    {
+        return response()->json(BookType::all(), 200);
+    }
+
     public function store(Request $request)
     {
         $request->validate([
+            'inventory_number_base' => 'required|string',
             'title' => 'required|string|unique:book_types,title',
             'author' => 'required|string',
             'price' => 'required|numeric',
@@ -20,7 +26,7 @@ class BookTypeController extends Controller
 
         $bookType = BookType::create($request->all());
 
-        $this->updateJsonFile($bookType);
+        $this->updateJsonFile();
 
         return response()->json([
             'message' => 'Book type added successfully',
@@ -28,41 +34,64 @@ class BookTypeController extends Controller
         ], 201);
     }
 
-    private function updateJsonFile(BookType $bookType)
-{
-    $filePath = storage_path('app/book.json');
-
-    // Ha a fájl nem létezik, létrehozzuk
-    if (!File::exists($filePath)) {
-        File::put($filePath, json_encode([]));
+    public function show($id)
+    {
+        $bookType = BookType::find($id);
+        if (!$bookType) {
+            return response()->json(['message' => 'Book type not found'], 404);
+        }
+        return response()->json($bookType, 200);
     }
 
-    // JSON betöltése
-    $jsonData = File::get($filePath);
-    $books = json_decode($jsonData, true) ?: [];
+    public function update(Request $request, $id)
+    {
+        $bookType = BookType::find($id);
+        if (!$bookType) {
+            return response()->json(['message' => 'Book type not found'], 404);
+        }
 
-    // Ha régi tömbszerkezetű adatok vannak, átalakítjuk objektumokká
-    $books = array_map(function ($book) {
-        return is_array($book) && count($book) === 5
-            ? [
-                "id" => null,  // ID nincs a régi formátumban
-                "title" => $book[1],
-                "author" => $book[2],
-                "price" => $book[3],
-                "copies" => $book[4]
-            ]
-            : $book;
-    }, $books);
+        $request->validate([
+            'inventory_number_base' => 'sometimes|required|string',
+            'title' => 'sometimes|required|string|unique:book_types,title,' . $id,
+            'author' => 'sometimes|required|string',
+            'price' => 'sometimes|required|numeric',
+            'copies' => 'sometimes|required|integer|min:0'
+        ]);
 
+        $bookType->update($request->all());
+        $this->updateJsonFile();
 
-    $books[] = [
-        "id" => $bookType->id,
-        "title" => $bookType->title,
-        "author" => $bookType->author,
-        "price" => $bookType->price,
-        "copies" => $bookType->copies
-    ];
+        return response()->json(['message' => 'Book type updated successfully', 'book_type' => $bookType], 200);
+    }
 
-    File::put($filePath, json_encode($books, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
-}
+    public function destroy(Request $request, $id)
+    {
+        $bookType = BookType::find($id);
+        if (!$bookType) {
+            return response()->json(['message' => 'Book type not found'], 404);
+        }
+
+        $bookType->delete();
+        $this->updateJsonFile();
+
+        return response()->json(['message' => 'Book type deleted successfully'], 200);
+    }
+
+    private function updateJsonFile()
+    {
+        $filePath = storage_path('app/book.json');
+
+        $books = BookType::all()->map(function ($bookType) {
+            return [
+                "id" => $bookType->id,
+                "inventory_number_base" => $bookType->inventory_number_base,
+                "title" => $bookType->title,
+                "author" => $bookType->author,
+                "price" => $bookType->price,
+                "copies" => $bookType->copies
+            ];
+        })->toArray();
+
+        File::put($filePath, json_encode($books, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+    }
 }

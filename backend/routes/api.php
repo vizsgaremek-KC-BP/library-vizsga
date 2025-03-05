@@ -20,9 +20,15 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/books', [BookController::class, 'store']);
         Route::put('/books/{book}', [BookController::class, 'update']);
         Route::delete('/books/{book}', [BookController::class, 'destroy']);
+        
         Route::get('/loans', [AdminController::class, 'listLoans']);
         Route::post('/loans/approve/{loan}', [AdminController::class, 'approveReturn']);
         Route::post('/loans/reject/{loan}', [AdminController::class, 'rejectReturn']);
+
+        Route::get('/book-types', [BookTypeController::class, 'index']);
+        Route::get('/book-types/{id}', [BookTypeController::class, 'show']);
         Route::post('/book-types', [BookTypeController::class, 'store']);
+        Route::put('/book-types/{id}', [BookTypeController::class, 'update']);
+        Route::delete('/book-types/{id}', [BookTypeController::class, 'destroy']);
     });
 });

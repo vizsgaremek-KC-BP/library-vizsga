@@ -9,6 +9,7 @@ return new class extends Migration{
     {
         Schema::create('book_types', function (Blueprint $table) {
             $table->id();
+            $table->string('inventory_number_base');
             $table->string('title');
             $table->string('author');
             $table->integer('price');
