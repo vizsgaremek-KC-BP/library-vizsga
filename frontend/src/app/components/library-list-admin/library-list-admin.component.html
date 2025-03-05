@@ -12,24 +12,21 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th scope="col">Raktári szám</th>
-                                <th scope="col">Cím</th>
+                                <th scope="col">Diák neve</th>
+                                <th scope="col">Oktatási azonosítója</th>
                                 <th scope="col">Szerző</th>
+                                <th scope="col">Cím</th>
                                 <th scope="col">Ár (Ft)</th>
-                                <th scope="col">Pédány</th>
                                 <th scope="col" colspan="2"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>minta</td>
-                                <td>minta</td>
-                                <td>minta</td>
-                                <td>minta</td>
-                                <td>minta</td>
-                                <td>
-                                    <button type="button" class="btn btn-danger">Kiadás</button>
-                                </td>
+                            <tr *ngFor="let loan of loanArray">
+                                <td>{{loan.author}}</td>
+                                <td>{{loan.inventory_number_base}}</td>
+                                <td>{{loan.title}}</td>
+                                <td>{{loan.price}}</td>
+                                <td>{{loan.copies}}</td>
                                 <td>
                                     <button type="button" class="btn btn-danger">Visszaadás</button>
                                 </td>

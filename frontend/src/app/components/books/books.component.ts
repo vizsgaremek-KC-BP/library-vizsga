@@ -9,6 +9,16 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrl: './books.component.css'
 })
 export class BooksComponent implements OnInit {
+  
+    id: number = 0;
+    inventory_number_base: string = '';
+    title: string = '';
+    author: string = '';
+    price: number = 0;
+    copies: number = 0;
+    selectedBook: any = null;
+  
+    
   bookArray: any[] = [];
   setEditBook() {
     this.editBooks = !this.editBooks;
@@ -16,20 +26,16 @@ export class BooksComponent implements OnInit {
     @Input() books!: any;
     editBooks: boolean = false;
     titles: any = {};
-  
+
     modifiedBook: any = {
-      book_id: 0,
-      book_type: {
         id: 0,
+        inventory_number_base: '',
         title: '',
         author: '',
         price: 0,
         copies: 0,
-      },
-      created_at: '',
-      id: 0,
-      inventory_number: '',
-      updated_at: '',
+        created_at: '',
+        updated_at: '',
     };
   
     constructor(
@@ -41,11 +47,8 @@ export class BooksComponent implements OnInit {
         this.bookArray = data;
         console.log(this.bookArray);
       });
-
-
-
-      this.translate.setDefaultLang('en');
-      this.translate.use('en');
+      // this.translate.setDefaultLang('en');
+      // this.translate.use('en');
     }
     switchLanguage(lang: string) {
       this.translate.use(lang);
@@ -54,24 +57,27 @@ export class BooksComponent implements OnInit {
     ngOnInit(): void {}
   
     createBook(): void {
-      if (this.books.title && this.books.price > 0) {
-        this.db.addBook().subscribe(
+        this.db.addBook(this.inventory_number_base, this.title, this.author, this.price, this.copies).subscribe(
           data => {
             console.log('Könyv hozzáadva', data);
+            window.location.reload();
           },
           error => {
             console.error('Hiba történt a könyv hozzáadása közben', error);
           }
         );
-      } else {
         console.log('Kérlek, töltsd ki az összes mezőt.');
-      }
+    }
+
+    setSelectedBook(book: any) {
+      this.selectedBook = { ...book }; 
     }
   
-    modifyBook(): void{
-      this.db.updateBook().subscribe(
+    modifyBook(id: string, inventory_number_base: string, title: string, author: string, price: number, copies: number): void{
+      this.db.updateBook(id, inventory_number_base, title, author, price, copies).subscribe(
         data => {
           console.log('Könyv frissítve', data);
+          window.location.reload();
         },
         error => {
           console.error('Hiba történt a könyv frissítésekor', error);
@@ -79,18 +85,15 @@ export class BooksComponent implements OnInit {
       );
     }
   
-    deleteBook(): void{
-      this.db.deleteBook().subscribe(
+    deleteBook(id:string): void{
+      this.db.deleteBook(id).subscribe(
         data => {
           console.log('Könyv törölve', data);
+          window.location.reload();
         },
         error => {
           console.error('Hiba történt a könyv törlésekor', error);
         }
       );
-    }
-    
-    resetNewBook(): void {
-      this.modifiedBook = { id: this.books.id, whId: '', title: '', author: '',  price: 0, quantity: 0 };
     }
 }

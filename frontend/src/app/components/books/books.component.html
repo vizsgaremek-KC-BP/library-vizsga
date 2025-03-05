@@ -11,28 +11,117 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th scope="col">Cím</th>
                                 <th scope="col">Szerző</th>
+                                <th scope="col">Raktári szám</th>
+                                <th scope="col">Cím</th>
                                 <th scope="col">Ár (Ft)</th>
                                 <th scope="col">Pédány</th>
-                                <th scope="col">Raktári szám</th>
                                 <th scope="col" colspan="2">
-                                    <button type="button" class="btn btn-danger" (click)="createBook()">Hozzáad</button>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#inputModal">
+                                        Hozzáad
+                                      </button>
+                                      
+                                      <div class="modal fade" id="inputModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <h5 class="modal-title" id="modalLabel">Új könyv hozzáadása</h5>
+                                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Bezárás"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                              <form id="inputForm">
+                                                <div class="mb-3">
+                                                  <label for="name" class="form-label">Szerző</label>
+                                                  <input type="text" class="form-control" id="author" placeholder="Írd be a neved" [(ngModel)]="author" name="author">
+                                                </div>
+                                                <div class="mb-3">
+                                                  <label for="name" class="form-label">Raktári szám</label>
+                                                  <input type="text" class="form-control" id="inventorybase" placeholder="Írd be a neved" [(ngModel)]="inventory_number_base" name="inventorybase">
+                                                </div>
+                                                <div class="mb-3">
+                                                  <label for="name" class="form-label">Cím</label>
+                                                  <input type="text" class="form-control" id="title" placeholder="Írd be a neved" [(ngModel)]="title" name="title">
+                                                </div>
+                                                <div class="mb-3">
+                                                  <label for="name" class="form-label">Ár (Ft)</label>
+                                                  <input type="text" class="form-control" id="price" placeholder="Írd be a neved" [(ngModel)]="price" name="price">
+                                                </div>
+                                                <div class="mb-3">
+                                                  <label for="email" class="form-label">Példány</label>
+                                                  <input type="email" class="form-control" id="copies" placeholder="Írd be az e-mail címed" [(ngModel)]="copies" name="copies">
+                                                </div>
+                                              </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bezárás</button>
+                                              <button type="button" class="btn btn-primary" id="saveBtn" (click)="createBook()">Mentés</button>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let book of bookArray">
-                                <!-- <td>{{book.book_type.title}}</td> -->
-                                <!-- <td>{{book.book_type.author}}</td> -->
-                                <!-- <td>{{book.book_type.price}}</td> -->
-                                <!-- <td>{{book.book_type.copies}}</td> -->
-                                <td>{{book.inventory_number}}</td>
+                                <td>{{book.author}}</td>
+                                <td>{{book.inventory_number_base}}</td>
+                                <td>{{book.title}}</td>
+                                <td>{{book.price}}</td>
+                                <td>{{book.copies}}</td>
                                 <td>
-                                    <button type="button" class="btn btn-danger" (click)="modifyBook()">Szerkesztés</button>
+                                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modifyModal" (click)="setSelectedBook(book)">
+                                    Szerkesztés
+                                  </button>
                                 </td>
+                                
+                                <div class="modal fade" id="modifyModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="modal-title" id="modalLabel">Könyv szerkesztése</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Bezárás"></button>
+                                      </div>
+                                      <div class="modal-body">
+                                        <form id="inputForm" *ngIf="selectedBook">
+                                          <div class="mb-3">
+                                            <label class="form-label">Szerző</label>
+                                            <input type="text" class="form-control" [(ngModel)]="selectedBook.author" name="author">
+                                          </div>
+                                          <div class="mb-3">
+                                            <label class="form-label">Raktári szám</label>
+                                            <input type="text" class="form-control" [(ngModel)]="selectedBook.inventory_number_base" name="inventorybase">
+                                          </div>
+                                          <div class="mb-3">
+                                            <label class="form-label">Cím</label>
+                                            <input type="text" class="form-control" [(ngModel)]="selectedBook.title" name="title">
+                                          </div>
+                                          <div class="mb-3">
+                                            <label class="form-label">Ár (Ft)</label>
+                                            <input type="text" class="form-control" [(ngModel)]="selectedBook.price" name="price">
+                                          </div>
+                                          <div class="mb-3">
+                                            <label class="form-label">Példány</label>
+                                            <input type="text" class="form-control" [(ngModel)]="selectedBook.copies" name="copies">
+                                          </div>
+                                        </form>
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bezárás</button>
+                                        <button type="button" class="btn btn-primary" (click)="modifyBook(
+                                        selectedBook.id,
+                                        selectedBook.author,
+                                        selectedBook.inventory_number_base,
+                                        selectedBook.title,
+                                        selectedBook.price,
+                                        selectedBook.copies)">Mentés</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
                                 <td>
-                                    <button type="button" class="btn btn-danger" (click)="deleteBook()">Törlés</button>
+                                    <button type="button" class="btn btn-danger" (click)="deleteBook(book.id)">Törlés</button>
                                 </td>
                             </tr>
                         </tbody>

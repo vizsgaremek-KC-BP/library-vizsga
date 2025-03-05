@@ -26,34 +26,65 @@ export class HttpService {
       'Authorization': `Bearer ${token}`
     });
   
-    return this.http.get<any>(`${this.apiUrl}/books`, { headers });
+    return this.http.get<any>(`${this.apiUrl}/book-types`, { headers });
   }
   
-  addBook(): Observable<any> {
+  addBook(inventory_number_base: string, title: string, author: string, price: number, copies: number): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    const body = { inventory_number_base, title, author, price, copies };
+
+    return this.http.post<any>(`${this.apiUrl}/book-types`, body, { headers });
+  }
+  
+  updateBook(id: string, inventory_number_base: string, title: string, author: string, price: number, copies: number): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    const body = { inventory_number_base, title, author, price, copies };
+  
+    return this.http.put<any>(`${this.apiUrl}/book-types/${id}`, body, { headers });
+  }
+  
+  deleteBook(id: string): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
   
-    return this.http.get<any>(`${this.apiUrl}/books`, { headers });
+    return this.http.delete<any>(`${this.apiUrl}/book-types/${id}`, { headers });
   }
-  
-  updateBook(): Observable<any> {
+
+  getLoan(): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
   
-    return this.http.get<any>(`${this.apiUrl}/books`, { headers });
+    return this.http.get<any>(`${this.apiUrl}/loans`, { headers });
   }
-  
-  deleteBook(): Observable<any> {
+
+  // addLoan(inventory_number_base: string, title: string, author: string, price: number, copies: number): Observable<any> {
+  //   const token = localStorage.getItem('token');
+  //   const headers = new HttpHeaders({
+  //     'Authorization': `Bearer ${token}`
+  //   });
+  //   const body = { inventory_number_base, title, author, price, copies };
+
+  //   return this.http.post<any>(`${this.apiUrl}/book-types`, body, { headers });
+  // }
+
+  approveLoan(id: string, inventory_number_base: string, title: string, author: string, price: number, copies: number): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
+    const body = { inventory_number_base, title, author, price, copies };
   
-    return this.http.get<any>(`${this.apiUrl}/books`, { headers });
+    return this.http.post<any>(`${this.apiUrl}/loans/approve/${id}`, body, { headers });
   }
 
 

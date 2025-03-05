@@ -44,7 +44,7 @@ export class StudentsComponent implements OnInit {
   
     createStudent(): void {
       if (this.students.name && this.students.sId > 0) {
-        this.db.addStudent(this.students).subscribe(
+        this.db.addStudent().subscribe(
           data => {
             console.log('Diák hozzáadva', data);
           },
@@ -58,7 +58,7 @@ export class StudentsComponent implements OnInit {
     }
   
     modifyStudent(): void{
-      this.db.updateStudent(this.modifiedStudent.id, this.modifiedStudent).subscribe(
+      this.db.updateStudent().subscribe(
         data => {
           console.log('Diák frissítve', data);
         },
@@ -69,7 +69,7 @@ export class StudentsComponent implements OnInit {
     }
   
     deleteStudent(): void{
-      this.db.deleteStudent(this.students.id).subscribe(
+      this.db.deleteStudent().subscribe(
         data => {
           console.log('Diák törölve', data);
         },
