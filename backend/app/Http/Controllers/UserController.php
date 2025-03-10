@@ -33,8 +33,9 @@ class UserController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'edu_id' => $request-> edu_id,
+            'edu_id' => $request->edu_id,
             'password' => Hash::make($request->password),
+            'status' => 'active', // új felhasználónál alapértelmezett státusz: aktív
         ]);
 
         return response()->json($user, 201);
@@ -68,26 +69,36 @@ class UserController extends Controller
                 'regex:/[a-z]/',
                 'regex:/[0-9]/'
             ],
+            'role' => 'sometimes|string|in:admin,student',
         ]);
 
         $user->update([
             'name' => $request->name ?? $user->name,
             'email' => $request->email ?? $user->email,
-            'edu_id' => $request -> edu_id ?? $user -> edu_id,
+            'edu_id' => $request->edu_id ?? $user->edu_id,
             'password' => $request->password ? Hash::make($request->password) : $user->password,
+            'role' => $request->role ?? $user->role,
         ]);
 
         return response()->json($user);
     }
 
-    public function destroy($id)
+    public function updateStatus(Request $request, $id)
     {
         $user = User::find($id);
         if (!$user) {
             return response()->json(['message' => 'User not found'], 404);
         }
-
-        $user->delete();
-        return response()->json(['message' => 'User deleted successfully']);
+    
+        $request->validate([
+            'status' => 'required|in:active,inactive',
+        ]);
+    
+        // Frissítjük a státuszt
+        $user->status = $request->status;
+        $user->save();
+    
+        return response()->json(['message' => 'User status updated successfully', 'user' => $user]);
     }
+    
 }

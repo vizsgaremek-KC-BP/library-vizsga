@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,16 +11,22 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $fillable = [
-                            'name',
-                            'email',
-                            'edu_id',
-                            'password',
-                            'role'
-                        ];
+        'name',
+        'email',
+        'edu_id',
+        'password',
+        'role',
+        'status'
+    ];
 
     protected $hidden = [
-                            'password',
-                            'remember_token'
-                        ];
+        'password',
+        'remember_token',
+    ];
 
+    public static function boot()
+    {
+        parent::boot();
+
+    }
 }
