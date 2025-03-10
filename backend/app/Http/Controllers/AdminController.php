@@ -23,10 +23,11 @@ class AdminController extends Controller
         }
 
         if ($loan->book && $loan->book->bookType) {
-            $loan->book->bookType->increment('copies');
+            $bookType = $book->bookType->increment('copies');
+            $loan->update(['status' => 'returned']);
         }
 
-        $loan->delete();
+        $loan->update(['status' => 'returned']);
 
         return response()->json(['message' => 'Return approved']);
     }

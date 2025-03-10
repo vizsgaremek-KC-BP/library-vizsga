@@ -13,15 +13,13 @@ return new class extends Migration
     {
         Schema::create('borrowed_books', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_edu_id')->unsigned();
+            $table->bigInteger('user_edu_id');
             $table->foreign('user_edu_id')->references('edu_id')->on('users')->onDelete('cascade');
-            $table->bigInteger('book_id')->unsigned();
-            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
+            $table->string('inventory_number'); // Használjuk az inventory_number-t
+            $table->foreign('inventory_number')->references('inventory_number')->on('books')->onDelete('cascade');
             $table->enum('status', ['borrowed', 'requested_return', 'returned']);
             $table->timestamps();
         });
-        
-
     }
 
     /**
