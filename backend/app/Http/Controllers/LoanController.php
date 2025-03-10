@@ -13,14 +13,14 @@ class LoanController extends Controller
     public function borrow(Request $request)
     {
         $request->validate([
-            'user_id' => 'required|exists:users,id',
+            'user_edu_id' => 'required|exists:users,edu_id',
             'book_id' => 'required|exists:books,id'
         ]);
 
-        $user_id = $request->input('user_id');
+        $user_edu_id = $request->input('user_edu_id');
         $book_id = $request->input('book_id');
 
-        $existingLoan = BorrowedBook::where('user_id', $user_id)
+        $existingLoan = BorrowedBook::where('user_edu_id', $user_edu_id)
             ->where('book_id', $book_id)
             ->whereIn('status', ['borrowed', 'requested_return'])
             ->exists();
@@ -38,7 +38,7 @@ class LoanController extends Controller
         }
 
         $loan = BorrowedBook::create([
-            'user_id' => $user_id,
+            'user_edu_id' => $user_edu_id,
             'book_id' => $book->id,
             'status' => 'borrowed'
         ]);
@@ -61,9 +61,9 @@ class LoanController extends Controller
             return response()->json(['message' => 'Loan not found'], 404);
         }
 
-        if ($loan->user_id !== $user->id) {
+        if ((int) $loan->user_edu_id !== (int) $user->edu_id) {
             return response()->json(['message' => 'You cannot return a book on behalf of someone else'], 403);
-        }
+        }        
 
         if ($loan->status !== 'borrowed') {
             return response()->json(['message' => 'This book has already been requested for return or returned'], 400);
@@ -86,7 +86,7 @@ class LoanController extends Controller
             return response()->json(['message' => 'Loan not found'], 404);
         }
 
-        if ($loan->user_id !== $user->id) {
+        if ($loan->user_edu_id !== $user->edu_id) {
             return response()->json(['message' => 'You cannot return a book on behalf of someone else'], 403);
         }
 
@@ -97,9 +97,8 @@ class LoanController extends Controller
         $book = Book::find($loan->book_id);
         if ($book) {
             $book->bookType->increment('copies');
+            $loan->update(['status' => 'returned']);
         }
-
-        $loan->delete();
 
         return response()->json([
             'message' => 'Book returned successfully'

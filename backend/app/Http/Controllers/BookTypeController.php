@@ -81,7 +81,7 @@ class BookTypeController extends Controller
     {
         $filePath = storage_path('app/book.json');
 
-        $books = BookType::all()->map(function ($bookType) {
+        $books = BookType::orderBy('inventory_number_base', 'asc')->get()->map(function ($bookType) {
             return [
                 "id" => $bookType->id,
                 "inventory_number_base" => $bookType->inventory_number_base,

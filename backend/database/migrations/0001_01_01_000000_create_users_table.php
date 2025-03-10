@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('edu_id')->unique()->nullable();
             $table->enum('role', ['admin', 'student'])->default('student');
+            $table->string('status')->default('active');
             $table->rememberToken();
             $table->timestamps();
         });

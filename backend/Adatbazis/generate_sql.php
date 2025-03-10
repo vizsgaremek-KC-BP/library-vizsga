@@ -12,7 +12,7 @@ if (!$books) {
     die("Hiba: Nem sikerült beolvasni a books.json fájlt!\n");
 }
 
-$sql = "INSERT INTO books (book_types_id, inventory_number) VALUES \n";
+$sql = "INSERT INTO books (book_type_id, inventory_number) VALUES \n";
 
 foreach ($books as $index => $book) {
     [$inventoryPrefix, $title, $author, $price, $copies] = $book;
