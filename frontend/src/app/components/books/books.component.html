@@ -12,9 +12,9 @@
                     <table class="table table-bordered"> -->
                         <thead class="text-center">
                             <tr>
-                                <th scope="col">Szerző</th>
                                 <th scope="col">Raktári szám</th>
                                 <th scope="col">Cím</th>
+                                <th scope="col">Szerző</th>
                                 <th scope="col">Ár (Ft)</th>
                                 <th scope="col">Pédány</th>
                                 <th scope="col" colspan="2">
@@ -32,16 +32,16 @@
                                             <div class="modal-body">
                                               <form id="inputForm">
                                                 <div class="mb-3">
-                                                  <label for="name" class="form-label">Szerző</label>
-                                                  <input type="text" class="form-control" id="author" placeholder="Szerző neve" [(ngModel)]="author" name="author">
-                                                </div>
-                                                <div class="mb-3">
+                                                  <div class="mb-3">
                                                   <label for="name" class="form-label">Raktári szám</label>
                                                   <input type="text" class="form-control" id="inventorybase" placeholder="Könyv raktári száma" [(ngModel)]="inventory_number_base" name="inventorybase">
                                                 </div>
                                                 <div class="mb-3">
                                                   <label for="name" class="form-label">Cím</label>
                                                   <input type="text" class="form-control" id="title" placeholder="Könyv címe" [(ngModel)]="title" name="title">
+                                                </div>
+                                                  <label for="name" class="form-label">Szerző</label>
+                                                  <input type="text" class="form-control" id="author" placeholder="Szerző neve" [(ngModel)]="author" name="author">
                                                 </div>
                                                 <div class="mb-3">
                                                   <label for="name" class="form-label">Ár (Ft)</label>
@@ -66,9 +66,9 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let book of bookArray">
-                                <td>{{book.author}}</td>
                                 <td>{{book.inventory_number_base}}</td>
                                 <td>{{book.title}}</td>
+                                <td>{{book.author}}</td>
                                 <td>{{book.price}}</td>
                                 <td>{{book.copies}}</td>
                                 <td>
@@ -86,11 +86,7 @@
                                       </div>
                                       <div class="modal-body">
                                         <form id="inputForm" *ngIf="selectedBook">
-                                          <div class="mb-3">
-                                            <label class="form-label">Szerző</label>
-                                            <input type="text" class="form-control" [(ngModel)]="selectedBook.author" name="author">
-                                          </div>
-                                          <div class="mb-3">
+                                            <div class="mb-3">
                                             <label class="form-label">Raktári szám</label>
                                             <input type="text" class="form-control" [(ngModel)]="selectedBook.inventory_number_base" name="inventorybase">
                                           </div>
@@ -98,6 +94,11 @@
                                             <label class="form-label">Cím</label>
                                             <input type="text" class="form-control" [(ngModel)]="selectedBook.title" name="title">
                                           </div>
+                                          <div class="mb-3">
+                                            <label class="form-label">Szerző</label>
+                                            <input type="text" class="form-control" [(ngModel)]="selectedBook.author" name="author">
+                                          </div>
+
                                           <div class="mb-3">
                                             <label class="form-label">Ár (Ft)</label>
                                             <input type="text" class="form-control" [(ngModel)]="selectedBook.price" name="price">
@@ -111,10 +112,10 @@
                                       <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bezárás</button>
                                         <button type="button" class="btn btn-primary" (click)="modifyBook(
-                                        selectedBook.id,
-                                        selectedBook.author,
+                                        selectedBook.id,                                        
                                         selectedBook.inventory_number_base,
                                         selectedBook.title,
+                                        selectedBook.author,
                                         selectedBook.price,
                                         selectedBook.copies)">Mentés</button>
                                       </div>
