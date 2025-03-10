@@ -6,10 +6,11 @@
 </head>
 <body>
         <div class="row d-flex justify-content-between">
-            
-            <div class="col-md-5 text-center p-3">
-                    <table class="table table-bordered">
-                        <thead>
+                  <div class="container d-flex justify-content-center">
+                    <table class="table table-bordered text-center">
+            <!-- <div class="col-md-5 text-center p-3">
+                    <table class="table table-bordered"> -->
+                        <thead class="text-center">
                             <tr>
                                 <th scope="col">Szerző</th>
                                 <th scope="col">Raktári szám</th>
@@ -32,23 +33,23 @@
                                               <form id="inputForm">
                                                 <div class="mb-3">
                                                   <label for="name" class="form-label">Szerző</label>
-                                                  <input type="text" class="form-control" id="author" placeholder="Írd be a neved" [(ngModel)]="author" name="author">
+                                                  <input type="text" class="form-control" id="author" placeholder="Szerző neve" [(ngModel)]="author" name="author">
                                                 </div>
                                                 <div class="mb-3">
                                                   <label for="name" class="form-label">Raktári szám</label>
-                                                  <input type="text" class="form-control" id="inventorybase" placeholder="Írd be a neved" [(ngModel)]="inventory_number_base" name="inventorybase">
+                                                  <input type="text" class="form-control" id="inventorybase" placeholder="Könyv raktári száma" [(ngModel)]="inventory_number_base" name="inventorybase">
                                                 </div>
                                                 <div class="mb-3">
                                                   <label for="name" class="form-label">Cím</label>
-                                                  <input type="text" class="form-control" id="title" placeholder="Írd be a neved" [(ngModel)]="title" name="title">
+                                                  <input type="text" class="form-control" id="title" placeholder="Könyv címe" [(ngModel)]="title" name="title">
                                                 </div>
                                                 <div class="mb-3">
                                                   <label for="name" class="form-label">Ár (Ft)</label>
-                                                  <input type="text" class="form-control" id="price" placeholder="Írd be a neved" [(ngModel)]="price" name="price">
+                                                  <input type="text" class="form-control" id="price" placeholder="Könyv ára" [(ngModel)]="price" name="price">
                                                 </div>
                                                 <div class="mb-3">
                                                   <label for="email" class="form-label">Példány</label>
-                                                  <input type="email" class="form-control" id="copies" placeholder="Írd be az e-mail címed" [(ngModel)]="copies" name="copies">
+                                                  <input type="email" class="form-control" id="copies" placeholder="Példány szám" [(ngModel)]="copies" name="copies">
                                                 </div>
                                               </form>
                                             </div>

@@ -67,16 +67,6 @@ export class HttpService {
     return this.http.get<any>(`${this.apiUrl}/loans`, { headers });
   }
 
-  // addLoan(inventory_number_base: string, title: string, author: string, price: number, copies: number): Observable<any> {
-  //   const token = localStorage.getItem('token');
-  //   const headers = new HttpHeaders({
-  //     'Authorization': `Bearer ${token}`
-  //   });
-  //   const body = { inventory_number_base, title, author, price, copies };
-
-  //   return this.http.post<any>(`${this.apiUrl}/book-types`, body, { headers });
-  // }
-
   approveLoan(id: string, inventory_number_base: string, title: string, author: string, price: number, copies: number): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
@@ -95,33 +85,35 @@ export class HttpService {
       'Authorization': `Bearer ${token}`
     });
   
-    return this.http.get<any>(`${this.apiUrl}/books`, { headers });
+    return this.http.get<any>(`${this.apiUrl}/users`, { headers });
   }
   
-  addStudent(): Observable<any> {
+  addStudent(name: string, email: string, edu_id: string): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    const body = { name, email, edu_id };
+
+    return this.http.post<any>(`${this.apiUrl}/users`, body, { headers });
+  }
+  
+  updateStudent(id: string, name: string, email: string, edu_id: string): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    const body = { name, email, edu_id };
+  
+    return this.http.put<any>(`${this.apiUrl}/users/${id}`, body, { headers });
+  }
+  
+  deleteStudent(id: string): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
   
-    return this.http.get<any>(`${this.apiUrl}/books`, { headers });
-  }
-  
-  updateStudent(): Observable<any> {
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
-  
-    return this.http.get<any>(`${this.apiUrl}/books`, { headers });
-  }
-  
-  deleteStudent(): Observable<any> {
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
-  
-    return this.http.get<any>(`${this.apiUrl}/books`, { headers });
+    return this.http.delete<any>(`${this.apiUrl}/users/${id}`, { headers });
   }
 }

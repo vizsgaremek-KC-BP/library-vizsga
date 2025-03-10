@@ -16,17 +16,19 @@
                                 <th scope="col">Oktatási azonosítója</th>
                                 <th scope="col">Szerző</th>
                                 <th scope="col">Cím</th>
+                                <th scope="col">Raktári szám</th>
                                 <th scope="col">Ár (Ft)</th>
                                 <th scope="col" colspan="2"></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let loan of loanArray">
+                                <td>{{loan.student}}</td>
+                                <td>{{loan.studentId}}</td>
                                 <td>{{loan.author}}</td>
-                                <td>{{loan.inventory_number_base}}</td>
                                 <td>{{loan.title}}</td>
+                                <td>{{loan.inventory_number_base}}</td>
                                 <td>{{loan.price}}</td>
-                                <td>{{loan.copies}}</td>
                                 <td>
                                     <button type="button" class="btn btn-danger">Visszaadás</button>
                                 </td>

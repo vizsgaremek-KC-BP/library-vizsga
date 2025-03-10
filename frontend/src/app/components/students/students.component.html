@@ -5,42 +5,125 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <div class="container">
         <div class="row d-flex justify-content-between">
-            
-            <div class="col-md-5 text-center p-3">
-                    <table class="table table-bordered">
-                        <thead>
+                  <div class="container d-flex justify-content-center">
+                    <table class="table table-bordered text-center">
+            <!-- <div class="col-md-5 text-center p-3">
+                    <table class="table table-bordered"> -->
+                        <thead class="text-center">
                             <tr>
-                                <th scope="col">Születési név</th>
-                                <th scope="col">Oktatási azonosító szám</th>
-                                <th scope="col">Felhasználónév</th>
-                                <th scope="col">Jelszó</th>
+                                <th scope="col">Név</th>
+                                <th scope="col">Oktatási azonosító</th>
                                 <th scope="col">Email cím</th>
+                                <th scope="col">Jogosultság</th>
                                 <th scope="col" colspan="2">
-                                    <button type="button" class="btn btn-danger" (click)="createStudent()">Hozzáad</button>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#inputModal">
+                                        Hozzáad
+                                      </button>
+                                      
+                                      <div class="modal fade" id="inputModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <h5 class="modal-title" id="modalLabel">Új diák hozzáadása</h5>
+                                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Bezárás"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                              <form id="inputForm">
+                                                <div class="mb-3">
+                                                  <label for="name" class="form-label">Név</label>
+                                                  <input type="text" class="form-control" id="name" placeholder="Diák neve" [(ngModel)]="name" name="name">
+                                                </div>
+                                                <div class="mb-3">
+                                                  <label for="name" class="form-label">Oktatási azonosító</label>
+                                                  <input type="text" class="form-control" id="edu_id" placeholder="Oktatási azonosítója" [(ngModel)]="edu_id" name="edu_id">
+                                                </div>
+                                                <div class="mb-3">
+                                                  <label for="name" class="form-label">Email cím</label>
+                                                  <input type="text" class="form-control" id="email" placeholder="Email címe" [(ngModel)]="email" name="email">
+                                                </div>
+                                                <div class="mb-3">
+                                                  <label for="name" class="form-label">Jogosultság</label>
+                                                  <input type="text" class="form-control" id="role" placeholder="admin/student" [(ngModel)]="role" name="role">
+                                                </div>
+                                                <!-- <div class="mb-3">
+                                                  <label for="name" class="form-label">Jelszó megerősítés</label>
+                                                  <input type="text" class="form-control" id="password_confirmation" placeholder="Jelszó ismét" [(ngModel)]="password_confirmation" name="password_confirmation">
+                                                </div> -->
+                                              </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bezárás</button>
+                                              <button type="button" class="btn btn-primary" id="saveBtn" (click)="createStudent()">Mentés</button>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>minta</td>
-                                <td>minta</td>
-                                <td>minta</td>
-                                <td>minta</td>
-                                <td>minta</td>
+                            <tr *ngFor="let student of studentArray">
+                                <td>{{student.name}}</td>
+                                <td>{{student.edu_id}}</td>
+                                <td>{{student.email}}</td>
+                                <td>{{student.role}}</td>
                                 <td>
-                                    <button type="button" class="btn btn-danger">Szerkesztés</button>
+                                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modifyModal" (click)="setSelectedStudent(student)">
+                                    Szerkesztés
+                                  </button>
                                 </td>
+                                
+                                <div class="modal fade" id="modifyModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="modal-title" id="modalLabel">Diák szerkesztése</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Bezárás"></button>
+                                      </div>
+                                      <div class="modal-body">
+                                        <form id="inputForm" *ngIf="selectedStudent">
+                                          <div class="mb-3">
+                                            <label class="form-label">Név</label>
+                                            <input type="text" class="form-control" [(ngModel)]="selectedStudent.name" name="name">
+                                          </div>
+                                          <div class="mb-3">
+                                            <label class="form-label">Oktatási azonosító</label>
+                                            <input type="text" class="form-control" [(ngModel)]="selectedStudent.edu_id" name="edu_id">
+                                          </div>
+                                          <div class="mb-3">
+                                            <label class="form-label">Email cím</label>
+                                            <input type="text" class="form-control" [(ngModel)]="selectedStudent.email" name="email">
+                                          </div>
+                                          <!-- <div class="mb-3">
+                                            <label class="form-label">Jogosultság</label>
+                                            <input type="text" class="form-control" [(ngModel)]="selectedStudent.role" name="role">
+                                          </div>
+                                          <div class="mb-3">
+                                            <label class="form-label">Jelszó megerősítés</label>
+                                            <input type="text" class="form-control" [(ngModel)]="selectedStudent.password_confirmation" name="password_confirmation">
+                                          </div> -->
+                                        </form>
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bezárás</button>
+                                        <button type="button" class="btn btn-primary" (click)="modifyStudent(
+                                        selectedStudent.id,
+                                        selectedStudent.name,
+                                        selectedStudent.edu_id,
+                                        selectedStudent.email
+                                        )">Mentés</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
                                 <td>
-                                    <button type="button" class="btn btn-danger">Törlés</button>
+                                    <button type="button" class="btn btn-danger" (click)="deleteStudent(student.id)">Törlés</button>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
             </div>
         </div>
-    </div>
-
 </body>
 </html>

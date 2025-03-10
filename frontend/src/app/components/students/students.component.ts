@@ -9,20 +9,32 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrl: './students.component.css'
 })
 export class StudentsComponent implements OnInit {
+    id: number = 0;
+    email: string = '';
+    name: string = '';
+    edu_id: string = '';
+    role: string = '';
+    selectedStudent: any = null;
+
+    studentArray: any[] = [];
+
   setEditStudent() {
     this.editStudents = !this.editStudents;
   }
-    @Input() students!: any;
+    @Input() student!: any;
     editStudents: boolean = false;
     titles: any = {};
   
     modifiedStudent: any = {
       id: 0,
-      name: '',
-      userName: '',
-      emailAddress: '',
-      passWord: '',
-      sId: 0,
+      email: '',
+      email_verified_at: '',
+      password: '',
+      edu_id: '',
+      role: '',
+      remember_token: '',
+      created_at: '',
+      updated_at: '',
     };
   
     constructor(
@@ -30,8 +42,12 @@ export class StudentsComponent implements OnInit {
       private config: ConfigService,
       private translate: TranslateService
     ) {
-      this.translate.setDefaultLang('en');
-      this.translate.use('en');
+      db.getStudent().subscribe(data => {
+        this.studentArray = data;
+        console.log(this.studentArray);
+      });
+      // this.translate.setDefaultLang('en');
+      // this.translate.use('en');
     }
     switchLanguage(lang: string) {
       this.translate.use(lang);
@@ -43,24 +59,27 @@ export class StudentsComponent implements OnInit {
     
   
     createStudent(): void {
-      if (this.students.name && this.students.sId > 0) {
-        this.db.addStudent().subscribe(
+        this.db.addStudent(this.name, this.email, this.edu_id).subscribe(
           data => {
             console.log('Diák hozzáadva', data);
+            window.location.reload();
           },
           error => {
             console.error('Hiba történt a diák hozzáadása közben', error);
           }
         );
-      } else {
         console.log('Kérlek, töltsd ki az összes mezőt.');
-      }
+    }
+
+    setSelectedStudent(student: any) {
+      this.selectedStudent = { ...student }; 
     }
   
-    modifyStudent(): void{
-      this.db.updateStudent().subscribe(
+    modifyStudent(id: string, name: string, email: string, edu_id: string): void{
+      this.db.updateStudent(id, name, email, edu_id).subscribe(
         data => {
           console.log('Diák frissítve', data);
+          window.location.reload();
         },
         error => {
           console.error('Hiba történt a diák frissítésekor', error);
@@ -68,18 +87,15 @@ export class StudentsComponent implements OnInit {
       );
     }
   
-    deleteStudent(): void{
-      this.db.deleteStudent().subscribe(
+    deleteStudent(id: string): void{
+      this.db.deleteStudent(id).subscribe(
         data => {
           console.log('Diák törölve', data);
+          window.location.reload();
         },
         error => {
           console.error('Hiba történt a diák törlésekor', error);
         }
       );
-    }
-    
-    resetNewStudent(): void {
-      this.modifiedStudent = { id: this.students.id, name: '', userName: '', emailAddress: '', passWord: '', sId: 0 };
     }
 }
