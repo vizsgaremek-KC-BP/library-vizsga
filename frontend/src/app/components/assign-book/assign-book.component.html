@@ -16,21 +16,17 @@
                                 <th scope="col">Oktatási azonosítója</th>
                                 <th scope="col">Státusz</th>
                                 <th scope="col">Raktári szám</th>
-                                <th scope="col" colspan="2"></th>
+                                <th scope="col" colspan="2">
+                                    <button type="button" class="btn btn-danger" >Kiadás</button>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let loan of loanArray">
-                                <td>{{loan.user.name}}</td>
-                                <td>{{loan.user.edu_id}}</td>
-                                <td>{{loan.status}}</td>
-                                <td>{{loan.book.inventory_number}}</td>
-                                <td>
-                                    <button type="button" class="btn btn-danger" (click)="approveLoan(loan.id)">Elfogadás</button>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-danger" (click)="rejectLoan(loan.id)">Elutasítás</button>
-                                </td>
+                            <tr *ngFor="let book of bookArray">
+                                <td>{{book.user.name}}</td>
+                                <td>{{book.user.edu_id}}</td>
+                                <td>{{book.status}}</td>
+                                <td>{{book.book.inventory_number}}</td>
                             </tr>
                         </tbody>
                     </table>

@@ -12,6 +12,8 @@
 
         <button class="nav-link" id="nav-library-tab" data-bs-toggle="tab" data-bs-target="#nav-library" type="button" role="tab" aria-controls="nav-library" aria-selected="false" [routerLink]="['/libraryAdmin']" *ngIf="auth.isLoggedIn() && auth.isAdmin()">library</button>
 
+        <button class="nav-link" id="nav-library-tab" data-bs-toggle="tab" data-bs-target="#nav-library" type="button" role="tab" aria-controls="nav-library" aria-selected="false" [routerLink]="['/assignBook']" *ngIf="auth.isLoggedIn() && auth.isAdmin()">assign</button>
+
         <button class="nav-link" id="nav-about-tab" data-bs-toggle="tab" data-bs-target="#nav-about" type="button" role="tab" aria-controls="nav-about" aria-selected="false" [routerLink]="['/about']">about</button>
         
         <button class="nav-link" id="nav-logout-tab" data-bs-toggle="tab" data-bs-target="#nav-logout" type="button" role="tab" aria-controls="nav-logout" aria-selected="false" [routerLink]="['/home']" *ngIf="auth.isLoggedIn()" (click)="logOut()">logout</button>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="hu">
 <head>
     <meta charset="UTF-8">
@@ -36,5 +36,47 @@
         </div>
     </div>
 
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+        <div class="row d-flex justify-content-between">
+                  <div class="container d-flex justify-content-center">
+                        <span id="felhasznalo">
+                            Név: {{ userName }}
+                        </span>
+                    <table class="table table-bordered text-center">
+            <!-- <div class="col-md-5 text-center p-3">
+                    <table class="table table-bordered"> -->
+                        <thead class="text-center">
+                            <tr>
+                                <th scope="col">Raktári szám</th>
+                                <th scope="col">Cím</th>
+                                <th scope="col">Szerző</th>
+                                <th scope="col">Ár (Ft)</th>
+                                <th scope="col">Pédány</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let book of bookArray">
+                                <td>{{book.inventory_number_base}}</td>
+                                <td>{{book.title}}</td>
+                                <td>{{book.author}}</td>
+                                <td>{{book.price}}</td>
+                                <td>{{book.copies}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-danger">Törlés</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </div>
+        </div>
 </body>
 </html>
