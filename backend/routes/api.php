@@ -14,7 +14,7 @@ Route::post('/auth/login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/books', [BookController::class, 'index']);
     Route::get('/books/{id}', [BookController::class, 'show']);
-    Route::post('/books/borrow', [LoanController::class, 'borrow']);
+    Route::get('/myLoans', [LoanController::class, 'myLoans']);
     Route::post('/books/return/{loan_id}', [LoanController::class, 'requestReturn']);
 
     Route::middleware('admin')->group(function () {
@@ -24,10 +24,11 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::put('/users/{id}', [UserController::class, 'update']);
         Route::put('/users/{id}/status', [UserController::class, 'updateStatus']);
 
+        Route::post('/books/borrow', [LoanController::class, 'borrow']);
         Route::post('/books', [BookController::class, 'store']);
         Route::put('/books/{book}', [BookController::class, 'update']);
         Route::delete('/books/{book}', [BookController::class, 'destroy']);
-        
+
         Route::get('/loans', [AdminController::class, 'listLoans']);
         Route::post('/loans/approve/{loan}', [AdminController::class, 'approveReturn']);
         Route::post('/loans/reject/{loan}', [AdminController::class, 'rejectReturn']);

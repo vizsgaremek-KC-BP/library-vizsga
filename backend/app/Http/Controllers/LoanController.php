@@ -100,18 +100,28 @@ class LoanController extends Controller
         if ($loan->status !== 'borrowed' && $loan->status !== 'requested_return') {
             return response()->json(['message' => 'This book has already been returned'], 400);
         }
-    
+
         // A könyv keresése inventory_number alapján
         $book = Book::where('inventory_number', $loan->inventory_number)->first();
-    
+
         if ($book) {
             $bookType = $book->bookType->increment('copies');
             $loan->update(['status' => 'returned']);
         }
-    
+
 
         return response()->json([
             'message' => 'Book returned successfully'
+        ]);
+    }
+
+    public function myLoans()
+    {
+        $user = Auth::user();
+        $loans = BorrowedBook::where('user_edu_id', $user->edu_id)->with('book')->get();
+
+        return response()->json([
+            'loans' => $loans
         ]);
     }
 
