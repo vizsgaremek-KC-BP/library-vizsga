@@ -43,4 +43,18 @@ class AdminController extends Controller
         return response()->json(['message' => 'Return request rejected']);
     }
 
+    public function forceApproveReturn(BorrowedBook $loan)
+    {
+        if ($loan->status === 'returned') {
+            return response()->json(['message' => 'This loan has already been returned'], 400);
+        }
+
+        if ($loan->book && $loan->book->bookType) {
+            $loan->book->bookType->increment('copies');
+            $loan->update(['status' => 'returned']);
+        }
+
+        return response()->json(['message' => 'Return approved (forced)']);
+    }
+
 }

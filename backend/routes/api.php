@@ -32,6 +32,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/loans', [AdminController::class, 'listLoans']);
         Route::post('/loans/approve/{loan}', [AdminController::class, 'approveReturn']);
         Route::post('/loans/reject/{loan}', [AdminController::class, 'rejectReturn']);
+        Route::post('/loans/{loan}/force', [AdminController::class, 'forceApproveReturn']);
 
         Route::get('/book-types', [BookTypeController::class, 'index']);
         Route::get('/book-types/{id}', [BookTypeController::class, 'show']);
