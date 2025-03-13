@@ -1,82 +1,37 @@
-<!-- <!DOCTYPE html>
-<html lang="hu">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
 <body>
-    <div class="container">
-        <div class="row d-flex justify-content-between">
-            
-            <div class="col-md-5 text-center p-3">
-                <div class="box">
-                    <span id="felhasznalo">
-                        Név: {{ userName }}
-                    </span>
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th scope="col">Kikölcsönzött könyv</th>
-                                <th scope="col">Osztály</th>
-                                <th scope="col">Mennyiség</th>
-                                <th scope="col">Visszaadási határidő</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>minta</td>
-                                <td>minta</td>
-                                <td>minta</td>
-                                <td>minta</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+    <div class="row d-flex justify-content-center">
+        <div class="container d-flex align-items-center gap-3"> 
+            <span id="felhasznalo">
+                Név: {{ userName }}
+            </span>
+            <table class="table table-bordered text-center">
+                <thead class="text-center">
+                    <tr>
+                        <th scope="col">Könyv raktári száma</th>
+                        <th scope="col">Állapot</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let loans of loanArray">
+                        <td>{{ loans.inventory_number }}</td>
+                        <td>{{ loans.status }}</td>
+                        <td>
+                            <button type="button" class="btn btn-danger" (click)="returnBook(loans.id)">Visszaadás</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
-
-</body>
-</html> -->
-
-<!DOCTYPE html>
-<html lang="hu">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-        <div class="row d-flex justify-content-between">
-                  <div class="container d-flex justify-content-center">
-                        <span id="felhasznalo">
-                            Név: {{ userName }}
-                        </span>
-                    <table class="table table-bordered text-center">
-            <!-- <div class="col-md-5 text-center p-3">
-                    <table class="table table-bordered"> -->
-                        <thead class="text-center">
-                            <tr>
-                                <th scope="col">Raktári szám</th>
-                                <th scope="col">Cím</th>
-                                <th scope="col">Szerző</th>
-                                <th scope="col">Ár (Ft)</th>
-                                <th scope="col">Pédány</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let book of bookArray">
-                                <td>{{book.inventory_number_base}}</td>
-                                <td>{{book.title}}</td>
-                                <td>{{book.author}}</td>
-                                <td>{{book.price}}</td>
-                                <td>{{book.copies}}</td>
-                                <td>
-                                    <button type="button" class="btn btn-danger">Törlés</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-            </div>
-        </div>
+    <p>{{loanArray | json}}</p>
+    <p>{{bookArray | json}}</p>
 </body>
 </html>

@@ -83,15 +83,22 @@ export class HttpService {
   
     return this.http.get<any>(`${this.apiUrl}/loans`, { headers });
   }
-
-  addLoan(user_edu_id: string, inventory_number: string): Observable<any> {
+  getMyLoans(): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-    const body = { user_edu_id, inventory_number };
+  
+    return this.http.get<any>(`${this.apiUrl}/myLoans`, { headers });
+  }
 
-    return this.http.post<any>(`${this.apiUrl}/books/borrow`, body, { headers });
+  addLoan(): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.post<any>(`${this.apiUrl}/books/borrow`, { headers });
   }
 
   approveLoan(loan_id:string): Observable<any> {

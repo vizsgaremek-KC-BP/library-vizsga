@@ -31,33 +31,50 @@ export class LibraryListUserComponent implements OnInit {
         this.bookArray = data;
         console.log(this.bookArray);
       });
+      db.getMyLoans().subscribe(data => {
+        this.loanArray = data;
+        console.log(this.loanArray);
+      });
       // this.translate.setDefaultLang('en');
       // this.translate.use('en');
     }
+    book: any = null;
+    created_at: any = null;
     id: number = 0;
-    inventory_number_base: string = '';
-    title: string = '';
-    author: string = '';
-    price: number = 0;
-    copies: number = 0;
+    inventory_number: string = '';
+    status: string = '';
+    updated_at: any = null;
+    user_edu_id: number = 0;
+
     selectedBook: any = null;
-  
+    selectedLoan: any = null;
     
-  bookArray: any[] = [];
-    @Input() books!: any;
-    editBooks: boolean = false;
-    titles: any = {};
-  
+    loanArray:any[] = [
+      // {
+      //   loans: [
+      //     {
+      //       id: 0,
+      //       user_edu_id: 0,
+      //       inventory_number: '',
+      //       status: '',
+      //       created_at: '',
+      //       updated_at: '',
+      //       book: {}
+      //     }
+      //   ]
+      // }
+    ];
+    bookArray: any[] = [];
     
-    switchLanguage(lang: string) {
-      this.translate.use(lang);
-    }
+    // switchLanguage(lang: string) {
+    //   this.translate.use(lang);
+    // }
   
     ngOnInit(): void {}
-  
-    setSelectedBook(book: any) {
-      this.selectedBook = { ...book }; 
-    }
+
+    // setSelectedLoan(loans: any) {
+    //   this.selectedLoan = { ...loans }; 
+    // }
   
     returnBook(id:string): void{
       this.db.returnBook(id).subscribe(

@@ -17,9 +17,9 @@ export class BooksComponent implements OnInit {
     price: number = 0;
     copies: number = 0;
     selectedBook: any = null;
-  
     
-  bookArray: any[] = [];
+    bookArray: any[] = [];
+
   setEditBook() {
     this.editBooks = !this.editBooks;
   }
@@ -50,9 +50,9 @@ export class BooksComponent implements OnInit {
       // this.translate.setDefaultLang('en');
       // this.translate.use('en');
     }
-    switchLanguage(lang: string) {
-      this.translate.use(lang);
-    }
+    // switchLanguage(lang: string) {
+    //   this.translate.use(lang);
+    // }
   
     ngOnInit(): void {}
   

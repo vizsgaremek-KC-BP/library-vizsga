@@ -12,13 +12,13 @@ export class AssignBookComponent implements OnInit {
 
     id: number = 0;
     inventory_number: string = '';
+    user_id: string = '';
     title: string = '';
     author: string = '';
     price: number = 0;
     copies: number = 0;
     selectedLoan: any = null;
     loan:any;
-
     book: any;
     student: any;
   
@@ -55,8 +55,8 @@ export class AssignBookComponent implements OnInit {
   
     ngOnInit(): void {}
   
-    createLoan(user_edu_id: string, inventory_number: string): void {
-      this.db.addLoan(user_edu_id, inventory_number).subscribe(
+    createLoan(): void {
+      this.db.addLoan().subscribe(
         data => {
           console.log('Könyv hozzáadva', data);
           window.location.reload();

@@ -46,3 +46,40 @@ button{
 a{
     color: #343c3d;
 }
+
+.tooltip-container {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  .tooltip-icon {
+    font-size: 10px;
+    vertical-align: super;
+    font-weight: bold;
+    display: inline-block;
+    color: white;
+    /* ❓ */
+  }
+  
+  .tooltip-text {
+    visibility: hidden;
+    width: 200px;
+    background-color: #8282a9e4;
+    color: black;
+    text-align: center;
+    padding: 5px;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 100%;
+    left: 600%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 12px;
+  }
+  
+  .tooltip-container:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+  }
