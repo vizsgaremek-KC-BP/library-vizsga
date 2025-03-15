@@ -25,6 +25,7 @@ export class AssignBookComponent implements OnInit {
 
   bookArray: any[] = [];
   studentArray: any[] = [];
+  assignArray: any[] = [];
 
   setEditLoan() {
     this.editLoans = !this.editLoans;
@@ -52,6 +53,10 @@ export class AssignBookComponent implements OnInit {
     // switchLanguage(lang: string) {
     //   this.translate.use(lang);
     // }
+
+    // setSelectedLoan(loan: any) {
+    //   this.selectedLoan = { ...loan }; 
+    // }
   
     ngOnInit(): void {}
   
@@ -68,7 +73,4 @@ export class AssignBookComponent implements OnInit {
       console.log('Kérlek, töltsd ki az összes mezőt.');
   }
 
-  setSelectedLoan(loan: any) {
-    this.selectedLoan = { ...loan }; 
-  }
 }

@@ -5,37 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <div class="container">
-        <div class="row d-flex justify-content-between">
-            <div class="col-md-5 text-center p-3">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th scope="col">Diák neve</th>
-                                <th scope="col">Oktatási azonosítója</th>
-                                <th scope="col">Státusz</th>
-                                <th scope="col">Raktári szám</th>
-                                <th scope="col" colspan="2"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let loan of loanArray">
-                                <td>{{loan.user.name}}</td>
-                                <td>{{loan.user.edu_id}}</td>
-                                <td>{{loan.status}}</td>
-                                <td>{{loan.book.inventory_number}}</td>
-                                <td>
-                                    <button type="button" class="btn btn-danger" (click)="approveLoan(loan.id)">Elfogadás</button>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-danger" (click)="rejectLoan(loan.id)">Elutasítás</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-            </div>
+    <div class="row d-flex justify-content-between">
+        <div class="container d-flex justify-content-center">
+            <table class="table table-bordered text-center">
+                <thead class="text-center">
+                    <tr>
+                        <th scope="col">Oktatási azonosítója</th>
+                        <th scope="col">Státusz</th>
+                        <th scope="col">Raktári szám</th>
+                        <th scope="col" colspan="2">Műveletek</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let loan of loanArray">
+                        <td>{{loan.user_edu_id}}</td>
+                        <td>{{loan.status}}</td>
+                        <td>{{loan.inventory_number}}</td>
+                        <!-- 
+                            <td>{{loan.user.edu_id}}</td>
+                            <td>{{loan.status}}</td>
+                            <td>{{loan.book.inventory_number}}</td>
+                         -->
+                        <td>
+                            <button type="button" class="btn btn-danger" (click)="approveLoan(loan.id)">Elfogadás</button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-danger" (click)="rejectLoan(loan.id)">Elutasítás</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
-
+    <!-- <p>{{loanArray | json}}</p> -->
 </body>
 </html>

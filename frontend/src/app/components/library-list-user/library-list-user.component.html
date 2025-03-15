@@ -14,24 +14,40 @@
             <table class="table table-bordered text-center">
                 <thead class="text-center">
                     <tr>
+                        <th scope="col">Szerző</th>
+                        <th scope="col">Cím</th>
                         <th scope="col">Könyv raktári száma</th>
+                        <th scope="col">Ár (FT)</th>
                         <th scope="col">Állapot</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let loans of loanArray">
-                        <td>{{ loans.inventory_number }}</td>
-                        <td>{{ loans.status }}</td>
+                    <tr *ngFor="let loan of loanArray">
+                        <td>{{ getBookByInventoryNumber(loan.inventory_number)?.author }}</td>
+                        <td>{{ getBookByInventoryNumber(loan.inventory_number)?.title }}</td>
+                        <td>{{ loan.inventory_number }}</td>
+                        <td>{{ getBookByInventoryNumber(loan.inventory_number)?.price }}</td>
+                        <td>{{ loan.status }}</td>
                         <td>
-                            <button type="button" class="btn btn-danger" (click)="returnBook(loans.id)">Visszaadás</button>
+                            <button type="button" class="btn btn-danger" (click)="returnBook(loan.id)">Visszaadás</button>
                         </td>
                     </tr>
+                    <!-- <tr *ngFor="let loan of loanArray">
+                        <td>{{ loan.author }}</td>
+                        <td>{{ loan.title }}</td>
+                        <td>{{ loan.inventory_number }}</td>
+                        <td>{{ loan.price }}</td>
+                        <td>{{ loan.status }}</td>
+                        <td>
+                            <button type="button" class="btn btn-danger" (click)="returnBook(loan.id)">Visszaadás</button>
+                        </td>
+                    </tr> -->
                 </tbody>
             </table>
         </div>
     </div>
-    <p>{{loanArray | json}}</p>
-    <p>{{bookArray | json}}</p>
+    <!-- <p>{{loanArray | json}}</p> -->
+    <!-- <p>{{bookArray | json}}</p> -->
 </body>
 </html>

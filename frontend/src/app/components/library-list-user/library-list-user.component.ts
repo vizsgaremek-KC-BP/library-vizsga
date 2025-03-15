@@ -27,14 +27,24 @@ export class LibraryListUserComponent implements OnInit {
       if (!this.auth.isLoggedIn()) {
         this.router.navigate(['/login']);
       }
-      db.getStudentBook().subscribe(data => {
+      // db.getStudentBook().subscribe(data => {
+      //   this.bookArray = data;
+      //   console.log(this.bookArray);
+      // });
+      // db.getMyLoans().subscribe(data => {
+      //   this.loanArray = data.loans || [];
+      //   console.log(this.loanArray);
+      // });
+      this.db.getStudentBook().subscribe(data => {
         this.bookArray = data;
         console.log(this.bookArray);
       });
-      db.getMyLoans().subscribe(data => {
-        this.loanArray = data;
+    
+      this.db.getMyLoans().subscribe(data => {
+        this.loanArray = data.loans || [];
         console.log(this.loanArray);
       });
+
       // this.translate.setDefaultLang('en');
       // this.translate.use('en');
     }
@@ -49,21 +59,7 @@ export class LibraryListUserComponent implements OnInit {
     selectedBook: any = null;
     selectedLoan: any = null;
     
-    loanArray:any[] = [
-      // {
-      //   loans: [
-      //     {
-      //       id: 0,
-      //       user_edu_id: 0,
-      //       inventory_number: '',
-      //       status: '',
-      //       created_at: '',
-      //       updated_at: '',
-      //       book: {}
-      //     }
-      //   ]
-      // }
-    ];
+    loanArray:any[] = [];
     bookArray: any[] = [];
     
     // switchLanguage(lang: string) {
@@ -72,10 +68,12 @@ export class LibraryListUserComponent implements OnInit {
   
     ngOnInit(): void {}
 
-    // setSelectedLoan(loans: any) {
-    //   this.selectedLoan = { ...loans }; 
-    // }
-  
+    getBookByInventoryNumber(inventory_number: string) {
+      const book = this.bookArray.find(book => book.inventory_number === inventory_number);
+      return book?.book_type || null;
+    }
+    
+   
     returnBook(id:string): void{
       this.db.returnBook(id).subscribe(
         data => {

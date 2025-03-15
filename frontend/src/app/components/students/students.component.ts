@@ -10,9 +10,10 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class StudentsComponent implements OnInit {
     id: number = 0;
-    email: string = '';
     name: string = '';
+    email: string = '';
     edu_id: string = '';
+    password: string = '';
     role: string = '';
     selectedStudent: any = null;
 
@@ -27,11 +28,13 @@ export class StudentsComponent implements OnInit {
   
     modifiedStudent: any = {
       id: 0,
+      name: '',
       email: '',
       email_verified_at: '',
       password: '',
       edu_id: '',
       role: '',
+      status: '',
       remember_token: '',
       created_at: '',
       updated_at: '',
@@ -66,6 +69,7 @@ export class StudentsComponent implements OnInit {
           },
           error => {
             console.error('Hiba történt a diák hozzáadása közben', error);
+            console.error('Részletes hiba:', error.error);
           }
         );
         console.log('Kérlek, töltsd ki az összes mezőt.');
@@ -74,9 +78,23 @@ export class StudentsComponent implements OnInit {
     setSelectedStudent(student: any) {
       this.selectedStudent = { ...student }; 
     }
+    // setSelectedStudent(student: any): void {
+    //   this.selectedStudent = { ...student }; // Make sure to clone the student object
+    // }
   
-    modifyStudent(id: string, name: string, email: string, edu_id: string): void{
-      this.db.updateStudent(id, name, email, edu_id).subscribe(
+    // modifyStudent(id: string, edu_id: string, email: string, name: string): void{
+    //   this.db.updateStudent(id, edu_id, email, name, this.password, this.role).subscribe(
+    //     data => {
+    //       console.log('Diák frissítve', data);
+    //       window.location.reload();
+    //     },
+    //     error => {
+    //       console.error('Hiba történt a diák frissítésekor', error);
+    //     }
+    //   );
+    // }
+    modifyStudent(id: string, name: string, email: string, role: string): void {
+      this.db.updateStudent(id, email, name, role).subscribe(
         data => {
           console.log('Diák frissítve', data);
           window.location.reload();
@@ -86,6 +104,7 @@ export class StudentsComponent implements OnInit {
         }
       );
     }
+    
   
     deleteStudent(id: string): void{
       this.db.deleteStudent(id).subscribe(

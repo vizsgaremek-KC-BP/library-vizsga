@@ -19,21 +19,14 @@ export class LibraryListAdminComponent {
     selectedLoan: any = null;
     loan:any;
   
-    
-  loanArray: any[] = [];
-  setEditLoan() {
-    this.editLoans = !this.editLoans;
-  }
-    @Input() Loans!: any;
-    editLoans: boolean = false;
-    titles: any = {};
-  
+    loanArray: any[] = [];
+
     constructor(
       private db: HttpService,
       private config: ConfigService,
       private translate: TranslateService
     ) {
-      db.getLoan().subscribe(data => {
+      db.getLoans().subscribe(data => {
         this.loanArray = data;
         console.log(this.loanArray);
       });
@@ -52,6 +45,18 @@ export class LibraryListAdminComponent {
 
   approveLoan(id:string): void{
     this.db.approveLoan(id).subscribe(
+      data => {
+        console.log('Könyv törölve', data);
+        window.location.reload();
+      },
+      error => {
+        console.error('Hiba történt a könyv törlésekor', error);
+      }
+    );
+  }
+
+  forceApproveLoan(id:string): void{
+    this.db.forceApproveLoan(id).subscribe(
       data => {
         console.log('Könyv törölve', data);
         window.location.reload();
