@@ -18,6 +18,6 @@ class BorrowedBook extends Model
 
     public function book()
     {
-        return $this->belongsTo(Book::class);
+        return $this->belongsTo(Book::class, 'inventory_number', 'inventory_number');
     }
 }

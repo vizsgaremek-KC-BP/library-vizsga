@@ -13,6 +13,6 @@ class Book extends Model
 
     public function bookType()
     {
-        return $this->belongsTo(BookType::class);
+        return $this->belongsTo(BookType::class, 'book_type_id');
     }
 }
