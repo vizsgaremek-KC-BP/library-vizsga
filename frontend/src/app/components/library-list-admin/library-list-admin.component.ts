@@ -12,6 +12,7 @@ export class LibraryListAdminComponent {
 
     id: number = 0;
     inventory_number: string = '';
+    edu_id: string = '';
     title: string = '';
     author: string = '';
     price: number = 0;
@@ -43,14 +44,27 @@ export class LibraryListAdminComponent {
     this.selectedLoan = { ...loan }; 
   }
 
-  approveLoan(id:string): void{
-    this.db.approveLoan(id).subscribe(
+  createLoan(): void {
+    this.db.addLoan(this.edu_id, this.inventory_number).subscribe(
       data => {
-        console.log('Könyv törölve', data);
+        console.log('Könyv hozzáadva', data);
         window.location.reload();
       },
       error => {
-        console.error('Hiba történt a könyv törlésekor', error);
+        console.error('Hiba történt a könyv hozzáadása közben', error);
+      }
+    );
+    console.log('Kérlek, töltsd ki az összes mezőt.');
+  }
+
+  approveLoan(id:string): void{
+    this.db.approveLoan(id).subscribe(
+      data => {
+        console.log('Könyv elfogadva', data);
+        window.location.reload();
+      },
+      error => {
+        console.error('Hiba történt a könyv elfogadásakor', error);
       }
     );
   }
@@ -58,28 +72,23 @@ export class LibraryListAdminComponent {
   forceApproveLoan(id:string): void{
     this.db.forceApproveLoan(id).subscribe(
       data => {
-        console.log('Könyv törölve', data);
+        console.log('Könyv elfogadva', data);
         window.location.reload();
       },
       error => {
-        console.error('Hiba történt a könyv törlésekor', error);
+        console.error('Hiba történt a könyv elfogadásakor', error);
       }
     );
   }
 
   rejectLoan(id:string): void{
-    this.loanArray.forEach(element => {
-      if(element.id == id){
-        this.loan = element;
-      }
-    });
-    this.db.rejectLoan(this.loan).subscribe(
+    this.db.rejectLoan(id).subscribe(
       data => {
-        console.log('Könyv törölve', data);
+        console.log('Könyv elutasítva', data);
         window.location.reload();
       },
       error => {
-        console.error('Hiba történt a könyv törlésekor', error);
+        console.error('Hiba történt a könyv elutasításakor', error);
       }
     );
   }

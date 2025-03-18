@@ -92,13 +92,14 @@ export class HttpService {
     return this.http.get<any>(`${this.apiUrl}/myLoans`, { headers });
   }
 
-  addLoan(): Observable<any> {
+  addLoan(edu_id: string, inventory_number: string): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
+    const body = { user_edu_id:edu_id, inventory_number };
 
-    return this.http.post<any>(`${this.apiUrl}/books/borrow`, { headers });
+    return this.http.post<any>(`${this.apiUrl}/books/borrow`, body, { headers });
   }
 
   approveLoan(loan:string): Observable<any> {
@@ -119,7 +120,7 @@ export class HttpService {
     return this.http.post<any>(`${this.apiUrl}/loans/${loan}/force`, {}, { headers });
   }
 
-  rejectLoan(loan: any): Observable<any> {
+  rejectLoan(loan: string): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
