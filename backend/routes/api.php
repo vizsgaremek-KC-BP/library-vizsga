@@ -7,6 +7,7 @@ use App\Http\Controllers\BookTypeController;
 use App\Http\Controllers\LoanController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\StudentController;
 
 Route::post('/auth/register', [AuthController::class, 'register']);
 Route::post('/auth/login', [AuthController::class, 'login']);
@@ -22,7 +23,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/users', [UserController::class, 'store']);
         Route::get('/user', [UserController::class, 'show']);
         Route::put('/users', [UserController::class, 'update']);
-        Route::put('/users/status', [UserController::class, 'updateStatus']);
+        Route::put('/user/status', [UserController::class, 'updateStatus']);
 
         Route::post('/books/borrow', [LoanController::class, 'borrow']);
         Route::post('/books', [BookController::class, 'store']);
@@ -39,5 +40,11 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/book-types', [BookTypeController::class, 'store']);
         Route::put('/book-types', [BookTypeController::class, 'update']);
         Route::delete('/book-types', [BookTypeController::class, 'destroy']);
+
+        Route::get('/students', [StudentController::class, 'index']);
+        Route::post('/students', [StudentController::class, 'store']);
+        Route::get('/student', [StudentController::class, 'show']);
+        Route::put('/students', [StudentController::class, 'update']);
+        Route::put('/student/status', [StudentController::class, 'updateStatus']);
     });
 });

@@ -29,4 +29,10 @@ class User extends Authenticatable
         parent::boot();
 
     }
+
+    
+    public function student()
+    {
+        return $this->hasOne(Student::class, 'edu_id', 'edu_id');
+    }
 }

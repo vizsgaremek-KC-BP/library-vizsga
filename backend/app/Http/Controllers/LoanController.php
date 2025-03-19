@@ -77,7 +77,7 @@ class LoanController extends Controller
     public function returnBook(Request $request)
     {
         $user = Auth::user();
-        $loan_id = $request->input('loan_id');  // loan_id is now coming from the request
+        $loan_id = $request->input('loan_id');
 
         $loan = BorrowedBook::find($loan_id);
 

@@ -30,5 +30,6 @@ file_put_contents($outputFile, $sql);
 
 echo "SQL beszúrások legenerálva! Nézd meg az insert_books.sql fájlt.\n";
 
-//php Adatbazis/generate_sql.php
+//Ezt futtasd
+//php Adatbazis/generate_books_sql.php
 
