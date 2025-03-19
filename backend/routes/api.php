@@ -13,31 +13,31 @@ Route::post('/auth/login', [AuthController::class, 'login']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/books', [BookController::class, 'index']);
-    Route::get('/books/{id}', [BookController::class, 'show']);
+    Route::get('/book', [BookController::class, 'show']);
     Route::get('/myLoans', [LoanController::class, 'myLoans']);
-    Route::post('/books/return/{loan_id}', [LoanController::class, 'requestReturn']);
+    Route::post('/books/return', [LoanController::class, 'requestReturn']);
 
     Route::middleware('admin')->group(function () {
         Route::get('/users', [UserController::class, 'index']);
         Route::post('/users', [UserController::class, 'store']);
-        Route::get('/users/{id}', [UserController::class, 'show']);
-        Route::put('/users/{id}', [UserController::class, 'update']);
-        Route::put('/users/{id}/status', [UserController::class, 'updateStatus']);
+        Route::get('/user', [UserController::class, 'show']);
+        Route::put('/users', [UserController::class, 'update']);
+        Route::put('/users/status', [UserController::class, 'updateStatus']);
 
         Route::post('/books/borrow', [LoanController::class, 'borrow']);
         Route::post('/books', [BookController::class, 'store']);
-        Route::put('/books/{book}', [BookController::class, 'update']);
-        Route::delete('/books/{book}', [BookController::class, 'destroy']);
+        Route::put('/books', [BookController::class, 'update']);
+        Route::delete('/books', [BookController::class, 'destroy']);
 
         Route::get('/loans', [AdminController::class, 'listLoans']);
-        Route::post('/loans/approve/{loan}', [AdminController::class, 'approveReturn']);
-        Route::post('/loans/reject/{loan}', [AdminController::class, 'rejectReturn']);
-        Route::post('/loans/{loan}/force', [AdminController::class, 'forceApproveReturn']);
+        Route::post('/loans/approve', [AdminController::class, 'approveReturn']);
+        Route::post('/loans/reject', [AdminController::class, 'rejectReturn']);
+        Route::post('/loans/force', [AdminController::class, 'forceApproveReturn']);
 
         Route::get('/book-types', [BookTypeController::class, 'index']);
-        Route::get('/book-types/{id}', [BookTypeController::class, 'show']);
+        Route::get('/book-type', [BookTypeController::class, 'show']);
         Route::post('/book-types', [BookTypeController::class, 'store']);
-        Route::put('/book-types/{id}', [BookTypeController::class, 'update']);
-        Route::delete('/book-types/{id}', [BookTypeController::class, 'destroy']);
+        Route::put('/book-types', [BookTypeController::class, 'update']);
+        Route::delete('/book-types', [BookTypeController::class, 'destroy']);
     });
 });

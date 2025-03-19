@@ -11,11 +11,13 @@ class UserController extends Controller
 {
     public function index()
     {
-        return response()->json(User::all());
+        $users = User::all();
+        return response()->json($users);
     }
 
     public function store(Request $request)
     {
+
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users|max:255',
@@ -30,36 +32,45 @@ class UserController extends Controller
             ],
         ]);
 
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'edu_id' => $request->edu_id,
             'password' => Hash::make($request->password),
-            'status' => 'active', // új felhasználónál alapértelmezett státusz: aktív
+            'status' => 'active',
         ]);
 
         return response()->json($user, 201);
     }
 
-    public function show($id)
+    public function show(Request $request)
     {
+        $id = $request->input('id');
         $user = User::find($id);
+        
         if (!$user) {
             return response()->json(['message' => 'User not found'], 404);
         }
+        
         return response()->json($user);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
+        $id = $request->input('id');
         $user = User::find($id);
+        
         if (!$user) {
             return response()->json(['message' => 'User not found'], 404);
         }
 
         $request->validate([
             'name' => 'sometimes|string|max:255',
-            'email' => 'sometimes|string|email|max:255|unique:users,email,'.$id,
+            'email' => 'sometimes|string|email|max:255|unique:users,email,' . $id,
             'edu_id' => 'sometimes|string|unique:users|regex:/^7\d{10}$/',
             'password' => [
                 'sometimes',
@@ -83,22 +94,22 @@ class UserController extends Controller
         return response()->json($user);
     }
 
-    public function updateStatus(Request $request, $id)
+    public function updateStatus(Request $request)
     {
+        $id = $request->input('id');
         $user = User::find($id);
+        
         if (!$user) {
             return response()->json(['message' => 'User not found'], 404);
         }
-    
+
         $request->validate([
             'status' => 'required|in:active,inactive',
         ]);
-    
-        // Frissítjük a státuszt
+
         $user->status = $request->status;
         $user->save();
-    
+
         return response()->json(['message' => 'User status updated successfully', 'user' => $user]);
     }
-    
 }

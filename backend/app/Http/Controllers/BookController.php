@@ -16,8 +16,10 @@ class BookController extends Controller
         return response()->json($books);
     }
 
-    public function show($id)
+    public function show(Request $request)
     {
+        $id = $request->input('id');
+
         $book = Book::with('bookType')->find($id);
         if (!$book) {
             return response()->json(['message' => 'Book not found'], 404);
@@ -46,8 +48,15 @@ class BookController extends Controller
         ], 201);
     }
 
-    public function update(Request $request, Book $book)
+    public function update(Request $request)
     {
+        $id = $request->input('id');
+        $book = Book::find($id);
+
+        if (!$book) {
+            return response()->json(['message' => 'Book not found'], 404);
+        }
+
         $request->validate([
             'inventory_number' => 'sometimes|string|unique:books,inventory_number,' . $book->id
         ]);
@@ -62,8 +71,15 @@ class BookController extends Controller
         ]);
     }
 
-    public function destroy(Book $book)
+    public function destroy(Request $request)
     {
+        $id = $request->input('id');
+        $book = Book::find($id);
+
+        if (!$book) {
+            return response()->json(['message' => 'Book not found'], 404);
+        }
+
         $book->delete();
 
         $this->updateTotalQuantity();

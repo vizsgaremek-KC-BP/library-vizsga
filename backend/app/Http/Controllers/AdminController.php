@@ -15,9 +15,10 @@ class AdminController extends Controller
         return response()->json($loans);
     }
 
-    public function approveReturn(BorrowedBook $loan)
+    public function approveReturn(Request $request)
     {
-        if ($loan->status !== 'requested_return') {
+        $loan = BorrowedBook::where('id', $request->loan_id)->first();
+        if (!$loan || $loan->status !== 'requested_return') {
             return response()->json(['message' => 'This loan is not pending return approval'], 400);
         }
 
@@ -31,9 +32,10 @@ class AdminController extends Controller
         return response()->json(['message' => 'Return approved']);
     }
 
-    public function rejectReturn(BorrowedBook $loan)
+    public function rejectReturn(Request $request)
     {
-        if ($loan->status !== 'requested_return') {
+        $loan = BorrowedBook::where('id', $request->loan_id)->first();
+        if (!$loan || $loan->status !== 'requested_return') {
             return response()->json(['message' => 'This loan is not pending return approval'], 400);
         }
 
@@ -42,10 +44,11 @@ class AdminController extends Controller
         return response()->json(['message' => 'Return request rejected']);
     }
 
-    public function forceApproveReturn(BorrowedBook $loan)
+    public function forceApproveReturn(Request $request)
     {
-        if ($loan->status === 'returned') {
-            return response()->json(['message' => 'This loan has already been returned'], 400);
+        $loan = BorrowedBook::where('id', $request->loan_id)->first();
+        if (!$loan || $loan->status === 'returned') {
+            return response()->json(['message' => 'This loan has already been returned or does not exist'], 400);
         }
 
         DB::transaction(function () use ($loan) {
