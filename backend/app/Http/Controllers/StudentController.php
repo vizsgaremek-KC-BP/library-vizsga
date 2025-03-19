@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Student;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class StudentController extends Controller
@@ -17,10 +16,11 @@ class StudentController extends Controller
 
     public function store(Request $request)
     {
-
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'edu_id' => 'required|string|unique:students|regex:/^7\d{10}$/',
+        ], [
+            'edu_id.regex' => __('messages.edu_id_format')
         ]);
 
         if ($validator->fails()) {
@@ -33,7 +33,7 @@ class StudentController extends Controller
             'status' => 'active',
         ]);
 
-        return response()->json($student, 201);
+        return response()->json(['message' => __('messages.student_created'), 'student' => $student], 201);
     }
 
     public function show(Request $request)
@@ -42,7 +42,7 @@ class StudentController extends Controller
         $student = Student::find($id);
         
         if (!$student) {
-            return response()->json(['message' => 'Student not found'], 404);
+            return response()->json(['message' => __('messages.student_not_found')], 404);
         }
         
         return response()->json($student);
@@ -54,12 +54,14 @@ class StudentController extends Controller
         $student = Student::find($id);
         
         if (!$student) {
-            return response()->json(['message' => 'Student not found'], 404);
+            return response()->json(['message' => __('messages.student_not_found')], 404);
         }
 
         $request->validate([
             'name' => 'sometimes|string|max:255',
             'edu_id' => 'sometimes|string|unique:students|regex:/^7\d{10}$/',
+        ], [
+            'edu_id.regex' => __('messages.edu_id_format')
         ]);
 
         $student->update([
@@ -76,16 +78,21 @@ class StudentController extends Controller
         $student = Student::find($id);
         
         if (!$student) {
-            return response()->json(['message' => 'Student not found'], 404);
+            return response()->json(['message' => __('messages.student_not_found')], 404);
         }
 
         $request->validate([
             'status' => 'required|in:active,inactive',
+        ], [
+            'status.in' => __('messages.invalid_status')
         ]);
 
         $student->status = $request->status;
         $student->save();
 
-        return response()->json(['message' => 'Student status updated successfully', 'student' => $student]);
+        return response()->json([
+            'message' => __('messages.student_status_updated'),
+            'student' => $student
+        ]);
     }
 }

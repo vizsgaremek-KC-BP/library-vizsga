@@ -19,7 +19,7 @@ class AdminController extends Controller
     {
         $loan = BorrowedBook::where('id', $request->loan_id)->first();
         if (!$loan || $loan->status !== 'requested_return') {
-            return response()->json(['message' => 'This loan is not pending return approval'], 400);
+            return response()->json(['message' => __('messages.loan_not_pending_return')], 400);
         }
 
         DB::transaction(function () use ($loan) {
@@ -29,26 +29,26 @@ class AdminController extends Controller
             $loan->update(['status' => 'returned']);
         });
 
-        return response()->json(['message' => 'Return approved']);
+        return response()->json(['message' => __('messages.return_approved')]);
     }
 
     public function rejectReturn(Request $request)
     {
         $loan = BorrowedBook::where('id', $request->loan_id)->first();
         if (!$loan || $loan->status !== 'requested_return') {
-            return response()->json(['message' => 'This loan is not pending return approval'], 400);
+            return response()->json(['message' => __('messages.loan_not_pending_return')], 400);
         }
 
         $loan->update(['status' => 'borrowed']);
 
-        return response()->json(['message' => 'Return request rejected']);
+        return response()->json(['message' => __('messages.return_rejected')]);
     }
 
     public function forceApproveReturn(Request $request)
     {
         $loan = BorrowedBook::where('id', $request->loan_id)->first();
         if (!$loan || $loan->status === 'returned') {
-            return response()->json(['message' => 'This loan has already been returned or does not exist'], 400);
+            return response()->json(['message' => __('messages.loan_already_returned')], 400);
         }
 
         DB::transaction(function () use ($loan) {
@@ -58,6 +58,6 @@ class AdminController extends Controller
             $loan->update(['status' => 'returned']);
         });
 
-        return response()->json(['message' => 'Return approved (forced)']);
+        return response()->json(['message' => __('messages.force_return_approved')]);
     }
 }

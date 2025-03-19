@@ -17,7 +17,6 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users|max:255',
@@ -30,6 +29,10 @@ class UserController extends Controller
                 'regex:/[a-z]/',
                 'regex:/[0-9]/'
             ],
+        ], [
+            'edu_id.regex' => __('messages.edu_id_format'),
+            'email.email' => __('messages.email_format'),
+            'password.regex' => __('messages.password_strength'),
         ]);
 
         if ($validator->fails()) {
@@ -44,7 +47,7 @@ class UserController extends Controller
             'status' => 'active',
         ]);
 
-        return response()->json($user, 201);
+        return response()->json(['message' => __('messages.user_created'), 'user' => $user], 201);
     }
 
     public function show(Request $request)
@@ -53,7 +56,7 @@ class UserController extends Controller
         $user = User::find($id);
         
         if (!$user) {
-            return response()->json(['message' => 'User not found'], 404);
+            return response()->json(['message' => __('messages.user_not_found')], 404);
         }
         
         return response()->json($user);
@@ -65,7 +68,7 @@ class UserController extends Controller
         $user = User::find($id);
         
         if (!$user) {
-            return response()->json(['message' => 'User not found'], 404);
+            return response()->json(['message' => __('messages.user_not_found')], 404);
         }
 
         $request->validate([
@@ -81,6 +84,10 @@ class UserController extends Controller
                 'regex:/[0-9]/'
             ],
             'role' => 'sometimes|string|in:admin,student',
+        ], [
+            'edu_id.regex' => __('messages.edu_id_format'),
+            'email.email' => __('messages.email_format'),
+            'password.regex' => __('messages.password_strength'),
         ]);
 
         $user->update([
@@ -100,16 +107,21 @@ class UserController extends Controller
         $user = User::find($id);
         
         if (!$user) {
-            return response()->json(['message' => 'User not found'], 404);
+            return response()->json(['message' => __('messages.user_not_found')], 404);
         }
 
         $request->validate([
             'status' => 'required|in:active,inactive',
+        ], [
+            'status.in' => __('messages.invalid_status')
         ]);
 
         $user->status = $request->status;
         $user->save();
 
-        return response()->json(['message' => 'User status updated successfully', 'user' => $user]);
+        return response()->json([
+            'message' => __('messages.user_status_updated'),
+            'user' => $user
+        ]);
     }
 }

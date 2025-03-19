@@ -8,6 +8,14 @@ use App\Http\Controllers\LoanController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StudentController;
+use Illuminate\Support\Facades\Session;
+
+Route::get('lang/{locale}', function ($locale) {
+    if (in_array($locale, ['hu', 'en'])) {
+        Session::put('locale', $locale);
+    }
+    return redirect()->back();
+});
 
 Route::post('/auth/register', [AuthController::class, 'register']);
 Route::post('/auth/login', [AuthController::class, 'login']);

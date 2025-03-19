@@ -38,13 +38,11 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        return response()->json(['message' => 'User registered successfully'], 201);
+        return response()->json(['message' => __('messages.user_registered')], 201);
     }
 
     public function login(Request $request)
     {
-
-        
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'password' => 'required|string|min:8',
@@ -57,17 +55,17 @@ class AuthController extends Controller
         $user = User::where('email', $request->email)->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
-            return response()->json(['message' => 'Hibás bejelentkezési adatok'], 401);
+            return response()->json(['message' => __('messages.invalid_credentials')], 401);
         }
 
         if ($user->status === 'inactive') {
-            return response()->json(['message' => 'Your account is inactive.'], 403);
+            return response()->json(['message' => __('messages.account_inactive')], 403);
         }
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
-            'message' => 'Sikeres bejelentkezés!',
+            'message' => __('messages.successful_login'),
             'token' => $token,
             'user' => $user
         ], 200);

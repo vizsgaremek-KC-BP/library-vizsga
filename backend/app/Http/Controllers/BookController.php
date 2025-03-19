@@ -22,7 +22,7 @@ class BookController extends Controller
 
         $book = Book::with('bookType')->find($id);
         if (!$book) {
-            return response()->json(['message' => 'Book not found'], 404);
+            return response()->json(['message' => __('messages.book_not_found')], 404);
         }
         return response()->json($book);
     }
@@ -43,7 +43,7 @@ class BookController extends Controller
         $this->updateTotalQuantity();
 
         return response()->json([
-            'message' => 'Book added successfully',
+            'message' => __('messages.book_added'),
             'book' => $book
         ], 201);
     }
@@ -54,7 +54,7 @@ class BookController extends Controller
         $book = Book::find($id);
 
         if (!$book) {
-            return response()->json(['message' => 'Book not found'], 404);
+            return response()->json(['message' => __('messages.book_not_found')], 404);
         }
 
         $request->validate([
@@ -66,7 +66,7 @@ class BookController extends Controller
         $this->updateTotalQuantity();
 
         return response()->json([
-            'message' => 'Book updated successfully',
+            'message' => __('messages.book_updated'),
             'book' => $book
         ]);
     }
@@ -77,14 +77,14 @@ class BookController extends Controller
         $book = Book::find($id);
 
         if (!$book) {
-            return response()->json(['message' => 'Book not found'], 404);
+            return response()->json(['message' => __('messages.book_not_found')], 404);
         }
 
         $book->delete();
 
         $this->updateTotalQuantity();
 
-        return response()->json(['message' => 'Book deleted successfully']);
+        return response()->json(['message' => __('messages.book_deleted')]);
     }
 
     private function updateTotalQuantity()

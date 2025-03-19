@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class BookTypeController extends Controller
-{    
+{
     public function index()
     {
         return response()->json(BookType::all(), 200);
@@ -29,7 +29,7 @@ class BookTypeController extends Controller
         $this->updateJsonFile();
 
         return response()->json([
-            'message' => 'Book type added successfully',
+            'message' => __('messages.book_type_added'),
             'book_type' => $bookType
         ], 201);
     }
@@ -40,7 +40,7 @@ class BookTypeController extends Controller
 
         $bookType = BookType::find($id);
         if (!$bookType) {
-            return response()->json(['message' => 'Book type not found'], 404);
+            return response()->json(['message' => __('messages.book_type_not_found')], 404);
         }
         return response()->json($bookType, 200);
     }
@@ -50,7 +50,7 @@ class BookTypeController extends Controller
         $id = $request->input('id');
         $bookType = BookType::find($id);
         if (!$bookType) {
-            return response()->json(['message' => 'Book type not found'], 404);
+            return response()->json(['message' => __('messages.book_type_not_found')], 404);
         }
 
         $request->validate([
@@ -64,7 +64,7 @@ class BookTypeController extends Controller
         $bookType->update($request->all());
         $this->updateJsonFile();
 
-        return response()->json(['message' => 'Book type updated successfully', 'book_type' => $bookType], 200);
+        return response()->json(['message' => __('messages.book_type_updated'), 'book_type' => $bookType], 200);
     }
 
     public function destroy(Request $request)
@@ -72,13 +72,13 @@ class BookTypeController extends Controller
         $id = $request->input('id');
         $bookType = BookType::find($id);
         if (!$bookType) {
-            return response()->json(['message' => 'Book type not found'], 404);
+            return response()->json(['message' => __('messages.book_type_not_found')], 404);
         }
 
         $bookType->delete();
         $this->updateJsonFile();
 
-        return response()->json(['message' => 'Book type deleted successfully'], 200);
+        return response()->json(['message' => __('messages.book_type_deleted')], 200);
     }
 
     private function updateJsonFile()
