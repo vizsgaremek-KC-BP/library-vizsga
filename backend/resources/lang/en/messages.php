@@ -38,11 +38,11 @@ return [
     'validation_error' => 'Validation error',
     'edu_id_format' => 'The educational ID must start with 7 and be followed by 10 digits.',
 
-    'user_not_found' => 'A felhasználó nem található',
-    'user_status_updated' => 'A felhasználó státusza sikeresen frissítve',
-    'user_created' => 'A felhasználó sikeresen létrehozva',
-    'validation_error' => 'Hiba történt a validálás során',
-    'edu_id_format' => 'Az oktatói azonosítónak 7-tel kell kezdődnie, és 10 számjegyből kell állnia.',
-    'email_format' => 'A megadott email cím nem érvényes.',
-    'password_strength' => 'A jelszónak tartalmaznia kell nagybetűt, kisbetűt és számot.',
+    'user_not_found' => 'User not found',
+    'user_status_updated' => 'User status successfully updated',
+    'user_created' => 'User successfully created',
+    'validation_error' => 'An error occurred during validation',
+    'edu_id_format' => 'The educator ID must start with 7 and consist of 10 digits.',
+    'email_format' => 'The provided email address is invalid.',
+    'password_strength' => 'The password must contain uppercase letters, lowercase letters, and a number.'
 ];
