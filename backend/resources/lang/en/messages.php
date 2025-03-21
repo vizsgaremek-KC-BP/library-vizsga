@@ -41,8 +41,6 @@ return [
     'user_not_found' => 'User not found',
     'user_status_updated' => 'User status successfully updated',
     'user_created' => 'User successfully created',
-    'validation_error' => 'An error occurred during validation',
-    'edu_id_format' => 'The educator ID must start with 7 and consist of 10 digits.',
     'email_format' => 'The provided email address is invalid.',
-    'password_strength' => 'The password must contain uppercase letters, lowercase letters, and a number.'
+    'password_strength' => 'The password must contain uppercase letters, lowercase letters, and a number.',
 ];

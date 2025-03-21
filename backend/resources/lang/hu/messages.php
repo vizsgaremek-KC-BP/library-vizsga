@@ -41,9 +41,7 @@ return [
     'user_not_found' => 'A felhasználó nem található.',
     'user_status_updated' => 'A felhasználó státusza sikeresen frissítve.',
     'user_created' => 'A felhasználó sikeresen létrehozva.',
-    'validation_error' => 'Hiba történt a validálás során.',
-    'edu_id_format' => 'Az oktatói azonosítónak 7-tel kell kezdődnie, és 10 számjegyből kell állnia.',
     'email_format' => 'A megadott email cím nem érvényes.',
     'password_strength' => 'A jelszónak tartalmaznia kell nagybetűt, kisbetűt és számot.',
-    'invalid_status' => 'Érvénytelen státusz.',
+
 ];
