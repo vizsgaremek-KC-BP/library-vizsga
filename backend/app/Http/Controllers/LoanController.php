@@ -50,11 +50,9 @@ class LoanController extends Controller
         return response()->json(['message' => __('messages.book_borrowed_success')]);
     }
 
-    public function requestReturn(Request $request)
+    public function requestReturn(Request $request, $loan_id)
     {
         $user = Auth::user();
-        $loan_id = $request->input('loan_id');
-
         $loan = BorrowedBook::find($loan_id);
 
         if (!$loan) {
@@ -74,11 +72,9 @@ class LoanController extends Controller
         return response()->json(['message' => __('messages.return_request_submitted')]);
     }
 
-    public function returnBook(Request $request)
+    public function returnBook(Request $request, $loan_id)
     {
         $user = Auth::user();
-        $loan_id = $request->input('loan_id');
-
         $loan = BorrowedBook::find($loan_id);
 
         if (!$loan) {

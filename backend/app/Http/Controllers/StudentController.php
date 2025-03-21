@@ -36,9 +36,8 @@ class StudentController extends Controller
         return response()->json(['message' => __('messages.student_created'), 'student' => $student], 201);
     }
 
-    public function show(Request $request)
+    public function show(Request $request, $id)
     {
-        $id = $request->input('id');
         $student = Student::find($id);
         
         if (!$student) {
@@ -48,9 +47,8 @@ class StudentController extends Controller
         return response()->json($student);
     }
 
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        $id = $request->input('id');
         $student = Student::find($id);
         
         if (!$student) {
@@ -72,9 +70,8 @@ class StudentController extends Controller
         return response()->json($student);
     }
 
-    public function updateStatus(Request $request)
+    public function updateStatus(Request $request, $id)
     {
-        $id = $request->input('id');
         $student = Student::find($id);
         
         if (!$student) {

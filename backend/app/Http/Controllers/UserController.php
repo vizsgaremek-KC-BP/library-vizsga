@@ -11,8 +11,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::all();
-        return response()->json($users);
+        return response()->json(User::all());
     }
 
     public function store(Request $request)
@@ -50,9 +49,8 @@ class UserController extends Controller
         return response()->json(['message' => __('messages.user_created'), 'user' => $user], 201);
     }
 
-    public function show(Request $request)
+    public function show($id)
     {
-        $id = $request->input('id');
         $user = User::find($id);
         
         if (!$user) {
@@ -62,9 +60,8 @@ class UserController extends Controller
         return response()->json($user);
     }
 
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        $id = $request->input('id');
         $user = User::find($id);
         
         if (!$user) {
@@ -101,9 +98,8 @@ class UserController extends Controller
         return response()->json($user);
     }
 
-    public function updateStatus(Request $request)
+    public function updateStatus(Request $request, $id)
     {
-        $id = $request->input('id');
         $user = User::find($id);
         
         if (!$user) {
