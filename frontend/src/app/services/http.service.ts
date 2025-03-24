@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +36,7 @@ export class HttpService {
     });
   
     return this.http.get<any>(`${this.apiUrl}/books`, { headers });
-  }//ez lesz a getelos fuggveny meg nincs kesz
+  }
   
   addBook(inventory_number_base: string, title: string, author: string, price: number, copies: number): Observable<any> {
     const token = localStorage.getItem('token');
@@ -131,7 +131,7 @@ export class HttpService {
 
 
   
-  getStudent(): Observable<any> {
+  getUser(): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
@@ -140,7 +140,7 @@ export class HttpService {
     return this.http.get<any>(`${this.apiUrl}/users`, { headers });
   }
   
-  addStudent( edu_id: string, email: string, name: string ): Observable<any> {
+  addUser( edu_id: string, email: string, name: string ): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
@@ -150,22 +150,65 @@ export class HttpService {
     return this.http.post<any>(`${this.apiUrl}/users`, body, { headers });
   }
   
-  updateStudent(id: string, email: string, name: string, role: string): Observable<any> {
+  updateUser(id: string, name: string, email: string, role: string): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-    const body = { email, name, role };
+    const body = { name, email, role };
   
     return this.http.put<any>(`${this.apiUrl}/users/${id}`, body, { headers });
   }
-  
-  deleteStudent(id: string): Observable<any> {
+
+  statusSwitchUser(id: string, status: string): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
+    });
+
+    const body = { status };
+
+    return this.http.put<any>(`${this.apiUrl}/users/${id}/status`, body, { headers });
+}
+
+  getStudent(): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
   
-    return this.http.delete<any>(`${this.apiUrl}/users/${id}`, { headers });
+    return this.http.get<any>(`${this.apiUrl}/students`, { headers });
+  }
+  
+  addStudent( edu_id: string, name: string ): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    const body = { name, edu_id };
+
+    return this.http.post<any>(`${this.apiUrl}/students`, body, { headers });
+  }
+  
+  updateStudent(id: string, name: string): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    const body = { name };
+  
+    return this.http.put<any>(`${this.apiUrl}/students/${id}`, body, { headers });
+  }
+  
+  statusSwitchStudent(id: string, status: string): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Accept': 'application/json'
+    });
+    const body = { status };
+  
+    return this.http.put<any>(`${this.apiUrl}/student/${id}/status`, body, { headers });
   }
 }

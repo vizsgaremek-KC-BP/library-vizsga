@@ -5,10 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-        <div class="row d-flex justify-content-between">
+        <div class="row justify-content-between">
+          <p>
+            <input type="text" [(ngModel)]="searchText" (input)="filterBooks()" placeholder="Keresés..." class="form-control mb-3" id="search">
+          </p>
                   <div class="container d-flex justify-content-center">
+                    
                     <table class="table table-bordered text-center">
                         <thead class="text-center">
+                                
                             <tr>
                                 <th scope="col">Raktári szám</th>
                                 <th scope="col">Cím</th>
@@ -63,7 +68,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let book of bookArray">
+                            <tr *ngFor="let book of (filteredBooks.length > 0 || searchText ? filteredBooks : bookArray)">
                                 <td>{{book.inventory_number_base}}</td>
                                 <td>{{book.title}}</td>
                                 <td>{{book.author}}</td>

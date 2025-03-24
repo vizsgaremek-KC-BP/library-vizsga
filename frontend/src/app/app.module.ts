@@ -19,6 +19,7 @@ import { StudentsComponent } from './components/students/students.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
+import { UsersComponent } from './components/users/users.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
@@ -35,7 +36,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     LibraryListUserComponent,
     LibraryListAdminComponent,
     BooksComponent,
-    StudentsComponent
+    StudentsComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,

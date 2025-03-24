@@ -27,14 +27,6 @@ export class LibraryListUserComponent implements OnInit {
       if (!this.auth.isLoggedIn()) {
         this.router.navigate(['/login']);
       }
-      // db.getStudentBook().subscribe(data => {
-      //   this.bookArray = data;
-      //   console.log(this.bookArray);
-      // });
-      // db.getMyLoans().subscribe(data => {
-      //   this.loanArray = data.loans || [];
-      //   console.log(this.loanArray);
-      // });
       this.db.getStudentBook().subscribe(data => {
         this.bookArray = data;
         console.log(this.bookArray);

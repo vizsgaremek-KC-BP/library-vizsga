@@ -19,6 +19,8 @@ export class BooksComponent implements OnInit {
     selectedBook: any = null;
     
     bookArray: any[] = [];
+    filteredBooks: any[] = [];
+    searchText: string = '';
 
   setEditBook() {
     this.editBooks = !this.editBooks;
@@ -45,6 +47,7 @@ export class BooksComponent implements OnInit {
     ) {
       db.getBook().subscribe(data => {
         this.bookArray = data;
+        this.filteredBooks = [];
         console.log(this.bookArray);
       });
       // this.translate.setDefaultLang('en');
@@ -55,6 +58,20 @@ export class BooksComponent implements OnInit {
     // }
   
     ngOnInit(): void {}
+  
+    filterBooks() {
+      if (!this.searchText) {
+        this.filteredBooks = [];
+        return;
+      }
+      const searchLower = this.searchText.toLowerCase();
+  
+      this.filteredBooks = this.bookArray.filter(book =>
+        Object.values(book).some(val =>
+          val?.toString().toLowerCase().includes(searchLower)
+        )
+      );
+    }
   
     createBook(): void {
         this.db.addBook(this.inventory_number_base, this.title, this.author, this.price, this.copies).subscribe(

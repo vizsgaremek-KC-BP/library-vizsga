@@ -1,10 +1,22 @@
-
 html{
     height: 100%;
     width: 100%;
 }
+div.row{
+    margin-left: 4vh;
+}
 table {
-    width: 100%;
+    width: 95%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 2px solid rgb(173, 177, 230);
+    border-radius: 10px;
+    overflow: hidden;
+}
+#search {
+    width: 95%;
+    margin-top: 10px;
+    margin-left: 5vh;
     border-collapse: separate;
     border-spacing: 0;
     border: 2px solid rgb(173, 177, 230);
@@ -30,14 +42,3 @@ th, td {
     padding: 10px;
     border: 1px solid #ddd;
 }
-/* table {
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    vertical-align: middle;
-    border: 5px solid rgb(173, 177, 230);
-}
-th, td{
-    text-align: center;
-    vertical-align: middle;
-} */

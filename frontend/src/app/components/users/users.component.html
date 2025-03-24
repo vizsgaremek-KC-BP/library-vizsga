@@ -5,16 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-                <div class="row justify-content-between">
-                  <p>
-                    <input type="text" [(ngModel)]="searchText" (input)="filterStudents()" placeholder="Keresés..." class="form-control mb-3" id="search">
-                  </p>
-                  <div class="container d-flex justify-content-center">
+            <div class="row justify-content-between">
+                <p>
+                    <input type="text" [(ngModel)]="searchText" (input)="filterUsers()" placeholder="Keresés..." class="form-control mb-3" id="search">
+                </p>
+                <div class="container d-flex justify-content-center">
                     <table class="table table-bordered text-center">
                         <thead class="text-center">
                             <tr>
                                 <th scope="col">Név</th>
                                 <th scope="col">Oktatási azonosító</th>
+                                <th scope="col">Email cím</th>
+                                <th scope="col">Jogosultság</th>
                                 <th scope="col">Státusz</th>
                                 <th scope="col" colspan="2">
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#inputModal">
@@ -25,7 +27,7 @@
                                         <div class="modal-dialog">
                                           <div class="modal-content">
                                             <div class="modal-header">
-                                              <h5 class="modal-title" id="modalLabel">Új diák hozzáadása</h5>
+                                              <h5 class="modal-title" id="modalLabel">Új felhasználó hozzáadása</h5>
                                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Bezárás"></button>
                                             </div>
                                             <div class="modal-body">
@@ -38,11 +40,19 @@
                                                   <label for="name" class="form-label">Oktatási azonosító</label>
                                                   <input type="text" class="form-control" id="edu_id" placeholder="Oktatási azonosítója" [(ngModel)]="edu_id" name="edu_id">
                                                 </div>
+                                                <div class="mb-3">
+                                                  <label for="name" class="form-label">Email cím</label>
+                                                  <input type="text" class="form-control" id="email" placeholder="Email címe" [(ngModel)]="email" name="email">
+                                                </div>
+                                                <div class="mb-3">
+                                                  <label for="name" class="form-label">Jelszó</label>
+                                                  <input type="text" class="form-control" id="password" placeholder="Jelszó" [(ngModel)]="password" name="password">
+                                                </div>
                                               </form>
                                             </div>
                                             <div class="modal-footer">
                                               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bezárás</button>
-                                              <button type="button" class="btn btn-primary" id="saveBtn" (click)="createStudent()">Mentés</button>
+                                              <button type="button" class="btn btn-primary" id="saveBtn" (click)="createUser()">Mentés</button>
                                             </div>
                                           </div>
                                         </div>
@@ -51,12 +61,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let student of (filteredStudents.length > 0 || searchText ? filteredStudents : studentArray)">
-                                <td>{{student.name}}</td>
-                                <td>{{student.edu_id}}</td>
-                                <td>{{student.status}}</td>
+                            <tr *ngFor="let user of (filteredUsers.length > 0 || searchText ? filteredUsers : userArray)">
+                                <td>{{user.name}}</td>
+                                <td>{{user.edu_id}}</td>
+                                <td>{{user.email}}</td>
+                                <td>{{user.role}}</td>
+                                <td>{{user.status}}</td>
                                 <td>
-                                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modifyModal" (click)="setSelectedStudent(student)">
+                                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modifyModal" (click)="setSelectedUser(user)">
                                     Szerkesztés
                                   </button>
                                 </td>
@@ -65,35 +77,48 @@
                                   <div class="modal-dialog">
                                     <div class="modal-content">
                                       <div class="modal-header">
-                                        <h5 class="modal-title" id="modalLabel">Diák szerkesztése</h5>
+                                        <h5 class="modal-title" id="modalLabel">Felhasználó szerkesztése</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Bezárás"></button>
                                       </div>
                                       <div class="modal-body">
-                                        <form id="inputForm" *ngIf="selectedStudent">
+                                        <form id="inputForm" *ngIf="selectedUser">
                                           <div class="mb-3">
                                             <label class="form-label">Név</label>
-                                            <input type="text" class="form-control" [(ngModel)]="selectedStudent.name" name="name" id="name">
+                                            <input type="text" class="form-control" [(ngModel)]="selectedUser.name" name="name" id="name">
+                                          </div>
+                                          <div class="mb-3">
+                                            <label class="form-label">Email cím</label>
+                                            <input type="text" class="form-control" [(ngModel)]="selectedUser.email" name="email" id="email">
+                                          </div>
+                                          <div class="mb-3">
+                                            <label class="form-label">Jogosultság</label>
+                                            <select class="form-control" [(ngModel)]="selectedUser.role" name="role" id="role">
+                                              <option value="admin">admin</option>
+                                              <option value="student">student</option>
+                                            </select>
                                           </div>
                                           
                                         </form>
                                       </div>
                                       <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bezárás</button>
-                                        <button type="button" class="btn btn-primary" (click)="modifyStudent(
-                                        selectedStudent.id,
-                                        selectedStudent.name
+                                        <button type="button" class="btn btn-primary" (click)="modifyUser(
+                                        selectedUser.id,
+                                        selectedUser.name,
+                                        selectedUser.email,
+                                        selectedUser.role
                                         )">Mentés</button>
                                       </div>
                                     </div>
                                   </div>
                                 </div>
                                 <td>
-                                  <button type="button" class="btn" 
-                                          [ngClass]="student.status === 'active' ? 'btn-danger' : 'btn-success'" 
-                                          (click)="statusStudent(student.id, student.status)">
-                                      {{ student.status === 'active' ? 'Inaktiválás' : 'Aktiválás' }}
-                                  </button>
-                              </td>
+                                    <button type="button" class="btn" 
+                                            [ngClass]="user.status === 'active' ? 'btn-danger' : 'btn-success'" 
+                                            (click)="statusUser(user.id, user.status)">
+                                        {{ user.status === 'active' ? 'Inaktiválás' : 'Aktiválás' }}
+                                    </button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>

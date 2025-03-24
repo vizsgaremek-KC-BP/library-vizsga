@@ -8,7 +8,7 @@ import { LibraryListUserComponent } from './components/library-list-user/library
 import { LibraryListAdminComponent } from './components/library-list-admin/library-list-admin.component';
 import { BooksComponent } from './components/books/books.component';
 import { StudentsComponent } from './components/students/students.component';
-import { AssignBookComponent } from './components/assign-book/assign-book.component';
+import { UsersComponent } from './components/users/users.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,9 +18,9 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'books', component: BooksComponent },
   { path: 'students', component: StudentsComponent },
+  { path: 'users', component: UsersComponent },
   { path: 'libraryUser', component: LibraryListUserComponent },
-  { path: 'libraryAdmin', component: LibraryListAdminComponent },
-  { path: 'assignBook', component: AssignBookComponent },
+  { path: 'libraryAdmin', component: LibraryListAdminComponent }
 
 ];
 

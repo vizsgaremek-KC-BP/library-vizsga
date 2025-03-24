@@ -18,6 +18,8 @@ export class StudentsComponent implements OnInit {
     selectedStudent: any = null;
 
     studentArray: any[] = [];
+    filteredStudents: any[] = [];
+    searchText: string = '';
 
   setEditStudent() {
     this.editStudents = !this.editStudents;
@@ -47,6 +49,7 @@ export class StudentsComponent implements OnInit {
     ) {
       db.getStudent().subscribe(data => {
         this.studentArray = data;
+        this.filteredStudents = [];
         console.log(this.studentArray);
       });
       // this.translate.setDefaultLang('en');
@@ -60,9 +63,23 @@ export class StudentsComponent implements OnInit {
         
       }
     
+      filterStudents() {
+        if (!this.searchText) {
+          this.filteredStudents = [];
+          return;
+        }
+        const searchLower = this.searchText.toLowerCase();
+    
+        this.filteredStudents = this.studentArray.filter(student =>
+          Object.values(student).some(val =>
+            val?.toString().toLowerCase().includes(searchLower)
+          )
+        );
+      }
+    
   
     createStudent(): void {
-        this.db.addStudent(this.name, this.email, this.edu_id).subscribe(
+        this.db.addStudent(this.name, this.edu_id).subscribe(
           data => {
             console.log('Diák hozzáadva', data);
             window.location.reload();
@@ -78,23 +95,9 @@ export class StudentsComponent implements OnInit {
     setSelectedStudent(student: any) {
       this.selectedStudent = { ...student }; 
     }
-    // setSelectedStudent(student: any): void {
-    //   this.selectedStudent = { ...student }; // Make sure to clone the student object
-    // }
-  
-    // modifyStudent(id: string, edu_id: string, email: string, name: string): void{
-    //   this.db.updateStudent(id, edu_id, email, name, this.password, this.role).subscribe(
-    //     data => {
-    //       console.log('Diák frissítve', data);
-    //       window.location.reload();
-    //     },
-    //     error => {
-    //       console.error('Hiba történt a diák frissítésekor', error);
-    //     }
-    //   );
-    // }
-    modifyStudent(id: string, name: string, email: string, role: string): void {
-      this.db.updateStudent(id, email, name, role).subscribe(
+
+    modifyStudent(id: string, name: string): void {
+      this.db.updateStudent(id, name).subscribe(
         data => {
           console.log('Diák frissítve', data);
           window.location.reload();
@@ -106,15 +109,20 @@ export class StudentsComponent implements OnInit {
     }
     
   
-    deleteStudent(id: string): void{
-      this.db.deleteStudent(id).subscribe(
-        data => {
-          console.log('Diák törölve', data);
-          window.location.reload();
-        },
-        error => {
-          console.error('Hiba történt a diák törlésekor', error);
-        }
+    statusStudent(id: string, currentStatus: string): void {
+      const newStatus = currentStatus === 'active' ? 'inactive' : 'active';
+  
+      this.db.statusSwitchStudent(id, newStatus).subscribe(
+          data => {
+              console.log('Diák státusza frissítve', data);
+              this.studentArray = this.studentArray.map(student =>
+                  student.id === id ? { ...student, status: newStatus } : student
+              );
+              window.location.reload();
+          },
+          error => {
+              console.error('Hiba történt a státusz frissítésekor', error);
+          }
       );
     }
 }
