@@ -7,56 +7,56 @@
 <body>
   <div id="register">
     <form (ngSubmit)="register()">
-      <h2>Register new account</h2>
+      <h2>{{"registration.Regisztálj új fiókot!" | translate}}</h2>
       <br>
         <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Felhasználónév:
+          <label for="exampleInputEmail1" class="form-label">{{"registration.Felhasználónév:" | translate}}
               <div class="tooltip-container">
                 <span class="tooltip-icon">?</span>
-                <span class="tooltip-text">A felhasználónévnek egyedinek kell lennie és maximum 255 karakter hosszúnak.</span>
+                <span class="tooltip-text">{{"registration.felh1" | translate}}</span>
               </div>
           </label>
           <input  name="userName" type="text" class="form-control"aria-describedby="emailHelp" [(ngModel)]="userName">
         </div>
         <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Email:
+          <label for="exampleInputEmail1" class="form-label">{{"registration.Email:" | translate}}
             <div class="tooltip-container">
               <span class="tooltip-icon">?</span>
-              <span class="tooltip-text">Adja meg egy létező email címet, illetve tartalmazza egy érvényes email cím formátumát.</span>
+              <span class="tooltip-text">{{"registration.felh2" | translate}}</span>
             </div>
           </label>
           <input  name="email" type="text" class="form-control" aria-describedby="emailHelp" [(ngModel)]="email">
         </div>
         <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Oktatási azonosító szám:
+          <label for="exampleInputEmail1" class="form-label">{{"registration.Oktatási azonosító szám:" | translate}}
             <div class="tooltip-container">
               <span class="tooltip-icon">?</span>
-              <span class="tooltip-text">Az oktatási azonosító 7-tel kezdődik és pontosan 11 karakterből áll.</span>
+              <span class="tooltip-text">{{"registration.felh3" | translate}}</span>
             </div>
           </label>
           <input  name="studentId" type="text" class="form-control" aria-describedby="emailHelp" [(ngModel)]="studentId">
         </div>
         <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Jelszó:
+          <label for="exampleInputPassword1" class="form-label">{{"registration.Jelszó:" | translate}}
             <div class="tooltip-container">
               <span class="tooltip-icon">?</span>
-              <span class="tooltip-text">Legalább 8 karakter hosszú, tartalmazzon kis- és nagybetűket, valamint legalább 1 számot és 1 speciális karaktert.</span>
+              <span class="tooltip-text">{{"registration.felh4" | translate}}</span>
             </div>
           </label>
           <input  name="passWord" type="password" class="form-control" [(ngModel)]="passWord">
         </div>
         <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Jelszó megerősítés:
+          <label for="exampleInputPassword1" class="form-label">{{"registration.Jelszó megerősítés:" | translate}}
             <div class="tooltip-container">
               <span class="tooltip-icon">?</span>
-              <span class="tooltip-text">A jelszó megerősítésnek meg kell egyeznie az első jelszóval.</span>
+              <span class="tooltip-text">{{"registration.felh5" | translate}}</span>
             </div>
           </label>
           <input  name="passWordConfirm" type="password" class="form-control" [(ngModel)]="passWordConfirm">
         </div>
-        <button type="submit" class="btn btn-primary">Register</button>
+        <button type="submit" class="btn btn-primary">{{"registration.Regisztráció" | translate}}</button>
         <br>
-        <a [routerLink]="['/login']">Already have an account, Log In now!</a>
+        <a [routerLink]="['/login']">{{"registration.Van már fiókja, jelentkezzen be most!" | translate}}</a>
       </form>
     </div>
 </body>

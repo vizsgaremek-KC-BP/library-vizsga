@@ -7,52 +7,48 @@
 <body>
             <div class="row justify-content-between">
                 <p>
-                    <input type="text" [(ngModel)]="searchText" (input)="filterUsers()" placeholder="Keresés..." class="form-control mb-3" id="search">
+                    <input type="text" [(ngModel)]="searchText" (input)="filterUsers()" [placeholder]="'users.Keresés...' | translate" class="form-control mb-3" id="search">
                 </p>
                 <div class="container d-flex justify-content-center">
                     <table class="table table-bordered text-center">
                         <thead class="text-center">
                             <tr>
-                                <th scope="col">Név</th>
-                                <th scope="col">Oktatási azonosító</th>
-                                <th scope="col">Email cím</th>
-                                <th scope="col">Jogosultság</th>
-                                <th scope="col">Státusz</th>
+                                <th scope="col">{{"users.Név" | translate}}</th>
+                                <th scope="col">{{"users.Oktatási azonosító" | translate}}</th>
+                                <th scope="col">{{"users.Email cím" | translate}}</th>
+                                <th scope="col">{{"users.Jogosultság" | translate}}</th>
+                                <th scope="col">{{"users.Állapot" | translate}}</th>
                                 <th scope="col" colspan="2">
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#inputModal">
-                                        Hozzáad
+                                        {{"users.Hozzáad" | translate}}
                                       </button>
                                       
                                       <div class="modal fade" id="inputModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                           <div class="modal-content">
                                             <div class="modal-header">
-                                              <h5 class="modal-title" id="modalLabel">Új felhasználó hozzáadása</h5>
-                                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Bezárás"></button>
+                                              <h5 class="modal-title" id="modalLabel">{{"users.Új felhasználó hozzáadása" | translate}}</h5>
+                                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="'users.Bezárás' | translate"></button>
                                             </div>
                                             <div class="modal-body">
                                               <form id="inputForm">
                                                 <div class="mb-3">
-                                                  <label for="name" class="form-label">Név</label>
-                                                  <input type="text" class="form-control" id="name" placeholder="Felhasználó neve" [(ngModel)]="name" name="name">
+                                                  <label for="name" class="form-label">{{"users.Név" | translate}}</label>
+                                                  <input type="text" class="form-control" id="name" [placeholder]="'users.Felhasználó neve' | translate" [(ngModel)]="name" name="name">
                                                 </div>
                                                 <div class="mb-3">
-                                                  <label for="name" class="form-label">Oktatási azonosító</label>
-                                                  <input type="text" class="form-control" id="edu_id" placeholder="Oktatási azonosítója" [(ngModel)]="edu_id" name="edu_id">
+                                                  <label for="name" class="form-label">{{"users.Oktatási azonosító" | translate}}</label>
+                                                  <input type="text" class="form-control" id="edu_id" [placeholder]="'users.Oktatási azonosítója' | translate" [(ngModel)]="edu_id" name="edu_id">
                                                 </div>
                                                 <div class="mb-3">
-                                                  <label for="name" class="form-label">Email cím</label>
-                                                  <input type="text" class="form-control" id="email" placeholder="Email címe" [(ngModel)]="email" name="email">
-                                                </div>
-                                                <div class="mb-3">
-                                                  <label for="name" class="form-label">Jelszó</label>
-                                                  <input type="text" class="form-control" id="password" placeholder="Jelszó" [(ngModel)]="password" name="password">
+                                                  <label for="name" class="form-label">{{"users.Email cím" | translate}}</label>
+                                                  <input type="text" class="form-control" id="email" [placeholder]="'users.Email címe' | translate" [(ngModel)]="email" name="email">
                                                 </div>
                                               </form>
                                             </div>
                                             <div class="modal-footer">
-                                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bezárás</button>
-                                              <button type="button" class="btn btn-primary" id="saveBtn" (click)="createUser()">Mentés</button>
+                                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{"users.Bezárás" | translate}}</button>
+                                              <button type="button" class="btn btn-primary" id="saveBtn" (click)="createUser()">{{"users.Mentés" | translate}}</button>
                                             </div>
                                           </div>
                                         </div>
@@ -69,7 +65,7 @@
                                 <td>{{user.status}}</td>
                                 <td>
                                   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modifyModal" (click)="setSelectedUser(user)">
-                                    Szerkesztés
+                                    {{"users.Szerkesztés" | translate}}
                                   </button>
                                 </td>
                                 
@@ -77,37 +73,37 @@
                                   <div class="modal-dialog">
                                     <div class="modal-content">
                                       <div class="modal-header">
-                                        <h5 class="modal-title" id="modalLabel">Felhasználó szerkesztése</h5>
+                                        <h5 class="modal-title" id="modalLabel">{{"users.Felhasználó szerkesztése" | translate}}</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Bezárás"></button>
                                       </div>
                                       <div class="modal-body">
                                         <form id="inputForm" *ngIf="selectedUser">
                                           <div class="mb-3">
-                                            <label class="form-label">Név</label>
+                                            <label class="form-label">{{"users.Név" | translate}}</label>
                                             <input type="text" class="form-control" [(ngModel)]="selectedUser.name" name="name" id="name">
                                           </div>
                                           <div class="mb-3">
-                                            <label class="form-label">Email cím</label>
+                                            <label class="form-label">{{"users.Email cím" | translate}}</label>
                                             <input type="text" class="form-control" [(ngModel)]="selectedUser.email" name="email" id="email">
                                           </div>
                                           <div class="mb-3">
-                                            <label class="form-label">Jogosultság</label>
+                                            <label class="form-label">{{"users.Jogosultság" | translate}}</label>
                                             <select class="form-control" [(ngModel)]="selectedUser.role" name="role" id="role">
-                                              <option value="admin">admin</option>
-                                              <option value="student">student</option>
+                                              <option value="admin">{{"users.rendszergazda" | translate}}</option>
+                                              <option value="student">{{"users.diák" | translate}}</option>
                                             </select>
                                           </div>
                                           
                                         </form>
                                       </div>
                                       <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bezárás</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{"users.Bezárás" | translate}}</button>
                                         <button type="button" class="btn btn-primary" (click)="modifyUser(
                                         selectedUser.id,
                                         selectedUser.name,
                                         selectedUser.email,
                                         selectedUser.role
-                                        )">Mentés</button>
+                                        )">{{"users.Mentés" | translate}}</button>
                                       </div>
                                     </div>
                                   </div>
@@ -116,7 +112,7 @@
                                     <button type="button" class="btn" 
                                             [ngClass]="user.status === 'active' ? 'btn-danger' : 'btn-success'" 
                                             (click)="statusUser(user.id, user.status)">
-                                        {{ user.status === 'active' ? 'Inaktiválás' : 'Aktiválás' }}
+                                            {{ (user.status === 'active' ? 'users.Inaktiválás' : 'users.Aktiválás') | translate }}
                                     </button>
                                 </td>
                             </tr>

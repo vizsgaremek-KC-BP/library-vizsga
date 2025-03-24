@@ -3,23 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
 </head>
 <body>
     <div class="row d-flex justify-content-center">
         <div class="container d-flex align-items-center gap-3"> 
             <span id="felhasznalo">
-                Név: {{ userName }}
+                {{"libraryuser.Név:" | translate}} {{ userName }}
             </span>
             <table class="table table-bordered text-center">
                 <thead class="text-center">
                     <tr>
-                        <th scope="col">Szerző</th>
-                        <th scope="col">Cím</th>
-                        <th scope="col">Könyv raktári száma</th>
-                        <th scope="col">Ár (FT)</th>
-                        <th scope="col">Állapot</th>
-                        <th scope="col">Visszaadás</th>
+                        <th scope="col">{{"libraryuser.Szerző" | translate}}</th>
+                        <th scope="col">{{"libraryuser.Cím" | translate}}</th>
+                        <th scope="col">{{"libraryuser.Könyv raktári száma" | translate}}</th>
+                        <th scope="col">{{"libraryuser.Ár (Ft)" | translate}}</th>
+                        <th scope="col">{{"libraryuser.Állapot" | translate}}</th>
+                        <th scope="col">{{"libraryuser.Visszaadás" | translate}}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,7 +29,7 @@
                         <td>{{ getBookByInventoryNumber(loan.inventory_number)?.price }}</td>
                         <td>{{ loan.status }}</td>
                         <td>
-                            <button type="button" class="btn btn-danger" (click)="returnBook(loan.id)">Visszaadás</button>
+                            <button type="button" class="btn btn-danger" (click)="returnBook(loan.id)">{{"libraryuser.Visszaadás" | translate}}</button>
                         </td>
                     </tr>
                 </tbody>

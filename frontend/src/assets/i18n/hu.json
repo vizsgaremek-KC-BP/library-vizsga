@@ -1,3 +1,149 @@
 {
+    "about":{
+        "nevj1": "Székhely és oktatási helyszín: 1065 Budapest, Révay u. 16. (Bejárat a Bálint Ház felől)",
+        "nevj2": "A Titkárság ügyfélfogadási ideje:",
+        "nevj3": "Nappali tagozatosoknak: hétfő, kedd, csütörtök 9:00 - 15:00",
+        "nevj4": "Esti tagozatosoknak: hétfő, kedd, csütörtök 16:00 - 18:00",
+        "nevj5": "Kérdéseidet az alábbi e-mail címeken teheted fel: ",
+        "nevj6": "És kérdezz bátran, mert ez segíthet abban, hogy az érettségi után okosan tudj továbblépni!",
+        "nevj7": "Központi telefonszám: +36 1 776 6620",
+        "nevj8": "Titkársági elérhetőségek: +36 30 1938275, +36 20 3641872, +36 30 1796823",
+        "nevj9": "Adataink:",
+        "nevj10": "BZSH Külkereskedelmi Technikum",
+        "nevj11": "Cím: 1065 Budapest, Révay utca 16.",
+        "nevj12": "OM 100536 - Alapítási év: 2018",
+        "nevj13": "Adószám: 18163164-1-42",
+        "nevj14": "Intézményvezető: Salusinszky András",
+        "nevj15": "Adatkezelési tájékoztató",
+        "nevj16": "A weboldalt Kiss Cintia és Berta Péter fejlesztette, akik egy modern, felhasználóbarát digitális könyvtár rendszert alakítottak ki a BZSH Külkereskedelmi Technikum számára. A rendszer lehetővé teszi a tanárok részére, hogy könnyedén kölcsönözhessenek könyveket, egyszerűsíti a könyvek nyilvántartását és elérhetőségét. A platform célja, hogy gyors és kényelmes hozzáférést biztosítson a könyvekhez, miközben biztosítja a kölcsönzési folyamatok átláthatóságát és hatékonyságát."
+    },
     
+    "books":{
+        "Keresés...": "Keresés...",
+        "Raktári szám": "Raktári szám",
+        "Cím": "Cím",
+        "Szerző": "Szerző",
+        "Ár (Ft)": "Ár (Ft)",
+        "Példány": "Példány",
+        "Hozzáad": "Hozzáad",
+        "Új könyv hozzáadása": "Új könyv hozzáadása",
+        "Bezárás": "Bezárás",
+        "Könyv raktári száma": "Könyv raktári száma",
+        "Könyv címe": "Könyv címe",
+        "Szerző neve": "Szerző neve",
+        "Könyv ára": "Könyv ára",
+        "Példány szám": "Példány szám",
+        "Mentés": "Mentés",
+        "Szerkesztés": "Szerkesztés",
+        "Könyv szerkesztése": "Könyv szerkesztése",
+        "Törlés": "Törlés"
+    },
+    
+    "home": {
+        "Bemutatkozás": "Bemutatkozás",
+        "bemut1": "A BZSH Külkereskedelmi Technikum célja, hogy magas szintű, gyakorlatorientált képzéseket kínáljon a gazdaság, pénzügy, logisztika és nemzetközi kereskedelem területén. Iskolánk programjai a piaci igényekhez igazodva biztosítják a diákok számára a szükséges elméleti és gyakorlati tudást, amely alapot ad a sikeres karrierhez a nemzetközi és hazai munkaerőpiacon.",
+        "bemut2": "A képzés során a hallgatók elsajátítják a pénzügyi elemzést, a nemzetközi kereskedelmi szabályozást, üzleti kommunikációt és projektmenedzsmentet, miközben modern iparági szoftverek használatát is megtanulják. Az államilag támogatott, ingyenes szakképzés nappali és esti tagozaton is elérhető, ösztöndíj és szakmai gyakorlatok lehetőségével.",
+        "bemut3": "Iskolánk szoros kapcsolatokat ápol a legnagyobb vállalatokkal, így a diákok biztos szakmai tapasztalatokat szerezhetnek, és versenyképes tudással léphetnek be a munka világába.",
+        "több": "További információkról tudnak tájékozódni ",
+        "itt": "itt"
+    },
+
+    "libraryadmin":{
+        "Keresés...": "Keresés...",
+        "Raktári szám": "Raktári szám",
+        "Állapot": "Állapot",
+        "Kiadás": "Kiadás",
+        "Új könyv kiadása": "Új könyv kiadása",
+        "Bezárás": "Bezárás",
+        "Oktatási azonosító": "Oktatási azonosító",
+        "A felhasználó oktatási azonosítója": "A felhasználó oktatási azonosítója",
+        "A könyv raktári száma": "A könyv raktári száma",
+        "Elfogadás": "Elfogadás",
+        "Elutasítás": "Elutasítás"
+    },
+
+    "libraryuser":{
+        "Név:": "Név:",
+        "Szerző": "Szerző",
+        "Cím": "Cím",
+        "Könyv raktári száma": "Könyv raktári száma",
+        "Ár (Ft)": "Ár (Ft)",
+        "Állapot": "Állapot",
+        "Visszaadás": "Visszaadás"
+    },
+
+    "login":{
+        "Jelentkezz be!": "Jelentkezz be!",
+        "Email:": "Email:",
+        "Jelszó:": "Jelszó:",
+        "Bejelentkezés": "Bejelentkezés",
+        "Nincs még fiókod, regisztrálj most!": "Nincs még fiókod, regisztrálj most!"
+    },
+
+    "navbar": {
+        "Kezdőlap": "Kezdőlap",
+        "bejelentkezés": "bejelentkezés",
+        "Kikölcsönzött könyvek": "kikölcsönzött könyvek",
+        "könyvek": "könyvek",
+        "diákok": "diákok",
+        "felhasználók": "felhasználók",
+        "könyvtár": "könyvtár",
+        "névjegy": "névjegy",
+        "kijelentkezés": "kijelentkezés"
+    },
+
+    "registration": {
+        "Regisztrálj új fiókot!": "Regisztrálj új fiókot!",
+        "Felhasználónév:": "Felhasználónév",
+        "felh1": "A felhasználónévnek egyedinek kell lennie és maximum 255 karakter hosszúnak.",
+        "Email:": "Email:",
+        "felh2": "Adja meg egy létező email címet, illetve tartalmazza egy érvényes email cím formátumát.",
+        "Oktatási azonosító szám:": "Oktatási azonosító szám:",
+        "felh3": "Az oktatási azonosító 7-tel kezdődik és pontosan 11 karakterből áll.",
+        "Jelszó:": "Jelszó:",
+        "felh4": "Legalább 8 karakter hosszú, tartalmazzon kis- és nagybetűket, valamint legalább 1 számot és 1 speciális karaktert.",
+        "Jelszó megerősítés:": "",
+        "felh5": "A jelszó megerősítésnek meg kell egyeznie az első jelszóval.",
+        "Regisztráció": "Regisztráció",
+        "Van már fiókja, jelentkezzen be most!": "Van már fiókja, jelentkezzen be most!"
+    },
+
+    "students": {
+        "Keresés...":"Keresés...",
+        "Név":"Név",
+        "Oktatási azonosító":"Oktatási azonosító",
+        "Állapot":"Állapot",
+        "Hozzáad":"Hozzáad",
+        "Új diák hozzáadása":"Új diák hozzáadása",
+        "Bezárás":"Bezárás",
+        "Diák neve":"Diák neve",
+        "Oktatási azonosítója":"Oktatási azonosítója",
+        "Mentés":"Mentés",
+        "Szerkesztés":"Szerkesztés",
+        "Diák szerkesztése":"Diák szerkesztése",
+        "Inaktiválás":"Inaktiválás",
+        "Aktiválás":"Aktiválás"
+    },
+
+    "users": {
+        "Keresés...":"Keresés...",
+        "Név":"Név",
+        "Oktatási azonosító":"Oktatási azonosító",
+        "Email cím":"Email cím",
+        "Jogosultság":"Jogosultság",
+        "Állapot":"Állapot",
+        "Hozzáad":"Hozzáad",
+        "Új felhasználó hozzáadása":"Új felhasználó hozzáadása",
+        "Bezárás":"Bezárás",
+        "Felhasználó neve":"Felhasználó neve",
+        "Oktatási azonosítója":"Oktatási azonosítója",
+        "Email címe":"Email címe",
+        "Mentés":"Mentés",
+        "Szerkesztés":"Szerkesztés",
+        "Felhasználó szerkesztése":"Felhasználó szerkesztése",
+        "rendszergazda":"rendszergazda",
+        "diák":"diák",
+        "Inaktiválás":"Inaktiválás",
+        "Aktiválás":"Aktiválás"
+    }
 }

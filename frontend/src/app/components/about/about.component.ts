@@ -11,11 +11,5 @@ export class AboutComponent {
   constructor(
     private config: ConfigService,
     public translate: TranslateService
-  ) {
-    this.translate.setDefaultLang('en');
-    this.translate.use('en');
-  }
-  switchLanguage(lang: string) {
-    this.translate.use(lang);
-  }
+  ) {}
 }

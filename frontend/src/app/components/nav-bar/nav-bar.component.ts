@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service';
+import { ConfigService } from '../../services/config.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -9,6 +10,12 @@ import { AuthenticationService } from '../../services/authentication.service';
 export class NavBarComponent implements OnInit {
   isLoggedIn: boolean = false;
 
+  constructor(public auth: AuthenticationService, private configService: ConfigService) {}
+
+  switchLanguage(language: string) {
+    this.configService.switchLanguage(language);
+  }
+
   ngOnInit(): void {
     this.isLoggedIn = this.auth.isLoggedIn();
   }
@@ -16,5 +23,4 @@ export class NavBarComponent implements OnInit {
   public logOut() {
     this.auth.logout();
   }
-  constructor(public auth: AuthenticationService) {}
 }

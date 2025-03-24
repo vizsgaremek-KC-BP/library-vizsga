@@ -1,36 +1,17 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConfigService {
-
-  private content = new Subject()
-  private langSign="hu"
-
-  constructor(private http:HttpClient) { 
-    this.loadContent()
+  constructor(private translateService: TranslateService) {
+    this.translateService.setDefaultLang('hu');
+    this.translateService.use(localStorage.getItem('lang') || 'hu');
   }
 
-  changeLanguage(langSign:any){
-    this.langSign=langSign
-    this.loadContent()
+  switchLanguage(language: string) {
+    this.translateService.use(language);
+    localStorage.setItem('lang', language);
   }
-
-  loadContent(){
-    this.http.get("/assets/"+this.langSign+".json").subscribe(
-      (res)=>
-        {
-          console.log(res)
-          this.content.next(res)
-        }
-      )
-  }
-
-  getContent():Subject<any>{
-    return this.content
-  }
-
 }

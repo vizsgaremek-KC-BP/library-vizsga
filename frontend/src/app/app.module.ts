@@ -9,7 +9,7 @@ import { LogInComponent } from './components/log-in/log-in.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule, provideHttpClient } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { AboutComponent } from './components/about/about.component';
 import { LibraryListUserComponent } from './components/library-list-user/library-list-user.component';
@@ -22,7 +22,7 @@ import { HttpClient } from '@angular/common/http';
 import { UsersComponent } from './components/users/users.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
+  return new TranslateHttpLoader(http, "/assets/i18n/", ".json");
 }
 
 @NgModule({
@@ -45,7 +45,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgbModule,
     FormsModule,
     AngularFireDatabaseModule,
-    HttpClientModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

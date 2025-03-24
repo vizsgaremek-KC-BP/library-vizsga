@@ -1,3 +1,149 @@
 {
+    "about":{
+        "nevj1": "Headquarters and Educational Location: 1065 Budapest, Révay Street 16. (Entrance from the direction of Bálint Ház)",
+        "nevj2": "Secretariat Office Hours:",
+        "nevj3": "For full-time students: Monday, Tuesday, Thursday 9:00 AM - 3:00 PM",
+        "nevj4": "For part-time students: Monday, Tuesday, Thursday 4:00 PM - 6:00 PM",
+        "nevj5": "You can send your inquiries to the following email addresses: ",
+        "nevj6": "Feel free to ask, as this can help you make informed decisions after your graduation!",
+        "nevj7": "Central phone number: +36 1 776 6620",
+        "nevj8": "Secretariat contacts: +36 30 1938275, +36 20 3641872, +36 30 1796823",
+        "nevj9": "Our Details:",
+        "nevj10": "Secondary Vocational School for Foreign Trade by 'The Jewish Communities in Budapest'",
+        "nevj11": "Address: 1065 Budapest, Révay Street 16.",
+        "nevj12": "OM 100536 - Year of Foundation: 2018",
+        "nevj13": "Tax Number: 18163164-1-42",
+        "nevj14": "Institution Leader: András Salusinszky",
+        "nevj15": "Data Management Information",
+        "nevj16": "The website was developed by Cintia Kiss and Péter Berta, who created a modern, user-friendly digital library system for the Secondary Vocational School for Foreign Trade by 'The Jewish Communities in Budapest'. The system allows teachers to easily borrow books, simplifies the registration and availability of books. The platform aims to provide quick and convenient access to books, while ensuring the transparency and efficiency of the borrowing processes."
+    },
     
+    "books":{
+        "Keresés...": "Search...",
+        "Raktári szám": "Inventory number",
+        "Cím": "Title",
+        "Szerző": "Author",
+        "Ár (Ft)": "Price (Ft)",
+        "Példány": "Copy",
+        "Hozzáad": "Add",
+        "Új könyv hozzáadása": "Add new book",
+        "Bezárás": "Close",
+        "Könyv raktári száma": "Book's inventory number",
+        "Könyv címe": "Book's title",
+        "Szerző neve": "Author's name",
+        "Könyv ára": "Book's price",
+        "Példányszám": "Number of copies",
+        "Mentés": "Save",
+        "Szerkesztés": "Edit",
+        "Könyv szerkesztése": "Editing book",
+        "Törlés": "Delete"
+    },
+    
+    "home": {
+        "Bemutatkozás": "Introduction",
+        "bemut1": "The Secondary Vocational School for Foreign Trade by 'The Jewish Communities in Budapest' aims to offer high-level, practice-oriented training in the fields of economics, finance, logistics, and international trade. Our programs are tailored to meet market demands, providing students with the necessary theoretical and practical knowledge to lay the foundation for a successful career in both the international and domestic labor markets.",
+        "bemut2": "During the training, students will acquire skills in financial analysis, international trade regulations, business communication, and project management, while also learning to use modern industry software. The state-supported, free vocational education is available in both full-time and part-time formats, with scholarship and internship opportunities.",
+        "bemut3": "Our school maintains close relationships with major companies, enabling students to gain valuable professional experience and enter the workforce with competitive knowledge.",
+        "több": "You can find more information ",
+        "itt": "here"
+    },
+
+    "libraryadmin":{
+        "Keresés...": "Search...",
+        "Raktári szám": "Inventory number",
+        "Állapot": "Status",
+        "Kiadás": "Give out",
+        "Új könyv kiadása": "Give out a new book",
+        "Bezárás": "Close",
+        "Oktatási azonosító": "Educational identification number",
+        "A felhasználó oktatási azonosítója": "The user's educational identification number",
+        "A könyv raktári száma": "The book's inventory number",
+        "Elfogadás": "Accept",
+        "Elutasítás": "Rejection"
+    },
+
+    "libraryuser":{
+        "Név:": "Name:",
+        "Szerző": "Author",
+        "Cím": "Title",
+        "Könyv raktári száma": "Book's inventory number",
+        "Ár (Ft)": "Price (Ft)",
+        "Állapot": "Status",
+        "Visszaadás": "Return"
+    },
+
+    "login":{
+        "Jelentkezz be!": "Log in to your account!",
+        "Email:": "Email:",
+        "Jelszó:": "Password:",
+        "Bejelentkezés": "Log in",
+        "Nincs még fiókod, regisztrálj most!": "Don't have an account, register now!"
+    },
+
+    "navbar": {
+        "Kezdőlap": "Home",
+        "bejelentkezés": "log in",
+        "Kikölcsönzött könyvek": "borrowed books",
+        "könyvek": "books",
+        "diákok": "students",
+        "felhasználók": "users",
+        "könyvtár": "library",
+        "névjegy": "about",
+        "kijelentkezés": "logout"
+    },
+
+    "registration": {
+        "Regisztrálj új fiókot!": "Register a new account!",
+        "Felhasználónév:": "Username:",
+        "felh1": "The username should be unique and maximum 255 character long.",
+        "Email:": "Email:",
+        "felh2": "Enter an existing email address and also include a valid email address format.",
+        "Oktatási azonosító szám:": "Educational identification number:",
+        "felh3": "The educational identification number starts with the number 7 and consists of exactly 11 characters.",
+        "Jelszó:": "Password:",
+        "felh4": "At least 8 characters long, it should contain lowercase and uppercase letters, at least 1 number and 1 special character.",
+        "Jelszó megerősítés:": "Confirm password",
+        "felh5": "The password confirmation must match the password.",
+        "Regisztráció": "Registration",
+        "Van már fiókja, jelentkezzen be most!": "Already have an account, log in now!"
+    },
+
+    "students": {
+        "Keresés...":"Search...",
+        "Név":"Name",
+        "Oktatási azonosító":"Educational identification number",
+        "Állapot":"Status",
+        "Hozzáad":"Add",
+        "Új diák hozzáadása":"Add new student",
+        "Bezárás":"Close",
+        "Diák neve":"Student's name",
+        "Oktatási azonosítója":"Their educational identification number",
+        "Mentés":"Save",
+        "Szerkesztés":"Edit",
+        "Diák szerkesztése":"Editing student",
+        "Inaktiválás":"Inactivate",
+        "Aktiválás":"Activate"
+    },
+
+    "users": {
+        "Keresés...":"Search...",
+        "Név":"Name",
+        "Oktatási azonosító":"Educational identification number",
+        "Email cím":"Email address",
+        "Jogosultság":"Entitlement",
+        "Állapot":"Status",
+        "Hozzáad":"Add",
+        "Új felhasználó hozzáadása":"Add new user",
+        "Bezárás":"Close",
+        "Felhasználó neve":"Username",
+        "Oktatási azonosítója":"Their educational identification number",
+        "Email címe":"Email address",
+        "Mentés":"Save",
+        "Szerkesztés":"Edit",
+        "Felhasználó szerkesztése":"Editing user",
+        "rendszergazda":"admin",
+        "diák":"student",
+        "Inaktiválás":"Inactivate",
+        "Aktiválás":"Activate"
+    }
 }

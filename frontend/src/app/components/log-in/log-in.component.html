@@ -7,21 +7,21 @@
 <body class="rounded">
   <div id="login">
     <form (ngSubmit)="login()">
-      <h2>Jelentkezz be!</h2>
+      <h2>{{"login.Jelentkezz be!" | translate}}</h2>
       <br>
         <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Email:</label>
+          <label for="exampleInputEmail1" class="form-label">{{"login.Email:" | translate}}</label>
           <input name="oktAz" type="text" class="form-control" id="oktAz" aria-describedby="emailHelp" [(ngModel)]="email">
         </div>
         <br>
         <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Jelszó:</label>
+          <label for="exampleInputPassword1" class="form-label">{{"login.Jelszó:" | translate}}</label>
           <input name="passWord" type="password" class="form-control" id="passWord" [(ngModel)]="passWord">
         </div>
         <br>
-        <button type="submit" class="btn">Bejelentkezés</button>
+        <button type="submit" class="btn">{{"login.Bejelentkezés" | translate}}</button>
         <br>
-        <a [routerLink]="['/register']">Nincs még fiókod, regisztrálj most!</a>
+        <a [routerLink]="['/register']">{{"login.Nincs még fiókod, regisztrálj most!" | translate}}</a>
       </form>
   </div>
 </body>

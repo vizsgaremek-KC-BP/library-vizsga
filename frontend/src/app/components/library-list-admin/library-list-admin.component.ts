@@ -1,7 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { HttpService } from '../../services/http.service';
-import { ConfigService } from '../../services/config.service';
-import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-library-list-admin',
@@ -21,24 +19,35 @@ export class LibraryListAdminComponent {
     loan:any;
   
     loanArray: any[] = [];
+    filteredLoans: any[] = [];
+    searchText: string = '';
 
     constructor(
-      private db: HttpService,
-      private config: ConfigService,
-      private translate: TranslateService
+      private db: HttpService
     ) {
       db.getLoans().subscribe(data => {
         this.loanArray = data;
+        this.filteredLoans = [];
         console.log(this.loanArray);
       });
-      // this.translate.setDefaultLang('en');
-      // this.translate.use('en');
     }
-    // switchLanguage(lang: string) {
-    //   this.translate.use(lang);
-    // }
+    
   
     ngOnInit(): void {}
+
+    filterLoans() {
+      if (!this.searchText) {
+        this.filteredLoans = [];
+        return;
+      }
+      const searchLower = this.searchText.toLowerCase();
+  
+      this.filteredLoans = this.loanArray.filter(loan =>
+        Object.values(loan).some(val =>
+          val?.toString().toLowerCase().includes(searchLower)
+        )
+      );
+    }
 
   setSelectedLoan(loan: any) {
     this.selectedLoan = { ...loan }; 

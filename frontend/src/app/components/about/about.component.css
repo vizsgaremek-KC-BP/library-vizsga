@@ -20,7 +20,7 @@ body {
     border-radius: 25px;
     padding: 10px;
     background-image: linear-gradient(to right, white, lightgrey);
-    -webkit-background-clip: text;
+    background-clip: text;
     color: transparent;
 }
 
@@ -29,7 +29,7 @@ body {
     left: 160vh;
     position: absolute;
     text-align: justify;
-    top: 40vh;
+    top: 45vh;
     border-radius: 25px;
     padding: 10px;
     color:lightgrey;
@@ -44,7 +44,7 @@ body {
     border-radius: 25px;
     padding: 10px;
     background-image: linear-gradient(to right, white, lightgrey);
-    -webkit-background-clip: text;
+    background-clip: text;
     color: transparent;
     font-size: 12px;
 }
@@ -61,4 +61,12 @@ a{
 }
 #adatok{
     margin-bottom: 0px;
+}
+
+#adatok {
+    font-size: 15px;
+}
+
+#lista ul {
+    font-size: 13px;
 }
