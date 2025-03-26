@@ -36,9 +36,6 @@ export class LibraryListUserComponent implements OnInit {
         this.loanArray = data.loans || [];
         console.log(this.loanArray);
       });
-
-      // this.translate.setDefaultLang('en');
-      // this.translate.use('en');
     }
     book: any = null;
     created_at: any = null;
@@ -53,10 +50,6 @@ export class LibraryListUserComponent implements OnInit {
     
     loanArray:any[] = [];
     bookArray: any[] = [];
-    
-    // switchLanguage(lang: string) {
-    //   this.translate.use(lang);
-    // }
   
     ngOnInit(): void {}
 

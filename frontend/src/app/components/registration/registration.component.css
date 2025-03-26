@@ -1,68 +1,94 @@
-html{
-    background: linear-gradient(to left, rgb(11, 11, 88) ,#7878A2 , transparent 100%);
+html {
+    background: linear-gradient(to left, rgb(11, 11, 88), #7878A2, lightgrey 100%);
+    height: 100vh;
+    width: 100%;
 }
+
 body {
     background-image: url("kulkerlogo.png");
     background-color: transparent;
-    background-size: contain;
-    background-position: center;
+    background-size: 40%;
+    background-position: left center;
     background-repeat: no-repeat;
-    height: 94.3vh;
-    width: 100vh;
+    height: 100vh;
+    width: 100%;
     margin: 0;
-    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 10%;
 }
-#register{    
+
+#register {
     width: 50vh;
-    left: 130vh;
-    position: absolute;
+    max-width: 90%;
     text-align: justify;
-    top: 5vh;
     border: 3px solid rgba(119, 215, 232, 0.8);
     border-radius: 25px;
-    padding: 10px;
+    padding: 20px;
     background-color: rgba(119, 215, 232, 0.6);
 }
 
-h2{
+h2 {
     text-align: center;
     color: #343c3d;
 }
-input{
+
+input {
     border-radius: 25px;
     color: #343c3d;
-    padding-bottom: 10px;
-    margin-bottom: 3vh;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
 }
-label{
+
+label {
     color: #343c3d;
+    display: block;
+    margin-bottom: 5px;
 }
-button{
+
+button {
     color: #F7EEDD;
     border-radius: 25px;
     background-color: #343c3d;
-    
+    padding: 10px 20px;
+    width: 100%;
+    border: none;
+    cursor: pointer;
 }
-a{
+
+button:hover {
+    background-color: #222829;
+}
+
+a {
     color: #343c3d;
+    display: block;
+    margin-top: 10px;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 .tooltip-container {
     position: relative;
     display: inline-block;
     cursor: pointer;
-  }
-  
-  .tooltip-icon {
+}
+
+.tooltip-icon {
     font-size: 10px;
     vertical-align: super;
     font-weight: bold;
     display: inline-block;
     color: white;
-    /* ❓ */
-  }
-  
-  .tooltip-text {
+}
+
+.tooltip-text {
     visibility: hidden;
     width: 200px;
     background-color: #8282a9e4;
@@ -77,9 +103,45 @@ a{
     opacity: 0;
     transition: opacity 0.3s;
     font-size: 12px;
-  }
-  
-  .tooltip-container:hover .tooltip-text {
+}
+
+.tooltip-container:hover .tooltip-text {
     visibility: visible;
     opacity: 1;
-  }
+}
+
+@media (max-width: 1200px) {
+    body {
+        background-size: 50%;
+    }
+}
+
+@media (max-width: 992px) {
+    body {
+        background-size: 60%;
+        justify-content: center;
+        padding-right: 0;
+    }
+    #register {
+        width: 60vh;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        background-image: none;
+        justify-content: center;
+        padding-top: 20px;
+    }
+    #register {
+        width: 90%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px) {
+    #register {
+        width: 95%;
+        padding: 15px;
+    }
+}

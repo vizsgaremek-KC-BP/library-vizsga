@@ -50,12 +50,7 @@ export class BooksComponent implements OnInit {
         this.filteredBooks = [];
         console.log(this.bookArray);
       });
-      // this.translate.setDefaultLang('en');
-      // this.translate.use('en');
     }
-    // switchLanguage(lang: string) {
-    //   this.translate.use(lang);
-    // }
   
     ngOnInit(): void {}
   

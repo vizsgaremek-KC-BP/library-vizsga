@@ -8,11 +8,23 @@ import { ConfigService } from '../../services/config.service';
   styleUrl: './nav-bar.component.css'
 })
 export class NavBarComponent implements OnInit {
+  menuOpen: boolean = false;
+
+  toggleMenu() {
+      this.menuOpen = !this.menuOpen;
+  }
+  closeMenu() {
+    this.menuOpen = false;
+  }
+
+  currentLang: string = 'hu';
+
   isLoggedIn: boolean = false;
 
   constructor(public auth: AuthenticationService, private configService: ConfigService) {}
 
   switchLanguage(language: string) {
+    this.currentLang = language;
     this.configService.switchLanguage(language);
   }
 

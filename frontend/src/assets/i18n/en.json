@@ -82,7 +82,7 @@
 
     "navbar": {
         "Kezdőlap": "Home",
-        "bejelentkezés": "log in",
+        "bejelentkezés": "login",
         "Kikölcsönzött könyvek": "borrowed books",
         "könyvek": "books",
         "diákok": "students",

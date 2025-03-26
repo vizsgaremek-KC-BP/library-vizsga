@@ -1,33 +1,110 @@
-html{
-    background: linear-gradient(to left, rgb(11, 11, 88) ,#7878A2 , transparent 100%);
+html {
+    background: linear-gradient(to left, rgb(11, 11, 88), #7878A2, lightgrey 100%);
+    min-height: 100vh;
 }
+
 body {
     background-image: url("kulkerlogo.png");
     background-color: transparent;
     background-size: contain;
-    background-position: center;
+    background-position: left center;
     background-repeat: no-repeat;
-    height: 94.3vh;
-    width: 100vh;
+    min-height: 94.3vh;
     margin: 0;
     position: relative;
-}
-#bemutatkozas{
-    width: 80vh;
-    left: 120vh;
-    position: absolute;
-    text-align: justify;
-    top: 10vh;
-    /* border: 3px solid lightblue; */
-    border-radius: 25px;
-    padding: 10px;
-    /* background-color: transparent; */
-    background-image: linear-gradient(to right, white, lightgrey);
-    -webkit-background-clip: text;
-    color: transparent;
-}
-p{
-    line-height: 30px;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
-/* rgb(11, 11, 88) */
+#bemutatkozas {
+    width: 95vh;
+    left: 110vh;
+    top: 10vh;
+    position: absolute;
+    text-align: justify;
+    border-radius: 25px;
+    padding: 10px;
+    background-image: linear-gradient(to right, white, lightgrey);
+    background-clip: text;
+    color: transparent;
+}
+
+p{
+    line-height: 35px;
+    padding: 5px;
+}
+
+#logo {
+    max-width: 150px;
+    height: auto;
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 1600px) {
+    body {
+        background-size: 30%;
+    }
+
+    #bemutatkozas {
+        left: 40%;
+        width: 55%;
+    }
+}
+
+@media (max-width: 1200px) {
+    body {
+        background-size: 25%;
+    }
+
+    #bemutatkozas {
+        left: 35%;
+        width: 60%;
+    }
+
+    #logo {
+        max-width: 120px;
+    }
+}
+
+@media (max-width: 992px) {
+    body {
+        background-size: 20%;
+    }
+
+    #bemutatkozas {
+        left: 30%;
+        width: 65%;
+    }
+
+    #logo {
+        max-width: 100px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        background-image: none;
+        padding-top: 20px;
+    }
+
+    #bemutatkozas {
+        position: static;
+        width: 90%;
+        margin: 20px auto;
+    }
+
+    #logo {
+        max-width: 80px;
+    }
+}
+
+@media (max-width: 576px) {
+    #bemutatkozas {
+        width: 95%;
+        padding: 8px;
+    }
+
+    #logo {
+        max-width: 60px;
+    }
+}

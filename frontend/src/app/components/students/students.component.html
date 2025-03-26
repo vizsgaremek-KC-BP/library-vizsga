@@ -4,12 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body>
-                <div class="row justify-content-between">
-                  <p>
-                    <input type="text" [(ngModel)]="searchText" (input)="filterStudents()" [placeholder]="'students.Keresés...' | translate" class="form-control mb-3" id="search">
-                  </p>
-                  <div class="container d-flex justify-content-center">
+<body class="p-3">
+    <div class="container-fluid">
+        <div class="row mb-3">
+            <div class="col-12 col-md-8 col-lg-6 mx-auto">
+                <input type="text" [(ngModel)]="searchText" (input)="filterStudents()" 
+                       [placeholder]="'students.Keresés...' | translate" 
+                       class="form-control" id="search">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
                     <table class="table table-bordered text-center">
                         <thead class="text-center">
                             <tr>
@@ -19,34 +26,7 @@
                                 <th scope="col" colspan="2">
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#inputModal">
                                         {{"students.Hozzáad" | translate}}
-                                      </button>
-                                      
-                                      <div class="modal fade" id="inputModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                          <div class="modal-content">
-                                            <div class="modal-header">
-                                              <h5 class="modal-title" id="modalLabel">{{"students.Új diák hozzáadása" | translate}}</h5>
-                                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="'students.Bezárás' | translate"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                              <form id="inputForm">
-                                                <div class="mb-3">
-                                                  <label for="name" class="form-label">{{"students.Név" | translate}}</label>
-                                                  <input type="text" class="form-control" id="name" [placeholder]="'students.Diák neve' | translate" [(ngModel)]="name" name="name">
-                                                </div>
-                                                <div class="mb-3">
-                                                  <label for="name" class="form-label">{{"students.Oktatási azonosító" | translate}}</label>
-                                                  <input type="text" class="form-control" id="edu_id" [placeholder]="'students.Oktatási azonosítója' | translate" [(ngModel)]="edu_id" name="edu_id">
-                                                </div>
-                                              </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{"students.Bezárás" | translate}}</button>
-                                              <button type="button" class="btn btn-primary" id="saveBtn" (click)="createStudent()">{{"students.Mentés" | translate}}</button>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
+                                    </button>
                                 </th>
                             </tr>
                         </thead>
@@ -56,48 +36,74 @@
                                 <td>{{student.edu_id}}</td>
                                 <td>{{student.status}}</td>
                                 <td>
-                                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modifyModal" (click)="setSelectedStudent(student)">
-                                    {{"students.Szerkesztés" | translate}}
-                                  </button>
+                                    <button type="button" class="btn btn-primary mb-1 mb-md-0" data-bs-toggle="modal" data-bs-target="#modifyModal" (click)="setSelectedStudent(student)">
+                                        {{"students.Szerkesztés" | translate}}
+                                    </button>
                                 </td>
-                                
-                                <div class="modal fade" id="modifyModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
-                                  <div class="modal-dialog">
-                                    <div class="modal-content">
-                                      <div class="modal-header">
-                                        <h5 class="modal-title" id="modalLabel">{{"students.Diák szerkesztése" | translate}}</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="'students.Bezárás' | translate"></button>
-                                      </div>
-                                      <div class="modal-body">
-                                        <form id="inputForm" *ngIf="selectedStudent">
-                                          <div class="mb-3">
-                                            <label class="form-label">{{"students.Név" | translate}}</label>
-                                            <input type="text" class="form-control" [(ngModel)]="selectedStudent.name" name="name" id="name">
-                                          </div>
-                                          
-                                        </form>
-                                      </div>
-                                      <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{"students.Bezárás" | translate}}</button>
-                                        <button type="button" class="btn btn-primary" (click)="modifyStudent(
-                                        selectedStudent.id,
-                                        selectedStudent.name
-                                        )">{{"students.Mentés" | translate}}</button>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
                                 <td>
-                                  <button type="button" class="btn" 
-                                          [ngClass]="student.status === 'active' ? 'btn-danger' : 'btn-success'" 
-                                          (click)="statusStudent(student.id, student.status)">
-                                          {{ (student.status === 'active' ? 'students.Inaktiválás' : 'students.Aktiválás') | translate }}
-                                  </button>
-                              </td>
+                                    <button type="button" class="btn" 
+                                            [ngClass]="student.status === 'active' ? 'btn-danger' : 'btn-success'" 
+                                            (click)="statusStudent(student.id, student.status)">
+                                            {{ (student.status === 'active' ? 'students.Inaktiválás' : 'students.Aktiválás') | translate }}
+                                    </button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
+                </div>
             </div>
         </div>
+    </div>
+    <div class="modal fade" id="inputModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel">{{"students.Új diák hozzáadása" | translate}}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="'students.Bezárás' | translate"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="inputForm">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">{{"students.Név" | translate}}</label>
+                            <input type="text" class="form-control" id="name" [placeholder]="'students.Diák neve' | translate" [(ngModel)]="name" name="name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">{{"students.Oktatási azonosító" | translate}}</label>
+                            <input type="text" class="form-control" id="edu_id" [placeholder]="'students.Oktatási azonosítója' | translate" [(ngModel)]="edu_id" name="edu_id">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{"students.Bezárás" | translate}}</button>
+                    <button type="button" class="btn btn-primary" id="saveBtn" (click)="createStudent()">{{"students.Mentés" | translate}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modifyModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel">{{"students.Diák szerkesztése" | translate}}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="'students.Bezárás' | translate"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="inputForm" *ngIf="selectedStudent">
+                        <div class="mb-3">
+                            <label class="form-label">{{"students.Név" | translate}}</label>
+                            <input type="text" class="form-control" [(ngModel)]="selectedStudent.name" name="name" id="name">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{"students.Bezárás" | translate}}</button>
+                    <button type="button" class="btn btn-primary" (click)="modifyStudent(
+                    selectedStudent.id,
+                    selectedStudent.name
+                    )">{{"students.Mentés" | translate}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

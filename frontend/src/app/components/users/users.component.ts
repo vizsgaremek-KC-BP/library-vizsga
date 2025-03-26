@@ -58,8 +58,6 @@ export class UsersComponent implements OnInit {
         this.filteredUsers = [];
         console.log(this.userArray);
       });
-      // this.translate.setDefaultLang('en');
-      // this.translate.use('en');
     }
     switchLanguage(lang: string) {
       this.translate.use(lang);

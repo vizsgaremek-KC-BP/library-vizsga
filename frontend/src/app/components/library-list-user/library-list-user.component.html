@@ -4,36 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body>
-    <div class="row d-flex justify-content-center">
-        <div class="container d-flex align-items-center gap-3"> 
-            <span id="felhasznalo">
-                {{"libraryuser.Név:" | translate}} {{ userName }}
-            </span>
-            <table class="table table-bordered text-center">
-                <thead class="text-center">
-                    <tr>
-                        <th scope="col">{{"libraryuser.Szerző" | translate}}</th>
-                        <th scope="col">{{"libraryuser.Cím" | translate}}</th>
-                        <th scope="col">{{"libraryuser.Könyv raktári száma" | translate}}</th>
-                        <th scope="col">{{"libraryuser.Ár (Ft)" | translate}}</th>
-                        <th scope="col">{{"libraryuser.Állapot" | translate}}</th>
-                        <th scope="col">{{"libraryuser.Visszaadás" | translate}}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let loan of loanArray">
-                        <td>{{ getBookByInventoryNumber(loan.inventory_number)?.author }}</td>
-                        <td>{{ getBookByInventoryNumber(loan.inventory_number)?.title }}</td>
-                        <td>{{ loan.inventory_number }}</td>
-                        <td>{{ getBookByInventoryNumber(loan.inventory_number)?.price }}</td>
-                        <td>{{ loan.status }}</td>
-                        <td>
-                            <button type="button" class="btn btn-danger" (click)="returnBook(loan.id)">{{"libraryuser.Visszaadás" | translate}}</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+<body class="p-3">
+    <div class="container-fluid">
+        <div class="row justify-content-center mb-3">
+            <div class="col-12 col-md-8 text-center">
+                <span id="felhasznalo">
+                    {{"libraryuser.Név:" | translate}} {{ userName }}
+                </span>
+            </div>
+        </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center">
+                        <thead class="text-center">
+                            <tr>
+                                <th scope="col">{{"libraryuser.Szerző" | translate}}</th>
+                                <th scope="col">{{"libraryuser.Cím" | translate}}</th>
+                                <th scope="col">{{"libraryuser.Könyv raktári száma" | translate}}</th>
+                                <th scope="col">{{"libraryuser.Ár (Ft)" | translate}}</th>
+                                <th scope="col">{{"libraryuser.Állapot" | translate}}</th>
+                                <th scope="col">{{"libraryuser.Visszaadás" | translate}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let loan of loanArray">
+                                <td>{{ getBookByInventoryNumber(loan.inventory_number)?.author }}</td>
+                                <td>{{ getBookByInventoryNumber(loan.inventory_number)?.title }}</td>
+                                <td>{{ loan.inventory_number }}</td>
+                                <td>{{ getBookByInventoryNumber(loan.inventory_number)?.price }}</td>
+                                <td>{{ loan.status }}</td>
+                                <td>
+                                    <button type="button" class="btn btn-danger">{{"libraryuser.Visszaadás" | translate}}</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </body>

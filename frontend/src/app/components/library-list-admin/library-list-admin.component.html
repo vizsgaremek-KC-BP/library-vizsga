@@ -4,66 +4,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body>
-  <div class="row justify-content-between">
-    <p>
-      <input type="text" [(ngModel)]="searchText" (input)="filterLoans()" [placeholder]="'libraryadmin.Keresés...' | translate" class="form-control mb-3" id="search">
-    </p>
-        <div class="container d-flex justify-content-center">
-            <table class="table table-bordered text-center">
-                <thead class="text-center">
-                    <tr>
-                        <th scope="col">{{"libraryadmin.Oktatási azonosító" | translate}}</th>
-                        <th scope="col">{{"libraryadmin.Raktári szám" | translate}}</th>
-                        <th scope="col">{{"libraryadmin.Állapot" | translate}}</th>
-                        <th scope="col" colspan="2">
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#inputModal">
-                              {{"libraryadmin.Kiadás" | translate}}
-                            </button>
-            
-                            <div class="modal fade" id="inputModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
-                              <div class="modal-dialog">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <h5 class="modal-title" id="modalLabel">{{"libraryadmin.Új könyv kiadása" | translate}}</h5>
-                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="'libraryadmin.Bezárás' | translate"></button>
-                                  </div>
-                                  <div class="modal-body">
-                                    <form id="inputForm">
-                                      <div class="mb-3">
-                                        <label for="name" class="form-label">{{"libraryadmin.Oktatási azonosító" | translate}}</label>
-                                        <input type="text" class="form-control" id="edu_id" [placeholder]="'libraryadmin.A felhasználó oktatási azonosítója' | translate" [(ngModel)]="edu_id" name="edu_id">
-                                      </div>
-                                      <div class="mb-3">
-                                        <label for="name" class="form-label">{{"libraryadmin.Raktári szám" | translate}}</label>
-                                        <input type="text" class="form-control" id="inventorynumber" [placeholder]="'libraryadmin.A könyv raktári száma' | translate" [(ngModel)]="inventory_number" name="inventorynumber">
-                                      </div>
-                                    </form>
-                                  </div>
-                                  <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{"libraryadmin.Bezárás" | translate}}</button>
-                                    <button type="button" class="btn btn-primary" id="saveBtn" (click)="createLoan()">{{"libraryadmin.Kiadás" | translate}}</button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let loan of (filteredLoans.length > 0 || searchText ? filteredLoans : loanArray)">
-                        <td>{{loan.user_edu_id}}</td>
-                        <td>{{loan.inventory_number}}</td>
-                        <td>{{loan.status}}</td>
-                        <td>
-                            <button type="button" class="btn btn-danger" (click)="forceApproveLoan(loan.id)">{{"Elfogadás" | translate}}</button>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-danger" (click)="rejectLoan(loan.id)">{{"Elutasítás" | translate}}</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+<body class="p-3">
+    <div class="container-fluid">
+        <div class="row mb-3">
+            <div class="col-12 col-md-8 col-lg-6 mx-auto">
+                <input type="text" [(ngModel)]="searchText" (input)="filterLoans()" 
+                       [placeholder]="'libraryadmin.Keresés...' | translate" 
+                       class="form-control" id="search">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center">
+                        <thead class="text-center">
+                            <tr>
+                                <th scope="col">{{"libraryadmin.Oktatási azonosító" | translate}}</th>
+                                <th scope="col">{{"libraryadmin.Raktári szám" | translate}}</th>
+                                <th scope="col">{{"libraryadmin.Állapot" | translate}}</th>
+                                <th scope="col" colspan="2">
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#inputModal">
+                                        {{"libraryadmin.Kiadás" | translate}}
+                                    </button>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let loan of (filteredLoans.length > 0 || searchText ? filteredLoans : loanArray)">
+                                <td>{{loan.user_edu_id}}</td>
+                                <td>{{loan.inventory_number}}</td>
+                                <td>{{loan.status}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-danger mb-1 mb-md-0" (click)="forceApproveLoan(loan.id)">{{"Elfogadás" | translate}}</button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-danger" (click)="rejectLoan(loan.id)">{{"Elutasítás" | translate}}</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loan Issue Modal -->
+    <div class="modal fade" id="inputModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel">{{"libraryadmin.Új könyv kiadása" | translate}}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="'libraryadmin.Bezárás' | translate"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="inputForm">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">{{"libraryadmin.Oktatási azonosító" | translate}}</label>
+                            <input type="text" class="form-control" id="edu_id" [placeholder]="'libraryadmin.A felhasználó oktatási azonosítója' | translate" [(ngModel)]="edu_id" name="edu_id">
+                        </div>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">{{"libraryadmin.Raktári szám" | translate}}</label>
+                            <input type="text" class="form-control" id="inventorynumber" [placeholder]="'libraryadmin.A könyv raktári száma' | translate" [(ngModel)]="inventory_number" name="inventorynumber">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{"libraryadmin.Bezárás" | translate}}</button>
+                    <button type="button" class="btn btn-primary" id="saveBtn" (click)="createLoan()">{{"libraryadmin.Kiadás" | translate}}</button>
+                </div>
+            </div>
         </div>
     </div>
 </body>

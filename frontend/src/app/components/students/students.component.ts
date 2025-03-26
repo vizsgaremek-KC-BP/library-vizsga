@@ -52,8 +52,6 @@ export class StudentsComponent implements OnInit {
         this.filteredStudents = [];
         console.log(this.studentArray);
       });
-      // this.translate.setDefaultLang('en');
-      // this.translate.use('en');
     }
     switchLanguage(lang: string) {
       this.translate.use(lang);
