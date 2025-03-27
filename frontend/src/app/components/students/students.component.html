@@ -13,18 +13,18 @@
                        class="form-control" id="search">
             </div>
         </div>
-        
+
         <div class="row">
             <div class="col-12">
                 <div class="table-responsive">
-                    <table class="table table-bordered text-center">
+                    <table class="table table-bordered table-striped text-center">
                         <thead class="text-center">
                             <tr>
                                 <th scope="col">{{"students.Név" | translate}}</th>
                                 <th scope="col">{{"students.Oktatási azonosító" | translate}}</th>
                                 <th scope="col">{{"students.Állapot" | translate}}</th>
                                 <th scope="col" colspan="2">
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#inputModal">
+                                    <button type="button" class="btn" id="hozzaad" data-bs-toggle="modal" data-bs-target="#inputModal">
                                         {{"students.Hozzáad" | translate}}
                                     </button>
                                 </th>
@@ -36,13 +36,13 @@
                                 <td>{{student.edu_id}}</td>
                                 <td>{{student.status}}</td>
                                 <td>
-                                    <button type="button" class="btn btn-primary mb-1 mb-md-0" data-bs-toggle="modal" data-bs-target="#modifyModal" (click)="setSelectedStudent(student)">
+                                    <button type="button" class="btn mb-1 mb-md-0" id="szerk" data-bs-toggle="modal"  data-bs-target="#modifyModal" (click)="setSelectedStudent(student)">
                                         {{"students.Szerkesztés" | translate}}
                                     </button>
                                 </td>
                                 <td>
                                     <button type="button" class="btn" 
-                                            [ngClass]="student.status === 'active' ? 'btn-danger' : 'btn-success'" 
+                                            [ngClass]="student.status === 'active' ? 'custom-inactive' : 'custom-active'" 
                                             (click)="statusStudent(student.id, student.status)">
                                             {{ (student.status === 'active' ? 'students.Inaktiválás' : 'students.Aktiválás') | translate }}
                                     </button>
@@ -74,8 +74,8 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{"students.Bezárás" | translate}}</button>
-                    <button type="button" class="btn btn-primary" id="saveBtn" (click)="createStudent()">{{"students.Mentés" | translate}}</button>
+                    <button type="button" class="btn" id="bezaras" data-bs-dismiss="modal">{{"students.Bezárás" | translate}}</button>
+                    <button type="button" class="btn" id="mentes" (click)="createStudent()">{{"students.Mentés" | translate}}</button>
                 </div>
             </div>
         </div>
@@ -96,8 +96,8 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{"students.Bezárás" | translate}}</button>
-                    <button type="button" class="btn btn-primary" (click)="modifyStudent(
+                    <button type="button" class="btn" id="bezaras" data-bs-dismiss="modal">{{"students.Bezárás" | translate}}</button>
+                    <button type="button" class="btn" id="mentes" (click)="modifyStudent(
                     selectedStudent.id,
                     selectedStudent.name
                     )">{{"students.Mentés" | translate}}</button>

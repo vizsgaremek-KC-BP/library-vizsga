@@ -11,10 +11,12 @@ import { AuthenticationService } from '../../services/authentication.service';
   providedIn:'root'
 })
 export class LogInComponent {
+  emailControl = "";
+  passwordControl = "";
   email = "";
-  passWord = "";
+  password = "";
   public login() {
-    this.auth.login(this.email, this.passWord).then(message => {
+    this.auth.login(this.email, this.password).then(message => {
       if(localStorage.getItem('role') == 'student'){
         this.router.navigate(['libraryUser']);
       }else if(localStorage.getItem('role') == 'admin'){

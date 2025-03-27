@@ -3,12 +3,48 @@ html {
    width: 100%;
 }
 
+body{
+   background-color: rgba(211, 211, 211, 0.404);
+}
+
 table {
    border-collapse: separate;
    border-spacing: 0;
    border: 2px solid rgb(173, 177, 230);
    border-radius: 10px;
    overflow: hidden;
+}
+
+#kiad{
+    background-color: rgba(173, 173, 231, 0.86);
+}
+#kiad:hover{
+    background-color: rgba(142, 142, 199, 0.86);
+    color: white;
+}
+
+#elfogad{
+    background-color: rgba(173, 173, 231, 0.86);
+}
+#elfogad:hover{
+    background-color: rgba(142, 142, 199, 0.86);
+    color: white;
+}
+
+#bezaras{
+    background-color: rgba(203, 106, 91, 0.86);
+}
+#bezaras:hover{
+    background-color: rgba(200, 30, 30, 0.86);
+    color: white;
+}
+
+#elutasitas{
+    background-color: rgba(203, 106, 91, 0.86);
+}
+#elutasitas:hover{
+    background-color: rgba(200, 30, 30, 0.86);
+    color: white;
 }
 
 #search {

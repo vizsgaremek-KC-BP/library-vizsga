@@ -6,9 +6,8 @@
 </head>
 <body>
   <div id="register">
-    <form (ngSubmit)="register()">
+    <form (ngSubmit)="register()" [formGroup]="registerForm">
       <h2>{{"registration.Regisztrálj új fiókot!" | translate}}</h2>
-      <br>
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">{{"registration.Felhasználónév:" | translate}}
               <div class="tooltip-container">
@@ -16,7 +15,20 @@
                 <span class="tooltip-text">{{"registration.felh1" | translate}}</span>
               </div>
           </label>
-          <input  name="userName" type="text" class="form-control"aria-describedby="emailHelp" [(ngModel)]="userName">
+          <input 
+            name="username" 
+            type="text" 
+            class="form-control" 
+            aria-describedby="emailHelp" 
+            [(ngModel)]="username"
+            formControlName="usernameControl">
+            @if(usernameControl.invalid && (usernameControl.dirty || usernameControl.touched)){
+              <small class="block p-error">
+                @if(usernameControl.hasError('required')){
+                  <span class="err">{{"registration.err1" | translate}}</span>
+                }
+              </small>
+            }
         </div>
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">{{"registration.Email:" | translate}}
@@ -25,7 +37,22 @@
               <span class="tooltip-text">{{"registration.felh2" | translate}}</span>
             </div>
           </label>
-          <input  name="email" type="text" class="form-control" aria-describedby="emailHelp" [(ngModel)]="email">
+          <input 
+            name="email" 
+            type="text" 
+            class="form-control" 
+            aria-describedby="emailHelp" 
+            [(ngModel)]="email"
+            formControlName="emailControl">
+            @if(emailControl.invalid && (emailControl.dirty || emailControl.touched)){
+              <small class="block p-error">
+                @if(emailControl.hasError('required')){
+                  <span class="err">{{"registration.err2" | translate}}</span>
+                } @else if(emailControl.hasError('pattern')){
+                  <span class="err">{{"registration.err3" | translate}}</span>
+                }
+              </small>
+            }
         </div>
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">{{"registration.Oktatási azonosító szám:" | translate}}
@@ -34,7 +61,22 @@
               <span class="tooltip-text">{{"registration.felh3" | translate}}</span>
             </div>
           </label>
-          <input  name="studentId" type="text" class="form-control" aria-describedby="emailHelp" [(ngModel)]="studentId">
+          <input 
+            name="studentId" 
+            type="text" 
+            class="form-control" 
+            aria-describedby="emailHelp" 
+            [(ngModel)]="studentId"
+            formControlName="studentIdControl">
+            @if(studentIdControl.invalid && (studentIdControl.dirty || studentIdControl.touched)){
+              <small class="block p-error">
+                @if(studentIdControl.hasError('required')){
+                  <span class="err">{{"registration.err4" | translate}}</span>
+                } @else if(studentIdControl.hasError('pattern')){
+                  <span class="err">{{"registration.err5" | translate}}</span>
+                }
+              </small>
+            }
         </div>
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">{{"registration.Jelszó:" | translate}}
@@ -43,7 +85,21 @@
               <span class="tooltip-text">{{"registration.felh4" | translate}}</span>
             </div>
           </label>
-          <input  name="passWord" type="password" class="form-control" [(ngModel)]="passWord">
+          <input 
+          name="password" 
+          type="password" 
+          class="form-control" 
+          [(ngModel)]="password"
+          formControlName="passwordControl">
+          @if(passwordControl.invalid && (passwordControl.dirty || passwordControl.touched)){
+            <small class="block p-error">
+              @if(passwordControl.hasError('required')){
+                <span class="err">{{"registration.err6" | translate}}</span>
+              } @else if(passwordControl.hasError('pattern')){
+                <span class="err">{{"registration.err7" | translate}}</span>
+              }
+            </small>
+          }
         </div>
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">{{"registration.Jelszó megerősítés:" | translate}}
@@ -52,9 +108,26 @@
               <span class="tooltip-text">{{"registration.felh5" | translate}}</span>
             </div>
           </label>
-          <input  name="passWordConfirm" type="password" class="form-control" [(ngModel)]="passWordConfirm">
+          <input 
+          name="passwordConfirm" 
+          type="password" 
+          class="form-control" 
+          [(ngModel)]="passwordConfirm" formControlName="passwordConfirmControl">
+          @if(passwordConfirmControl.invalid && (passwordConfirmControl.dirty || passwordConfirmControl.touched)){
+            <small class="block p-error">
+                <span class="err">{{"registration.err8" | translate}}</span>
+            </small>
+          }
+          @if(registerForm.hasError('passwordMismatch') && passwordControl.valid && passwordConfirmControl.valid){
+            <small class="block p-error">
+              <span class="err">{{"registration.err9" | translate}}</span>
+            </small>
+          }
         </div>
-        <button type="submit" class="btn btn-primary">{{"registration.Regisztráció" | translate}}</button>
+        <button 
+          type="submit" 
+          class="btn"
+          [disabled]="registerForm.invalid">{{"registration.Regisztráció" | translate}}</button>
         <br>
         <a [routerLink]="['/login']">{{"registration.Van már fiókja, jelentkezzen be most!" | translate}}</a>
       </form>

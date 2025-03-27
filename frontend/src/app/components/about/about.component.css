@@ -64,6 +64,11 @@ ul {
 
 a {
     color: #b3d6db;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 #adatok {

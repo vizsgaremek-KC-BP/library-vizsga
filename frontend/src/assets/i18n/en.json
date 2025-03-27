@@ -77,7 +77,11 @@
         "Email:": "Email:",
         "Jelszó:": "Password:",
         "Bejelentkezés": "Log in",
-        "Nincs még fiókod, regisztrálj most!": "Don't have an account, register now!"
+        "Nincs még fiókod, regisztrálj most!": "Don't have an account, register now!",
+        "err1":"Email is required",
+        "err2":"Email is invalid",
+        "err3":"Password is required",
+        "err4":"Password is invalid"
     },
 
     "navbar": {
@@ -105,7 +109,16 @@
         "Jelszó megerősítés:": "Confirm password",
         "felh5": "The password confirmation must match the password.",
         "Regisztráció": "Registration",
-        "Van már fiókja, jelentkezzen be most!": "Already have an account, log in now!"
+        "Van már fiókja, jelentkezzen be most!": "Already have an account, log in now!",
+        "err1":"Username is required",
+        "err2":"Email is required",
+        "err3":"Email is invalid",
+        "err4":"Educational identification number is required",
+        "err5":"Educational identification number is invalid",
+        "err6":"Password is required",
+        "err7":"Password is invalid",
+        "err8":"Password confirm is required",
+        "err9":"Password mismatch"
     },
 
     "students": {

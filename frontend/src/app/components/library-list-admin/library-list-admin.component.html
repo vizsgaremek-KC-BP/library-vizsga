@@ -17,14 +17,14 @@
         <div class="row">
             <div class="col-12">
                 <div class="table-responsive">
-                    <table class="table table-bordered text-center">
+                    <table class="table table-bordered table-striped text-center">
                         <thead class="text-center">
                             <tr>
                                 <th scope="col">{{"libraryadmin.Oktatási azonosító" | translate}}</th>
                                 <th scope="col">{{"libraryadmin.Raktári szám" | translate}}</th>
                                 <th scope="col">{{"libraryadmin.Állapot" | translate}}</th>
                                 <th scope="col" colspan="2">
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#inputModal">
+                                    <button type="button" class="btn" id="kiad" data-bs-toggle="modal" data-bs-target="#inputModal">
                                         {{"libraryadmin.Kiadás" | translate}}
                                     </button>
                                 </th>
@@ -36,10 +36,10 @@
                                 <td>{{loan.inventory_number}}</td>
                                 <td>{{loan.status}}</td>
                                 <td>
-                                    <button type="button" class="btn btn-danger mb-1 mb-md-0" (click)="forceApproveLoan(loan.id)">{{"Elfogadás" | translate}}</button>
+                                    <button type="button" class="btn mb-1 mb-md-0" id="elfogad" (click)="forceApproveLoan(loan.id)">{{"Elfogadás" | translate}}</button>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-danger" (click)="rejectLoan(loan.id)">{{"Elutasítás" | translate}}</button>
+                                    <button type="button" class="btn" id="elutasitas" (click)="rejectLoan(loan.id)">{{"Elutasítás" | translate}}</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -49,7 +49,6 @@
         </div>
     </div>
 
-    <!-- Loan Issue Modal -->
     <div class="modal fade" id="inputModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -70,8 +69,8 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{"libraryadmin.Bezárás" | translate}}</button>
-                    <button type="button" class="btn btn-primary" id="saveBtn" (click)="createLoan()">{{"libraryadmin.Kiadás" | translate}}</button>
+                    <button type="button" class="btn" id="bezaras" data-bs-dismiss="modal">{{"libraryadmin.Bezárás" | translate}}</button>
+                    <button type="button" class="btn" id="kiad" (click)="createLoan()">{{"libraryadmin.Kiadás" | translate}}</button>
                 </div>
             </div>
         </div>

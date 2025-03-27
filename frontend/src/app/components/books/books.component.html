@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="table-responsive">
-                    <table class="table table-bordered text-center">
+                    <table class="table table-bordered table-striped text-center">
                         <thead class="text-center">
                             <tr>
                                 <th scope="col">{{"books.Raktári szám" | translate}}</th>
@@ -25,7 +25,7 @@
                                 <th scope="col">{{"books.Ár (Ft)" | translate}}</th>
                                 <th scope="col">{{"books.Példány" | translate}}</th>
                                 <th scope="col" colspan="2">
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#inputModal">
+                                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#inputModal" id="hozzaad">
                                         {{"books.Hozzáad" | translate}}
                                     </button>
                                 </th>
@@ -39,12 +39,12 @@
                                 <td>{{book.price}}</td>
                                 <td>{{book.copies}}</td>
                                 <td>
-                                    <button type="button" class="btn btn-primary mb-1 mb-md-0" data-bs-toggle="modal" data-bs-target="#modifyModal" (click)="setSelectedBook(book)">
+                                    <button type="button" class="btn mb-1 mb-md-0" id="szerk" data-bs-target="#modifyModal" data-bs-toggle="modal" (click)="setSelectedBook(book)">
                                         {{"books.Szerkesztés" | translate}}
                                     </button>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-danger" (click)="deleteBook(book.id)">{{"books.Törlés" | translate}}</button>
+                                    <button type="button" class="btn" id="torles" (click)="deleteBook(book.id)">{{"books.Törlés" | translate}}</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -53,7 +53,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="inputModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal fade" id="inputModal" tabindex="-1" aria-labelledby="modalLabel">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -85,18 +85,18 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{"books.Bezárás" | translate}}</button>
-                    <button type="button" class="btn btn-primary" id="saveBtn" (click)="createBook()">{{"books.Mentés" | translate}}</button>
+                    <button type="button" class="btn" id="bezaras" data-bs-dismiss="modal">{{"books.Bezárás" | translate}}</button>
+                    <button type="button" class="btn" id="mentes" (click)="createBook()">{{"books.Mentés" | translate}}</button>
                 </div>
             </div>
         </div>
     </div>
-    <div class="modal fade" id="modifyModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal fade" id="modifyModal" tabindex="-1" aria-labelledby="modalLabel" >
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalLabel">{{"books.Könyv szerkesztése" | translate}}</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="'books.Bezárás' | translate"></button>
+                    <button type="button" class="btn-close"data-bs-dismiss="modal" aria-label="'books.Bezárás' | translate"></button>
                 </div>
                 <div class="modal-body">
                     <form id="inputForm" *ngIf="selectedBook">
@@ -123,8 +123,8 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{"books.Bezárás" | translate}}</button>
-                    <button type="button" class="btn btn-primary" (click)="modifyBook(
+                    <button type="button" class="btn" id="bezaras" data-bs-dismiss="modal">{{"books.Bezárás" | translate}}</button>
+                    <button type="button" class="btn" id="mentes" (click)="modifyBook(
                     selectedBook.id,                                        
                     selectedBook.inventory_number_base,
                     selectedBook.title,

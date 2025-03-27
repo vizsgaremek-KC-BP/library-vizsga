@@ -39,8 +39,11 @@ input {
     color: #343c3d;
     width: 100%;
     padding: 10px;
-    margin-bottom: 15px;
     border: 1px solid #ccc;
+}
+
+span{
+    color: rgb(159, 34, 34);
 }
 
 label {
@@ -53,7 +56,7 @@ button {
     color: #F7EEDD;
     border-radius: 25px;
     background-color: #343c3d;
-    padding: 10px 20px;
+    padding: 10px 10px;
     width: 100%;
     border: none;
     cursor: pointer;

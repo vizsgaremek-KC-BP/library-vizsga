@@ -6,19 +6,59 @@
 </head>
 <body class="rounded">
   <div id="login">
-    <form (ngSubmit)="login()">
+    <form (ngSubmit)="login()" #loginForm="ngForm">
       <h2>{{"login.Jelentkezz be!" | translate}}</h2>
       <br>
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">{{"login.Email:" | translate}}</label>
-          <input name="oktAz" type="text" class="form-control" id="oktAz" aria-describedby="emailHelp" [(ngModel)]="email">
+          <input 
+            name="email" 
+            type="text" 
+            class="form-control" 
+            id="email" 
+            aria-describedby="emailHelp" 
+            [(ngModel)]="email"
+            #emailControl="ngModel"
+            required
+            pattern="[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}$">
+            @if(emailControl.invalid && (emailControl.dirty || emailControl.touched)){
+              <small class="block p-error">
+                @if(emailControl.hasError('required')){
+                  <span class="err">{{"login.err1" | translate}}</span>
+                } @else if(emailControl.hasError('pattern')){
+                  <span class="err">{{"login.err2" | translate}}</span>
+                }
+              </small>
+            }
         </div>
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">{{"login.Jelszó:" | translate}}</label>
-          <input name="passWord" type="password" class="form-control" id="passWord" [(ngModel)]="passWord">
+          <input 
+            name="password" 
+            type="password" 
+            class="form-control" 
+            id="password" 
+            [(ngModel)]="password"
+            #passwordControl="ngModel"
+            required
+            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$">
+            @if(passwordControl.invalid && (passwordControl.dirty || passwordControl.touched)){
+              <small class="block p-error">
+                @if(passwordControl.hasError('required')){
+                  <span class="err">{{"login.err3" | translate}}</span>
+                } @else if(passwordControl.hasError('pattern')){
+                  <span class="err">{{"login.err4" | translate}}</span>
+                }
+              </small>
+            }
         </div>
         <br>
-        <button type="submit" class="btn">{{"login.Bejelentkezés" | translate}}</button>
+        <button 
+          type="submit" 
+          class="btn"
+          [disabled]="loginForm.invalid">
+            {{"login.Bejelentkezés" | translate}}
+        </button>
         <br>
         <a [routerLink]="['/register']">{{"login.Nincs még fiókod, regisztrálj most!" | translate}}</a>
       </form>

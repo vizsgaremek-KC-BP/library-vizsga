@@ -77,7 +77,11 @@
         "Email:": "Email:",
         "Jelszó:": "Jelszó:",
         "Bejelentkezés": "Bejelentkezés",
-        "Nincs még fiókod, regisztrálj most!": "Nincs még fiókod, regisztrálj most!"
+        "Nincs még fiókod, regisztrálj most!": "Nincs még fiókod, regisztrálj most!",
+        "err1":"Email cím szükséges",
+        "err2":"Érvénytelen email cím",
+        "err3":"Jelszó szükséges",
+        "err4":"Érvénytelen jelszó"
     },
 
     "navbar": {
@@ -105,7 +109,16 @@
         "Jelszó megerősítés:": "Jelszó megerősítés:",
         "felh5": "A jelszó megerősítésnek meg kell egyeznie az első jelszóval.",
         "Regisztráció": "Regisztráció",
-        "Van már fiókja, jelentkezzen be most!": "Van már fiókja, jelentkezzen be most!"
+        "Van már fiókja, jelentkezzen be most!": "Van már fiókja, jelentkezzen be most!",
+        "err1":"Felhasználónév szükséges",
+        "err2":"Email cím szükséges",
+        "err3":"Érvénytelen email cím",
+        "err4":"Oktatási azonosító szükséges",
+        "err5":"Érvénytelen oktatási azonosító",
+        "err6":"Jelszó szükséges",
+        "err7":"Érvénytelen jelszó",
+        "err8":"Jelszó megerősítés szükséges",
+        "err9":"Jelszó megerősítés nem egyezik"
     },
 
     "students": {

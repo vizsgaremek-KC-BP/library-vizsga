@@ -57,16 +57,15 @@ export class LibraryListUserComponent implements OnInit {
       const book = this.bookArray.find(book => book.inventory_number === inventory_number);
       return book?.book_type || null;
     }
-    
    
     returnBook(id:string): void{
       this.db.returnBook(id).subscribe(
         data => {
-          console.log('Könyv törölve', data);
+          console.log('Könyv visszaadva', data);
           window.location.reload();
         },
         error => {
-          console.error('Hiba történt a könyv törlésekor', error);
+          console.error('Hiba történt a könyv visszaadásakor', error);
         }
       );
     }
