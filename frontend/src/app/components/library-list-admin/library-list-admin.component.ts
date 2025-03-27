@@ -28,7 +28,7 @@ export class LibraryListAdminComponent {
       db.getLoans().subscribe(data => {
         this.loanArray = data;
         this.filteredLoans = [];
-        console.log(this.loanArray);
+        // console.log(this.loanArray);
       });
     }
     
@@ -56,11 +56,11 @@ export class LibraryListAdminComponent {
   createLoan(): void {
     this.db.addLoan(this.edu_id, this.inventory_number).subscribe(
       data => {
-        console.log('Könyv hozzáadva', data);
+        console.log('Könyv Kiadva', data);
         window.location.reload();
       },
       error => {
-        console.error('Hiba történt a könyv hozzáadása közben', error);
+        console.error('Hiba történt a könyv kiadása közben', error);
       }
     );
     console.log('Kérlek, töltsd ki az összes mezőt.');

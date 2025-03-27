@@ -56,7 +56,7 @@ export class UsersComponent implements OnInit {
       db.getUser().subscribe(data => {
         this.userArray = data;
         this.filteredUsers = [];
-        console.log(this.userArray);
+        // console.log(this.userArray);
       });
     }
     switchLanguage(lang: string) {
@@ -88,7 +88,6 @@ export class UsersComponent implements OnInit {
           },
           error => {
             console.error('Hiba történt a felhasználó hozzáadása közben', error);
-            console.error('Részletes hiba:', error.error);
           }
         );
         console.log('Kérlek, töltsd ki az összes mezőt.');

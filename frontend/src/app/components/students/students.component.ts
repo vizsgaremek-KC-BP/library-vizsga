@@ -50,7 +50,7 @@ export class StudentsComponent implements OnInit {
       db.getStudent().subscribe(data => {
         this.studentArray = data;
         this.filteredStudents = [];
-        console.log(this.studentArray);
+        // console.log(this.studentArray);
       });
     }
     switchLanguage(lang: string) {
@@ -84,7 +84,6 @@ export class StudentsComponent implements OnInit {
           },
           error => {
             console.error('Hiba történt a diák hozzáadása közben', error);
-            console.error('Részletes hiba:', error.error);
           }
         );
         console.log('Kérlek, töltsd ki az összes mezőt.');

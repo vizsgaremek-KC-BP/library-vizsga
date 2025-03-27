@@ -29,12 +29,12 @@ export class LibraryListUserComponent implements OnInit {
       }
       this.db.getStudentBook().subscribe(data => {
         this.bookArray = data;
-        console.log(this.bookArray);
+        // console.log(this.bookArray);
       });
     
       this.db.getMyLoans().subscribe(data => {
         this.loanArray = data.loans || [];
-        console.log(this.loanArray);
+        // console.log(this.loanArray);
       });
     }
     book: any = null;

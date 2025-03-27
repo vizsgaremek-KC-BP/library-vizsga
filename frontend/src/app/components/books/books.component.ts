@@ -48,7 +48,7 @@ export class BooksComponent implements OnInit {
       db.getBook().subscribe(data => {
         this.bookArray = data;
         this.filteredBooks = [];
-        console.log(this.bookArray);
+        // console.log(this.bookArray);
       });
     }
   
