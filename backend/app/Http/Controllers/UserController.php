@@ -52,18 +52,18 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        
+
         if (!$user) {
             return response()->json(['message' => __('messages.user_not_found')], 404);
         }
-        
+
         return response()->json($user);
     }
 
     public function update(Request $request, $id)
     {
         $user = User::find($id);
-        
+
         if (!$user) {
             return response()->json(['message' => __('messages.user_not_found')], 404);
         }
@@ -101,9 +101,13 @@ class UserController extends Controller
     public function updateStatus(Request $request, $id)
     {
         $user = User::find($id);
-        
+
         if (!$user) {
             return response()->json(['message' => __('messages.user_not_found')], 404);
+        }
+
+        if ($student->role === 'admin' && $request->status === 'inactive') {
+            return response()->json(['message' => __('messages.cannot_deactivate_admin')], 403);
         }
 
         $request->validate([
