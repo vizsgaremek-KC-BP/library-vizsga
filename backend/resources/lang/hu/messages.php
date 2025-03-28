@@ -43,5 +43,6 @@ return [
     'user_created' => 'A felhasználó sikeresen létrehozva.',
     'email_format' => 'A megadott email cím nem érvényes.',
     'password_strength' => 'A jelszónak tartalmaznia kell nagybetűt, kisbetűt és számot.',
+    'cannot_deactivate_admin' => 'Admin nem inaktiválható.',
 
 ];

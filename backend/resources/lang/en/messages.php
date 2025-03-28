@@ -43,4 +43,5 @@ return [
     'user_created' => 'User successfully created',
     'email_format' => 'The provided email address is invalid.',
     'password_strength' => 'The password must contain uppercase letters, lowercase letters, and a number.',
+    'cannot_deactivate_admin' => 'Admin cannot be deactivated.',
 ];

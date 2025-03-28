@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\BookType;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use League\Csv\Writer;
+use Illuminate\Support\Facades\Artisan;
 
 class BookTypeController extends Controller
 {
@@ -26,7 +28,7 @@ class BookTypeController extends Controller
 
         $bookType = BookType::create($request->all());
 
-        $this->updateJsonFile();
+        $this->updateCsvFile();
 
         return response()->json([
             'message' => __('messages.book_type_added'),
@@ -59,7 +61,7 @@ class BookTypeController extends Controller
         ]);
 
         $bookType->update($request->all());
-        $this->updateJsonFile();
+        $this->updateCsvFile();
 
         return response()->json(['message' => __('messages.book_type_updated'), 'book_type' => $bookType], 200);
     }
@@ -72,16 +74,17 @@ class BookTypeController extends Controller
         }
 
         $bookType->delete();
-        $this->updateJsonFile();
+        $this->updateCsvFile();
 
         return response()->json(['message' => __('messages.book_type_deleted')], 200);
     }
 
-    private function updateJsonFile()
+    private function updateCsvFile()
     {
-        $filePath = storage_path('app/book.json');
+        $csvFile = 'public/booktypes.csv';
+        $csvPath = Storage::path($csvFile);
 
-        $books = BookType::orderBy('inventory_number_base', 'asc')->get()->map(function ($bookType) {
+        $books = BookType::orderBy('id', 'asc')->get()->map(function ($bookType) {
             return [
                 "id" => $bookType->id,
                 "inventory_number_base" => $bookType->inventory_number_base,
@@ -90,8 +93,25 @@ class BookTypeController extends Controller
                 "price" => $bookType->price,
                 "copies" => $bookType->copies
             ];
-        })->toArray();
+        });
 
-        File::put($filePath, json_encode($books, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+        $csv = Writer::createFromPath($csvPath, 'w');
+
+        $csv->insertOne(['id', 'inventory_number_base', 'title', 'author', 'price', 'copies']);
+
+        foreach ($books as $book) {
+            $csv->insertOne([
+                $book['id'],
+                $book['inventory_number_base'],
+                $book['title'],
+                $book['author'],
+                $book['price'],
+                $book['copies']
+            ]);
+        }
+
+        Artisan::call('db:seed', [
+            '--class' => 'BookSeeder'
+        ]);
     }
 }
