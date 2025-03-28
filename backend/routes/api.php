@@ -56,3 +56,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::put('/student/{id}/status', [StudentController::class, 'updateStatus']);
     });
 });
+
+
+//Ezzel minden seeder betölt
+//php artisan db:seed
