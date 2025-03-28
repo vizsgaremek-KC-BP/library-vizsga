@@ -34,7 +34,7 @@
                                 <td>{{ getBookByInventoryNumber(loan.inventory_number)?.title }}</td>
                                 <td>{{ loan.inventory_number }}</td>
                                 <td>{{ getBookByInventoryNumber(loan.inventory_number)?.price }}</td>
-                                <td>{{ loan.status }}</td>
+                                <td>{{ translateStatus(loan.status) }}</td>
                                 <td>
                                     <button type="button" class="btn" id="visszaad" (click)="returnBook(loan.id)">{{"libraryuser.Visszaadás" | translate}}</button>
                                 </td>

@@ -59,13 +59,19 @@ export class UsersComponent implements OnInit {
         // console.log(this.userArray);
       });
     }
-    switchLanguage(lang: string) {
-      this.translate.use(lang);
-    }
   
-    ngOnInit(): void {
-        
-      }
+    ngOnInit(): void {}
+
+    translateStatus(status: string): string {
+      const key = status === 'active' ? 'users.aktív' : 'users.inaktív';
+      return this.translate.instant(key);
+    }
+
+    translateRole(role: string): string {
+      const key = role === 'student' ? 'users.diák' : 'users.rendszergazda';
+      return this.translate.instant(key);
+    }
+
     filterUsers() {
       if (!this.searchText) {
         this.filteredUsers = [];

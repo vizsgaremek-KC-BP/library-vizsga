@@ -53,6 +53,23 @@ export class LibraryListUserComponent implements OnInit {
   
     ngOnInit(): void {}
 
+    translateStatus(status: string): string {
+      let key = '';
+    
+      if (status === 'borrowed') {
+        key = 'libraryadmin.kikölcsönzött';
+      } else if (status === 'returned') {
+        key = 'libraryadmin.visszaadott';
+      } else if (status === 'requested_return') {
+        key = 'libraryadmin.függőben';
+      } else {
+        key = 'libraryadmin.ismeretlen';
+      }
+    
+      return this.translate.instant(key);
+    }
+    
+
     getBookByInventoryNumber(inventory_number: string) {
       const book = this.bookArray.find(book => book.inventory_number === inventory_number);
       return book?.book_type || null;

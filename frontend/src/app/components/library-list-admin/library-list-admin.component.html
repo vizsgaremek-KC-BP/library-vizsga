@@ -34,7 +34,7 @@
                             <tr *ngFor="let loan of (filteredLoans.length > 0 || searchText ? filteredLoans : loanArray)">
                                 <td>{{loan.user_edu_id}}</td>
                                 <td>{{loan.inventory_number}}</td>
-                                <td>{{loan.status}}</td>
+                                <td>{{translateStatus(loan.status)}}</td>
                                 <td>
                                     <button type="button" class="btn mb-1 mb-md-0" id="elfogad" (click)="forceApproveLoan(loan.id)">{{"libraryadmin.Elfogadás" | translate}}</button>
                                 </td>

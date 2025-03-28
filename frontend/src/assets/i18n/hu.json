@@ -59,7 +59,11 @@
         "A felhasználó oktatási azonosítója": "A felhasználó oktatási azonosítója",
         "A könyv raktári száma": "A könyv raktári száma",
         "Elfogadás": "Elfogadás",
-        "Elutasítás": "Elutasítás"
+        "Elutasítás": "Elutasítás",
+        "kikölcsönzött": "kikölcsönzött",
+        "visszaadott": "visszaadott",
+        "függőben": "függőben",
+        "ismeretlen": "ismeretlen"
     },
 
     "libraryuser":{
@@ -69,7 +73,12 @@
         "Könyv raktári száma": "Könyv raktári száma",
         "Ár (Ft)": "Ár (Ft)",
         "Állapot": "Állapot",
-        "Visszaadás": "Visszaadás"
+        "Visszaadás": "Visszaadás",
+        "kikölcsönzött": "kikölcsönzött",
+        "visszaadott": "visszaadott",
+        "függőben": "függőben",
+        "ismeretlen": "ismeretlen"
+        
     },
 
     "login":{
@@ -135,7 +144,9 @@
         "Szerkesztés":"Szerkesztés",
         "Diák szerkesztése":"Diák szerkesztése",
         "Inaktiválás":"Inaktiválás",
-        "Aktiválás":"Aktiválás"
+        "Aktiválás":"Aktiválás",
+        "aktív": "aktív",
+        "inaktív": "inaktív"
     },
 
     "users": {
@@ -157,6 +168,8 @@
         "rendszergazda":"rendszergazda",
         "diák":"diák",
         "Inaktiválás":"Inaktiválás",
-        "Aktiválás":"Aktiválás"
+        "Aktiválás":"Aktiválás",
+        "aktív": "aktív",
+        "inaktív": "inaktív"
     }
 }

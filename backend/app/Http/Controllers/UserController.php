@@ -106,7 +106,7 @@ class UserController extends Controller
             return response()->json(['message' => __('messages.user_not_found')], 404);
         }
 
-        if ($student->role === 'admin' && $request->status === 'inactive') {
+        if ($user->role === 'admin' && $request->status === 'inactive') {
             return response()->json(['message' => __('messages.cannot_deactivate_admin')], 403);
         }
 

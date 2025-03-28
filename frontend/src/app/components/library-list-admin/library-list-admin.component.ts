@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { HttpService } from '../../services/http.service';
+import { ConfigService } from '../../services/config.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-library-list-admin',
@@ -23,7 +25,9 @@ export class LibraryListAdminComponent {
     searchText: string = '';
 
     constructor(
-      private db: HttpService
+      private db: HttpService,
+      private config: ConfigService,
+      private translate: TranslateService
     ) {
       db.getLoans().subscribe(data => {
         this.loanArray = data;
@@ -34,6 +38,22 @@ export class LibraryListAdminComponent {
     
   
     ngOnInit(): void {}
+
+    translateStatus(status: string): string {
+      let key = '';
+    
+      if (status === 'borrowed') {
+        key = 'libraryadmin.kikölcsönzött';
+      } else if (status === 'returned') {
+        key = 'libraryadmin.visszaadott';
+      } else if (status === 'requested_return') {
+        key = 'libraryadmin.függőben';
+      } else {
+        key = 'libraryadmin.ismeretlen';
+      }
+    
+      return this.translate.instant(key);
+    }
 
     filterLoans() {
       if (!this.searchText) {

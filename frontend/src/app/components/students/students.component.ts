@@ -53,13 +53,13 @@ export class StudentsComponent implements OnInit {
         // console.log(this.studentArray);
       });
     }
-    switchLanguage(lang: string) {
-      this.translate.use(lang);
-    }
   
-    ngOnInit(): void {
-        
-      }
+    ngOnInit(): void {}
+
+    translateStatus(status: string): string {
+      const key = status === 'active' ? 'students.aktív' : 'students.inaktív';
+      return this.translate.instant(key);
+    }
     
       filterStudents() {
         if (!this.searchText) {

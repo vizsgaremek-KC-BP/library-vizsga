@@ -37,8 +37,8 @@
                                 <td>{{user.name}}</td>
                                 <td>{{user.edu_id}}</td>
                                 <td>{{user.email}}</td>
-                                <td>{{user.role}}</td>
-                                <td>{{user.status}}</td>
+                                <td>{{translateRole(user.role)}}</td>
+                                <td>{{translateStatus(user.status)}}</td>
                                 <td>
                                     <button type="button" class="btn mb-1 mb-md-0" id="szerk" data-bs-toggle="modal" data-bs-target="#modifyModal" (click)="setSelectedUser(user)">
                                         {{"users.Szerkesztés" | translate}}
