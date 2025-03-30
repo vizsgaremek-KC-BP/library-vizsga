@@ -4,62 +4,84 @@ html {
 }
 
 body {
-    background-image: url("kulkerlogo.png");
     background-color: transparent;
-    background-size: contain;
-    background-position: left center;
-    background-repeat: no-repeat;
     min-height: 94.3vh;
     margin: 0;
     position: relative;
     padding: 20px;
     box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-#about {
-    width: 95vh;
-    left: 110vh;
-    position: absolute;
-    border-radius: 25px;
-    padding: 10px;
-    background-image: linear-gradient(to right, white, lightgrey);
-    background-clip: text;
-    color: transparent;
+.content-wrapper {
+    display: flex;
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+    border-radius: 15px;
+    padding: 30px;
+    gap: 30px;
+    color: white;
 }
 
-#lista {
-    width: 45vh;
-    left: 160vh;
-    position: absolute;
-    text-align: justify;
-    top: 45vh;
-    border-radius: 25px;
-    padding: 10px;
-    color: lightgrey;
-    background-color: rgba(212, 169, 253, 0.6);
+.left {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 250px;
 }
 
-#fejlesztok {
-    width: 95vh;
-    left: 110vh;
-    position: absolute;
-    text-align: justify;
-    top: 75vh;
-    border-radius: 25px;
-    padding: 10px;
-    background-image: linear-gradient(to right, white, lightgrey);
-    background-clip: text;
-    color: transparent;
-    font-size: 12px;
+#logo {
+    max-width: 100%;
+    height: auto;
+    width: 300px;
+    transition: all 0.3s ease;
+    margin: 0 auto;
+}
+
+.right {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+#about, #lista, #fejlesztok {
+    margin-bottom: 5px;
+}
+
+#fejlesztok{
+    font-size: 13px;
 }
 
 ul {
-    padding: 10px;
-    border-radius: 25px;
-    list-style-type: disc;
-    margin-left: 20px;
-    margin-top: 0px;
-    margin-bottom: 0px;
+    list-style-type: none;
+    padding-left: 20px;
+    margin: 5px 0; 
+}
+
+ul li {
+    position: relative;
+    padding: 2px 0; 
+}
+
+ul li:before {
+    content: "•";
+    position: absolute;
+    left: -15px;
+    color: #b3d6db;
+}
+
+.list-unstyled {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 5px 0;
+}
+
+.list-unstyled li:before {
+    content: none;
 }
 
 a {
@@ -71,105 +93,61 @@ a:hover {
     text-decoration: underline;
 }
 
-#adatok {
-    margin-bottom: 0px;
-    font-size: 15px;
-}
-
-#lista ul {
-    font-size: 13px;
-}
-
-@media (max-width: 1600px) {
-    body {
-        background-size: 30%;
-    }
-    
-    #about, #fejlesztok {
-        left: 40%;
-        width: 55%;
-    }
-    
-    #lista {
-        left: 60%;
-        width: 35%;
-    }
-}
-
-@media (max-width: 1200px) {
-    body {
-        background-size: 25%;
-    }
-    
-    #about, #fejlesztok {
-        left: 35%;
-        width: 60%;
-    }
-    
-    #lista {
-        left: 55%;
-        width: 40%;
-    }
+p, li {
+    margin: 6px 0;
+    line-height: 1.2;
 }
 
 @media (max-width: 992px) {
-    body {
-        background-size: 20%;
+    .content-wrapper {
+        flex-direction: column;
+        align-items: center;
     }
     
-    #about, #fejlesztok {
-        left: 30%;
-        width: 65%;
+    .left {
+        order: 1;
+        margin-bottom: 15px;
+        width: 100%;
     }
     
-    #lista {
-        left: 50%;
-        width: 45%;
+    .right {
+        order: 2;
+        width: 100%;
+    }
+    
+    #logo {
+        width: 250px;
     }
 }
 
 @media (max-width: 768px) {
     body {
-        background-image: none;
-        padding-top: 20px;
+        padding: 15px;
     }
     
-    #about, #lista, #fejlesztok {
-        position: static;
-        width: 90%;
-        margin: 20px auto;
-        left: auto;
+    .content-wrapper {
+        padding: 20px;
     }
     
-    #lista {
-        top: auto;
+    #logo {
+        width: 200px;
     }
     
-    #fejlesztok {
-        top: auto;
+    p, li {
+        line-height: 1.3;
     }
 }
 
 @media (max-width: 576px) {
-    #about, #lista, #fejlesztok {
-        width: 95%;
-        padding: 8px;
+    #logo {
+        width: 150px;
     }
     
     ul {
-        padding: 8px;
-        margin-left: 15px;
+        padding-left: 15px;
     }
     
-    #adatok {
-        font-size: 14px;
-    }
-    
-    #lista ul {
-        font-size: 12px;
-    }
-    
-    #fejlesztok {
-        font-size: 11px;
+    #about, #lista, #fejlesztok {
+        margin-bottom: 3px;
     }
 }

@@ -4,7 +4,6 @@ html {
 }
 
 body {
-    background-image: url("kulkerlogo.png");
     background-color: transparent;
     background-size: contain;
     background-position: left center;
@@ -14,106 +13,85 @@ body {
     position: relative;
     padding: 20px;
     box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    width: 100%;
+    gap: 20px;
 }
 
 #bemutatkozas {
-    width: 95vh;
-    left: 110vh;
-    top: 10vh;
-    position: absolute;
+    flex: 1;
+    min-width: 300px;
+    max-width: 800px;
     text-align: justify;
     border-radius: 25px;
-    padding: 10px;
+    padding: 20px;
     background-image: linear-gradient(to right, white, lightgrey);
     background-clip: text;
     color: transparent;
 }
 
-a {
-
-text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-p{
-    line-height: 35px;
-    padding: 5px;
-}
-
 #logo {
-    max-width: 150px;
+    max-width: 300px;
     height: auto;
     transition: all 0.3s ease;
 }
 
-@media (max-width: 1600px) {
-    body {
-        background-size: 30%;
-    }
 
-    #bemutatkozas {
-        left: 40%;
-        width: 55%;
+@media (max-width: 1600px) {
+    #logo {
+        max-width: 250px;
     }
 }
 
 @media (max-width: 1200px) {
-    body {
-        background-size: 25%;
-    }
-
-    #bemutatkozas {
-        left: 35%;
-        width: 60%;
-    }
-
     #logo {
-        max-width: 120px;
+        max-width: 200px;
     }
 }
 
 @media (max-width: 992px) {
-    body {
-        background-size: 20%;
-    }
-
-    #bemutatkozas {
-        left: 30%;
-        width: 65%;
-    }
-
     #logo {
-        max-width: 100px;
+        max-width: 180px;
     }
 }
-
 @media (max-width: 768px) {
     body {
-        background-image: none;
-        padding-top: 20px;
+        padding: 15px;
     }
-
-    #bemutatkozas {
-        position: static;
-        width: 90%;
-        margin: 20px auto;
+    
+    .content-wrapper {
+        padding: 20px;
     }
-
+    
     #logo {
-        max-width: 80px;
+        width: 200px;
+    }
+    
+    p{
+        line-height: 1.3;
     }
 }
 
 @media (max-width: 576px) {
-    #bemutatkozas {
-        width: 95%;
-        padding: 8px;
-    }
-
     #logo {
-        max-width: 60px;
+        width: 150px;
+    }
+    
+    ul {
+        padding-left: 15px;
+    }
+    
+    #bemutatkozas {
+        margin-bottom: 3px;
     }
 }

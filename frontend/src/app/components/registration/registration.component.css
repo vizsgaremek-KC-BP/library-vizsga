@@ -1,113 +1,182 @@
 html {
     background: linear-gradient(to left, rgb(11, 11, 88), #7878A2, lightgrey 100%);
-    height: 100vh;
-    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
 body {
-    background-image: url("kulkerlogo.png");
     background-color: transparent;
-    background-size: 40%;
-    background-position: left center;
-    background-repeat: no-repeat;
-    height: 100vh;
-    width: 100%;
+    min-height: 94.3vh;
     margin: 0;
+    position: relative;
+    padding: 20px;
+    box-sizing: border-box;
     display: flex;
     align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+}
+
+.content-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 1400px;
+    width: 100%;
+    gap: 80px;
+    padding: 0 40px;
+    margin: 0 auto;
+}
+
+.logo-container {
+    flex: 1;
+    display: flex;
     justify-content: flex-end;
-    padding-right: 10%;
+    min-width: 350px;
+    max-width: 500px;
+    padding-right: 40px;
+}
+
+#logo {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 400px;
+    transition: all 0.3s ease;
 }
 
 #register {
-    width: 50vh;
-    max-width: 90%;
-    text-align: justify;
-    border: 3px solid rgba(119, 215, 232, 0.8);
+    flex: 1;
+    min-width: 350px;
+    max-width: 500px;
+    text-align: left;
     border-radius: 25px;
-    padding: 20px;
-    background-color: rgba(119, 215, 232, 0.6);
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    margin-left: 40px;
 }
 
-h2 {
+#register h2 {
     text-align: center;
-    color: #343c3d;
-    margin-bottom: 10px;
+    background-image: linear-gradient(to right, white, lightgrey);
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 25px;
+    font-size: 1.8em;
 }
 
-input {
-    border-radius: 25px;
-    color: #343c3d;
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
+.mb-3 {
+    margin-bottom: 20px;
 }
 
-label {
-    color: #343c3d;
+.form-label {
+    color: white;
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 12px;
+    font-size: 1.1em;
 }
 
-button {
-    color: #F7EEDD;
+.form-control {
     border-radius: 25px;
-    background-color: #343c3d;
-    padding: 10px 20px;
+    width: 100%;
+    padding: 15px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: black;
+    background: white;
+    transition: all 0.3s ease;
+    font-size: 1.1em;
+    box-sizing: border-box;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: rgba(120, 120, 162, 0.8);
+    background: white;
+}
+
+.btn {
+    color: white;
+    border-radius: 25px;
+    background: #a7a7e0;
+    padding: 15px;
     width: 100%;
     border: none;
     cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+    font-size: 1.1em;
 }
 
-button:hover {
-    background-color: #222829;
+.btn:hover {
+    background: #a7a7e0;
+    transform: translateY(-2px);
+}
+
+.btn:disabled {
+    background: rgba(72, 93, 96, 0.4);
+    cursor: not-allowed;
 }
 
 a {
-    color: #343c3d;
+    color: white;
     display: block;
-    margin-top: 10px;
+    margin-top: 25px;
     text-decoration: none;
+    text-align: center;
+    transition: all 0.3s ease;
+    font-size: 1.05em;
 }
 
 a:hover {
+    color: white;
     text-decoration: underline;
+}
+
+.err {
+    color: #ff6b6b;
+    font-size: 0.9em;
+    display: block;
+    margin-top: 5px;
 }
 
 .tooltip-container {
     position: relative;
     display: inline-block;
-    cursor: pointer;
+    margin-left: 8px;
 }
 
 .tooltip-icon {
-    font-size: 10px;
-    vertical-align: super;
-    font-weight: bold;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    background-color: rgba(255, 255, 255, 0.2);
     color: white;
+    border-radius: 50%;
+    font-size: 12px;
+    cursor: help;
 }
 
 .tooltip-text {
     visibility: hidden;
     width: 200px;
-    background-color: #8282a9e4;
-    color: black;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
     text-align: center;
-    padding: 5px;
-    border-radius: 5px;
+    border-radius: 6px;
+    padding: 8px;
     position: absolute;
-    bottom: 100%;
-    left: 600%;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
     transform: translateX(-50%);
     opacity: 0;
     transition: opacity 0.3s;
-    font-size: 12px;
-}
-
-.err{
-    color: rgb(159, 34, 34);
+    font-size: 0.9em;
 }
 
 .tooltip-container:hover .tooltip-text {
@@ -115,38 +184,158 @@ a:hover {
     opacity: 1;
 }
 
+@media (max-width: 1600px) {
+    .logo-container {
+        max-width: 450px;
+        padding-right: 30px;
+    }
+    .content-wrapper {
+        gap: 60px;
+    }
+    #register {
+        margin-left: 30px;
+    }
+}
+
+@media (max-width: 1400px) {
+    .logo-container {
+        max-width: 400px;
+        padding-right: 20px;
+    }
+    #logo {
+        max-height: 350px;
+    }
+    #register {
+        margin-left: 20px;
+    }
+}
+
 @media (max-width: 1200px) {
-    body {
-        background-size: 50%;
+    .logo-container {
+        max-width: 350px;
+    }
+    .content-wrapper {
+        gap: 50px;
+    }
+    #register {
+        padding: 35px;
     }
 }
 
 @media (max-width: 992px) {
+    .logo-container {
+        max-width: 300px;
+    }
+    #logo {
+        max-height: 300px;
+    }
+    .content-wrapper {
+        gap: 40px;
+    }
+    #register {
+        padding: 30px;
+    }
+}
+
+@media (max-width: 768px) {    
     body {
-        background-size: 60%;
+        padding: 15px;
+        align-items: flex-start;
+        padding-top: 30px;
+    }
+    
+    .content-wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        width: 100%;
+        max-width: 400px;
+        padding: 0 20px;
+    }
+    
+    .logo-container {
+        width: 100%;
         justify-content: center;
+        max-width: 200px;
+        margin-bottom: 10px;
         padding-right: 0;
     }
+    
+    #logo {
+        max-height: 150px;
+        width: auto;
+    }
+    
     #register {
-        width: 60vh;
+        width: 100%;
+        padding: 25px;
+        margin: 0;
+    }
+    
+    #register h2 {
+        font-size: 1.5em;
+    }
+    
+    .form-control {
+        padding: 12px 15px;
+    }
+    
+    .btn {
+        padding: 12px;
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 480px) {
     body {
-        background-image: none;
-        justify-content: center;
-        padding-top: 20px;
+        overflow-x: hidden;
+        width: 100%;
     }
-    #register {
-        width: 90%;
-        text-align: center;
+    
+    .content-wrapper {
+        padding: 0 15px;
+        width: 100vw;
+        box-sizing: border-box;
+        margin: 0;
     }
-}
 
-@media (max-width: 576px) {
+    .tooltip-text {
+        visibility: hidden;
+        width: 200px;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 8px;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+        transition: opacity 0.3s;
+        font-size: 0.9em;
+    }
+
+    .logo-container {
+        max-width: 180px;
+    }
+    
+    #logo {
+        max-height: 130px;
+    }
+    
     #register {
-        width: 95%;
-        padding: 15px;
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+        margin: 0;
+    }
+    
+    #register h2 {
+        font-size: 1.4em;
+    }
+
+    html {
+        overflow-x: hidden;
     }
 }
