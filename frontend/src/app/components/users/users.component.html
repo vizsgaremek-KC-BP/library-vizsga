@@ -20,11 +20,11 @@
                     <table class="table table-bordered table-striped text-center">
                         <thead class="text-center">
                             <tr>
-                                <th scope="col">{{"users.Név" | translate}}</th>
-                                <th scope="col">{{"users.Oktatási azonosító" | translate}}</th>
-                                <th scope="col">{{"users.Email cím" | translate}}</th>
-                                <th scope="col">{{"users.Jogosultság" | translate}}</th>
-                                <th scope="col">{{"users.Állapot" | translate}}</th>
+                                <th scope="col" data-label="Név">{{"users.Név" | translate}}</th>
+                                <th scope="col" data-label="Oktatási azonosító">{{"users.Oktatási azonosító" | translate}}</th>
+                                <th scope="col" data-label="Email cím">{{"users.Email cím" | translate}}</th>
+                                <th scope="col" data-label="Jogosultság">{{"users.Jogosultság" | translate}}</th>
+                                <th scope="col" data-label="Állapot">{{"users.Állapot" | translate}}</th>
                                 <th scope="col" colspan="2">
                                     <button type="button" class="btn" id="hozzaad" data-bs-toggle="modal" data-bs-target="#inputModal">
                                         {{"users.Hozzáad" | translate}}
@@ -34,12 +34,15 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let user of (filteredUsers.length > 0 || searchText ? filteredUsers : userArray)">
-                                <td>{{user.name}}</td>
-                                <td>{{user.edu_id}}</td>
-                                <td>{{user.email}}</td>
-                                <td>{{translateRole(user.role)}}</td>
-                                <td>{{translateStatus(user.status)}}</td>
+                                <td attr.data-label='{{"users.Név" | translate}}'>{{user.name}}</td>
+                                <td attr.data-label='{{"users.Oktatási azonosító" | translate}}'>{{user.edu_id}}</td>
+                                <td attr.data-label='{{"users.Email cím" | translate}}'>{{user.email}}</td>
+                                <td attr.data-label='{{"users.Jogosultság" | translate}}'>{{translateRole(user.role)}}</td>
+                                <td attr.data-label='{{"users.Állapot" | translate}}'>{{translateStatus(user.status)}}</td>
                                 <td>
+                                    <button type="button" class="btn hozzaad-btn" data-bs-toggle="modal" data-bs-target="#inputModal" id="hozzaad">
+                                        {{"users.Hozzáad" | translate}}
+                                    </button>
                                     <button type="button" class="btn mb-1 mb-md-0" id="szerk" data-bs-toggle="modal" data-bs-target="#modifyModal" (click)="setSelectedUser(user)">
                                         {{"users.Szerkesztés" | translate}}
                                     </button>
@@ -47,7 +50,7 @@
                                 <td>
                                     <button type="button" class="btn" 
                                             [ngClass]="user.status === 'active' ? 'custom-inactive' : 'custom-active'" 
-                                            (click)="statusUser(user.id, user.status)">
+                                            (click)="statusUser(user.id, user.status)" [disabled]="user.role === 'admin' || user.role === 'rendszergazda'">
                                             {{ (user.status === 'active' ? 'users.Inaktiválás' : 'users.Aktiválás') | translate }}
                                     </button>
                                 </td>

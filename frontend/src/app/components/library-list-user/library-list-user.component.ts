@@ -68,7 +68,10 @@ export class LibraryListUserComponent implements OnInit {
     
       return this.translate.instant(key);
     }
-    
+
+    filterLoans() {
+      return this.loanArray.filter(loan => loan.status !== 'returned' && loan.status !== 'visszaadott');
+    }    
 
     getBookByInventoryNumber(inventory_number: string) {
       const book = this.bookArray.find(book => book.inventory_number === inventory_number);

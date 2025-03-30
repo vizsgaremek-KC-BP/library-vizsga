@@ -13,17 +13,18 @@
                        class="form-control" id="search">
             </div>
         </div>
-        <div class="row">
+
+        <div class="row justify-content-center">
             <div class="col-12">
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped text-center">
                         <thead class="text-center">
                             <tr>
-                                <th scope="col">{{"books.Raktári szám" | translate}}</th>
-                                <th scope="col">{{"books.Cím" | translate}}</th>
-                                <th scope="col">{{"books.Szerző" | translate}}</th>
-                                <th scope="col">{{"books.Ár (Ft)" | translate}}</th>
-                                <th scope="col">{{"books.Példány" | translate}}</th>
+                                <th scope="col" data-label="Raktári szám">{{"books.Raktári szám" | translate}}</th>
+                                <th scope="col" data-label="Cím">{{"books.Cím" | translate}}</th>
+                                <th scope="col" data-label="Szerző">{{"books.Szerző" | translate}}</th>
+                                <th scope="col" data-label="Ár">{{"books.Ár (Ft)" | translate}}</th>
+                                <th scope="col" data-label="Példány">{{"books.Példány" | translate}}</th>
                                 <th scope="col" colspan="2">
                                     <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#inputModal" id="hozzaad">
                                         {{"books.Hozzáad" | translate}}
@@ -33,18 +34,23 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let book of (filteredBooks.length > 0 || searchText ? filteredBooks : bookArray)">
-                                <td>{{book.inventory_number_base}}</td>
-                                <td>{{book.title}}</td>
-                                <td>{{book.author}}</td>
-                                <td>{{book.price}}</td>
-                                <td>{{book.copies}}</td>
-                                <td>
-                                    <button type="button" class="btn mb-1 mb-md-0" id="szerk" data-bs-target="#modifyModal" data-bs-toggle="modal" (click)="setSelectedBook(book)">
+                                <td attr.data-label="{{'books.Raktári szám' | translate}}">{{book.inventory_number_base}}</td>
+                                <td attr.data-label="{{'books.Cím' | translate}}">{{book.title}}</td>
+                                <td attr.data-label="{{'books.Szerző' | translate}}">{{book.author}}</td>
+                                <td attr.data-label="{{'books.Ár (Ft)' | translate}}">{{book.price}}</td>
+                                <td attr.data-label="{{'books.Példány' | translate}}">{{book.copies}}</td>
+                                <td class="button-container">
+                                    <button type="button" class="btn hozzaad-btn" data-bs-toggle="modal" data-bs-target="#inputModal" id="hozzaad">
+                                        {{"books.Hozzáad" | translate}}
+                                    </button>
+                                    <button type="button" class="btn szerk-btn" data-bs-target="#modifyModal" data-bs-toggle="modal" (click)="setSelectedBook(book)" id="szerk">
                                         {{"books.Szerkesztés" | translate}}
                                     </button>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn" id="torles" (click)="deleteBook(book.id)">{{"books.Törlés" | translate}}</button>
+                                    <button type="button" class="btn torles-btn" (click)="deleteBook(book.id)" id="torles">
+                                        {{"books.Törlés" | translate}}
+                                    </button>
                                 </td>
                             </tr>
                         </tbody>
@@ -53,6 +59,7 @@
             </div>
         </div>
     </div>
+
     <div class="modal fade" id="inputModal" tabindex="-1" aria-labelledby="modalLabel">
         <div class="modal-dialog">
             <div class="modal-content">

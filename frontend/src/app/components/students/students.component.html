@@ -20,9 +20,9 @@
                     <table class="table table-bordered table-striped text-center">
                         <thead class="text-center">
                             <tr>
-                                <th scope="col">{{"students.Név" | translate}}</th>
-                                <th scope="col">{{"students.Oktatási azonosító" | translate}}</th>
-                                <th scope="col">{{"students.Állapot" | translate}}</th>
+                                <th scope="col" data-label="Név">{{"students.Név" | translate}}</th>
+                                <th scope="col" data-label="Oktatási azonosító">{{"students.Oktatási azonosító" | translate}}</th>
+                                <th scope="col" data-label="Állapot">{{"students.Állapot" | translate}}</th>
                                 <th scope="col" colspan="2">
                                     <button type="button" class="btn" id="hozzaad" data-bs-toggle="modal" data-bs-target="#inputModal">
                                         {{"students.Hozzáad" | translate}}
@@ -32,10 +32,13 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let student of (filteredStudents.length > 0 || searchText ? filteredStudents : studentArray)">
-                                <td>{{student.name}}</td>
-                                <td>{{student.edu_id}}</td>
-                                <td>{{ translateStatus(student.status) }}</td>
+                                <td attr.data-label='{{"students.Név" | translate}}'>{{student.name}}</td>
+                                <td attr.data-label='{{"students.Oktatási azonosító" | translate}}'>{{student.edu_id}}</td>
+                                <td attr.data-label='{{"students.Állapot" | translate}}'>{{ translateStatus(student.status) }}</td>
                                 <td>
+                                    <button type="button" class="btn hozzaad-btn" data-bs-toggle="modal" data-bs-target="#inputModal" id="hozzaad">
+                                        {{"students.Hozzáad" | translate}}
+                                    </button>
                                     <button type="button" class="btn mb-1 mb-md-0" id="szerk" data-bs-toggle="modal"  data-bs-target="#modifyModal" (click)="setSelectedStudent(student)">
                                         {{"students.Szerkesztés" | translate}}
                                     </button>

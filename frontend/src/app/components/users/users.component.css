@@ -3,17 +3,44 @@ html {
     width: 100%;
 }
 
-body{
+body {
     background-color: rgba(211, 211, 211, 0.404);
+    font-size: 1rem;
+    line-height: 1.5;
+    padding: 15px;
+}
+
+.container-fluid {
+    padding: 0 15px;
+}
+
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 15px;
 }
 
 table {
+    width: 100%;
     border-collapse: separate;
     border-spacing: 0;
     border: 2px solid rgb(173, 177, 230);
     border-radius: 10px;
     overflow: hidden;
 }
+
+th, td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 12px 8px;
+    border: 1px solid #ddd;
+}
+
+th:first-child { border-top-left-radius: 10px; }
+th:last-child { border-top-right-radius: 10px; }
+tr:last-child td:first-child { border-bottom-left-radius: 10px; }
+tr:last-child td:last-child { border-bottom-right-radius: 10px; }
 
 #hozzaad{
     background-color: rgba(173, 173, 231, 0.86);
@@ -62,85 +89,103 @@ table {
     color: white;
 }
 
+button:disabled {
+    background-color: #ccc !important;
+    color: #666 !important;
+    border: none;
+}
+
 #search {
-    border-collapse: separate;
-    border-spacing: 0;
     border: 2px solid rgb(173, 177, 230);
     border-radius: 10px;
-    overflow: hidden;
-}
-
-th:first-child {
-    border-top-left-radius: 10px;
-}
-
-th:last-child {
-    border-top-right-radius: 10px;
-}
-
-tr:last-child td:first-child {
-    border-bottom-left-radius: 10px;
-}
-
-tr:last-child td:last-child {
-    border-bottom-right-radius: 10px;
-}
-
-th, td {
-    text-align: center;
-    vertical-align: middle;
-    padding: 10px;
-    border: 1px solid #ddd;
+    padding: 8px 12px;
 }
 
 @media (max-width: 768px) {
-    .table-responsive {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-    }
-    
-    table {
-        min-width: 800px;
-    }
-    
-    .btn {
-        padding: 0.25rem 0.5rem;
-        font-size: 0.875rem;
-    }
-    
-    tr td:nth-last-child(2),
-    tr td:last-child {
-        display: block;
-        width: 100%;
-    }
-    
-    tr:last-child td:nth-last-child(2) {
-        border-bottom-left-radius: 0 !important;
-    }
-    
-    tr:last-child td:last-child {
-        border-bottom-right-radius: 10px !important;
-        border-bottom-left-radius: 10px !important;
-    }
-    
-    th:nth-child(1), td:nth-child(1),
-    th:nth-child(2), td:nth-child(2) {
-        min-width: 150px;
-    }
-    
-    th:nth-child(3), td:nth-child(3) {
-        min-width: 200px;
-    }
+    th, td { padding: 10px 6px; }
+    #hozzaad, #szerk { padding: 6px 10px; }
 }
 
 @media (max-width: 576px) {
-    #search {
-        margin-left: 0;
-        width: 100%;
+    body { padding: 10px; }
+    .container-fluid { padding: 0 10px; }
+}
+
+.hozzaad-btn {
+    display: none;
+}
+
+@media (max-width: 400px) {
+    table {
+        border: none;
+        border-radius: 0;
     }
     
-    .modal-dialog {
-        margin: 0.5rem auto;
-        max-width: 95%;
+    thead {
+        display: none;
+    }
+    
+    tr {
+        display: block;
+        margin-bottom: 15px;
+        border: 2px solid rgb(173, 177, 230);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    
+    td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: right;
+        padding: 8px;
+        border: none;
+        border-bottom: 1px solid #ddd;
+        white-space: normal;
+        text-overflow: clip;
+    }
+    
+    td:before {
+        content: attr(data-label);
+        font-weight: bold;
+        margin-right: 10px;
+        flex: 1;
+        text-align: left;
+    }
+    
+    #hozzaad, #szerk {
+        padding: 6px 12px;
+        border-radius: 4px;
+        white-space: nowrap;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    #hozzaad, #szerk {
+        background-color: rgba(173, 173, 231, 0.86);
+    }
+    
+    #hozzaad:hover, #szerk:hover {
+        background-color: rgba(142, 142, 199, 0.86);
+        color: white;
+    }
+    
+    td:last-child {
+        border-bottom: none;
+    }
+    
+    tr:last-child {
+        margin-bottom: 0;
+    }
+    
+    th:first-child, th:last-child,
+    tr:last-child td:first-child, 
+    tr:last-child td:last-child {
+        border-radius: 0;
+    }
+
+    .hozzaad-btn {
+        display: inline-block;
     }
 }

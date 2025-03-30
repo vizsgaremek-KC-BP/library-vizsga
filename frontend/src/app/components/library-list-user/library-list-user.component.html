@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 </head>
 <body class="p-3">
     <div class="container-fluid">
         <div class="row justify-content-center mb-3">
             <div class="col-12 col-md-8 text-center">
-                <span id="felhasznalo">
+                <span id="felhasznalo" title="{{ userName }}">
                     {{"libraryuser.Név:" | translate}} {{ userName }}
                 </span>
             </div>
@@ -20,22 +20,22 @@
                     <table class="table table-bordered table-striped text-center">
                         <thead class="text-center">
                             <tr>
-                                <th scope="col">{{"libraryuser.Szerző" | translate}}</th>
-                                <th scope="col">{{"libraryuser.Cím" | translate}}</th>
-                                <th scope="col">{{"libraryuser.Könyv raktári száma" | translate}}</th>
-                                <th scope="col">{{"libraryuser.Ár (Ft)" | translate}}</th>
-                                <th scope="col">{{"libraryuser.Állapot" | translate}}</th>
-                                <th scope="col">{{"libraryuser.Visszaadás" | translate}}</th>
+                                <th scope="col" data-label="Szerző">{{"libraryuser.Szerző" | translate}}</th>
+                                <th scope="col" data-label="Cím">{{"libraryuser.Cím" | translate}}</th>
+                                <th scope="col" data-label="Könyv raktári száma">{{"libraryuser.Könyv raktári száma" | translate}}</th>
+                                <th scope="col" data-label="Ár">{{"libraryuser.Ár (Ft)" | translate}}</th>
+                                <th scope="col" data-label="Állapot">{{"libraryuser.Állapot" | translate}}</th>
+                                <th scope="col" data-label="Visszaadás">{{"libraryuser.Visszaadás" | translate}}</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let loan of loanArray">
-                                <td>{{ getBookByInventoryNumber(loan.inventory_number)?.author }}</td>
-                                <td>{{ getBookByInventoryNumber(loan.inventory_number)?.title }}</td>
-                                <td>{{ loan.inventory_number }}</td>
-                                <td>{{ getBookByInventoryNumber(loan.inventory_number)?.price }}</td>
-                                <td>{{ translateStatus(loan.status) }}</td>
-                                <td>
+                            <tr *ngFor="let loan of filterLoans()">
+                                <td attr.data-label="{{'libraryuser.Szerző' | translate}}">{{ getBookByInventoryNumber(loan.inventory_number)?.author }}</td>
+                                <td attr.data-label="{{'libraryuser.Cím' | translate}}">{{ getBookByInventoryNumber(loan.inventory_number)?.title }}</td>
+                                <td attr.data-label="{{'libraryuser.Könyv raktári száma' | translate}}">{{ loan.inventory_number }}</td>
+                                <td attr.data-label="{{'libraryuser.Ár (Ft)' | translate}}">{{ getBookByInventoryNumber(loan.inventory_number)?.price }}</td>
+                                <td attr.data-label="{{'libraryuser.Állapot' | translate}}">{{ translateStatus(loan.status) }}</td>
+                                <td attr.data-label="{{'libraryuser.Visszaadás' | translate}}">
                                     <button type="button" class="btn" id="visszaad" (click)="returnBook(loan.id)">{{"libraryuser.Visszaadás" | translate}}</button>
                                 </td>
                             </tr>

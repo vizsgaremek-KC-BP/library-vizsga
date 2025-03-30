@@ -20,9 +20,9 @@
                     <table class="table table-bordered table-striped text-center">
                         <thead class="text-center">
                             <tr>
-                                <th scope="col">{{"libraryadmin.Oktatási azonosító" | translate}}</th>
-                                <th scope="col">{{"libraryadmin.Raktári szám" | translate}}</th>
-                                <th scope="col">{{"libraryadmin.Állapot" | translate}}</th>
+                                <th scope="col" data-label="Oktatási azonosító">{{"libraryadmin.Oktatási azonosító" | translate}}</th>
+                                <th scope="col" data-label="Raktári szám">{{"libraryadmin.Raktári szám" | translate}}</th>
+                                <th scope="col" data-label="Állapot">{{"libraryadmin.Állapot" | translate}}</th>
                                 <th scope="col" colspan="2">
                                     <button type="button" class="btn" id="kiad" data-bs-toggle="modal" data-bs-target="#inputModal">
                                         {{"libraryadmin.Kiadás" | translate}}
@@ -32,14 +32,19 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let loan of (filteredLoans.length > 0 || searchText ? filteredLoans : loanArray)">
-                                <td>{{loan.user_edu_id}}</td>
-                                <td>{{loan.inventory_number}}</td>
-                                <td>{{translateStatus(loan.status)}}</td>
+                                <td attr.data-label='{{"libraryadmin.Oktatási azonosító" | translate}}'>{{loan.user_edu_id}}</td>
+                                <td attr.data-label='{{"libraryadmin.Raktári szám" | translate}}'>{{loan.inventory_number}}</td>
+                                <td attr.data-label='{{"libraryadmin.Állapot" | translate}}'>{{translateStatus(loan.status)}}</td>
                                 <td>
-                                    <button type="button" class="btn mb-1 mb-md-0" id="elfogad" (click)="forceApproveLoan(loan.id)">{{"libraryadmin.Elfogadás" | translate}}</button>
+                                    <button type="button" class="btn kiad-btn" data-bs-toggle="modal" data-bs-target="#inputModal" id="kiad">
+                                        {{"libraryadmin.Kiadás" | translate}}
+                                    </button>
+                                    <button type="button" class="btn mb-1 mb-md-0" id="elfogad" (click)="forceApproveLoan(loan.id)" [disabled]="loan.status === 'returned' || loan.status === 'visszaadott'">{{"libraryadmin.Elfogadás" | translate}}
+                                    </button>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn" id="elutasitas" (click)="rejectLoan(loan.id)">{{"libraryadmin.Elutasítás" | translate}}</button>
+                                    <button type="button" class="btn" id="elutasitas" (click)="rejectLoan(loan.id)" [disabled]="loan.status === 'returned' || loan.status === 'visszaadott' || loan.status === 'borrowed' || loan.status === 'kikölcsönzött'">{{"libraryadmin.Elutasítás" | translate}}
+                                    </button>
                                 </td>
                             </tr>
                         </tbody>
