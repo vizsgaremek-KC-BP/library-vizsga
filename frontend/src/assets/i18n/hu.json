@@ -82,7 +82,7 @@
     },
 
     "login":{
-        "Jelentkezz be!": "Jelentkezz be!",
+        "Jelentkezz be!": "Jelentkezz Be!",
         "Email:": "Email:",
         "Jelszó:": "Jelszó:",
         "Bejelentkezés": "Bejelentkezés",
@@ -95,14 +95,14 @@
 
     "navbar": {
         "Kezdőlap": "Kezdőlap",
-        "bejelentkezés": "bejelentkezés",
-        "Kikölcsönzött könyvek": "kikölcsönzött könyvek",
-        "könyvek": "könyvek",
-        "diákok": "diákok",
-        "felhasználók": "felhasználók",
-        "könyvtár": "könyvtár",
-        "névjegy": "névjegy",
-        "kijelentkezés": "kijelentkezés"
+        "bejelentkezés": "Bejelentkezés",
+        "Kikölcsönzött könyvek": "Kikölcsönzött könyvek",
+        "könyvek": "Könyvek",
+        "diákok": "Diákok",
+        "felhasználók": "Felhasználók",
+        "könyvtár": "Könyvtár",
+        "névjegy": "Névjegy",
+        "kijelentkezés": "Kijelentkezés"
     },
 
     "registration": {

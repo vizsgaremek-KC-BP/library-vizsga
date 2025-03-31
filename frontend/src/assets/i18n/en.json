@@ -81,7 +81,7 @@
     },
 
     "login":{
-        "Jelentkezz be!": "Log in to your account!",
+        "Jelentkezz be!": "Log In to your account!",
         "Email:": "Email:",
         "Jelszó:": "Password:",
         "Bejelentkezés": "Log in",
@@ -94,14 +94,14 @@
 
     "navbar": {
         "Kezdőlap": "Home",
-        "bejelentkezés": "login",
-        "Kikölcsönzött könyvek": "borrowed books",
-        "könyvek": "books",
-        "diákok": "students",
-        "felhasználók": "users",
-        "könyvtár": "library",
-        "névjegy": "about",
-        "kijelentkezés": "logout"
+        "bejelentkezés": "Login",
+        "Kikölcsönzött könyvek": "Borrowed books",
+        "könyvek": "Books",
+        "diákok": "Students",
+        "felhasználók": "Users",
+        "könyvtár": "Library",
+        "névjegy": "About",
+        "kijelentkezés": "Logout"
     },
 
     "registration": {
