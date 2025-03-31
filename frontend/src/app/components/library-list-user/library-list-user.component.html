@@ -36,7 +36,7 @@
                                 <td attr.data-label="{{'libraryuser.Ár (Ft)' | translate}}">{{ getBookByInventoryNumber(loan.inventory_number)?.price }}</td>
                                 <td attr.data-label="{{'libraryuser.Állapot' | translate}}">{{ translateStatus(loan.status) }}</td>
                                 <td attr.data-label="{{'libraryuser.Visszaadás' | translate}}">
-                                    <button type="button" class="btn" id="visszaad" (click)="returnBook(loan.id)">{{"libraryuser.Visszaadás" | translate}}</button>
+                                    <button type="button" class="btn" id="visszaad" (click)="returnBook(loan.id)" [disabled]="loan.status === 'függőben' || loan.status === 'requested_return'">{{"libraryuser.Visszaadás" | translate}}</button>
                                 </td>
                             </tr>
                         </tbody>

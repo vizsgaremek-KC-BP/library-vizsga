@@ -48,6 +48,12 @@ table {
     color: white;
 }
 
+button:disabled {
+    background-color: #ccc !important;
+    color: #666 !important;
+    border: none;
+}
+
 th:first-child {
     border-top-left-radius: 10px;
 }
