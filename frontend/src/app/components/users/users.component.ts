@@ -78,12 +78,21 @@ export class UsersComponent implements OnInit {
         return;
       }
       const searchLower = this.searchText.toLowerCase();
+
+      const statusTranslations: { [key: string]: string } = {
+        "active": this.translate.instant("users.aktíve"),
+        "inactive": this.translate.instant("users.inaktív")
+      };
     
-      this.filteredUsers = this.userArray.filter(user =>
-        Object.values(user).some(val =>
-          val?.toString().toLowerCase().includes(searchLower)
-        )
-      );
+      this.filteredUsers = this.userArray.filter(user => {
+        const translatedStatus = statusTranslations[user.status] || user.status;
+    
+        return (
+          Object.values(user).some(val =>
+            val?.toString().toLowerCase().includes(searchLower)
+          ) || translatedStatus.toLowerCase().includes(searchLower)
+        );
+      });
     }
   
     createUser(): void {

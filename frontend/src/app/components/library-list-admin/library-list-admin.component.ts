@@ -61,13 +61,23 @@ export class LibraryListAdminComponent {
         return;
       }
       const searchLower = this.searchText.toLowerCase();
+      
+      const statusTranslations: { [key: string]: string } = {
+        "returned": this.translate.instant("libraryadmin.visszaadott"),
+        "borrowed": this.translate.instant("libraryadmin.kikölcsönzött"),
+        "requested_return": this.translate.instant("libraryadmin.függőben")
+      };
   
-      this.filteredLoans = this.loanArray.filter(loan =>
-        Object.values(loan).some(val =>
-          val?.toString().toLowerCase().includes(searchLower)
-        )
-      );
-    }
+      this.filteredLoans = this.loanArray.filter(loan =>{
+        const translatedStatus = statusTranslations[loan.status] || loan.status;
+    
+        return (
+          Object.values(loan).some(val =>
+            val?.toString().toLowerCase().includes(searchLower)
+          ) || translatedStatus.toLowerCase().includes(searchLower)
+        );
+      });
+    }        
 
   setSelectedLoan(loan: any) {
     this.selectedLoan = { ...loan }; 

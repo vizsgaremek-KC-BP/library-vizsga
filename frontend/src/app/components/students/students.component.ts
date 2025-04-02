@@ -66,13 +66,23 @@ export class StudentsComponent implements OnInit {
           this.filteredStudents = [];
           return;
         }
+      
         const searchLower = this.searchText.toLowerCase();
-    
-        this.filteredStudents = this.studentArray.filter(student =>
-          Object.values(student).some(val =>
-            val?.toString().toLowerCase().includes(searchLower)
-          )
-        );
+      
+        const statusTranslations: { [key: string]: string } = {
+          "active": this.translate.instant("students.aktív"),
+          "inactive": this.translate.instant("students.inaktív")
+        };
+      
+        this.filteredStudents = this.studentArray.filter(student => {
+          const translatedStatus = statusTranslations[student.status] || student.status;
+      
+          return (
+            Object.values(student).some(val =>
+              val?.toString().toLowerCase().includes(searchLower)
+            ) || translatedStatus.toLowerCase().includes(searchLower)
+          );
+        });
       }
     
   
