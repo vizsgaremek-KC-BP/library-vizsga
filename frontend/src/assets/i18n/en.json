@@ -169,6 +169,7 @@
         "aktív": "active",
         "inaktív": "inactive",
         "diák":"student",
-        "rendszergazda":"admin"
+        "rendszergazda":"admin",
+        "Jelszó": "Password"
     }
 }
