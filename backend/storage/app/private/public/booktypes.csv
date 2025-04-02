@@ -1,5 +1,5 @@
 id,inventory_number_base,title,author,price,copies
-1,SI-NPI1AMF,"Nuovissimo Progetto italiano 1A – Quaderno degli esercizi con DVD","T. Marin",2800,99
+1,SI-NPI1AMF,"Nuovissimo Progetto italiano 1A – Quaderno degli esercizi con DVD","T. Marin",2800,96
 2,SI-NPI1ATK,"Nuovissimo Progetto italiano 1A – Libro dello studente con CD audio","T. Marin",2800,100
 3,SI-NPI1BMF,"Nuovissimo Progetto italiano 1B – Quaderno degli esercizi con DVD","T. Marin",2800,50
 4,SI-NPI1BTK,"Nuovissimo Progetto italiano 1B - Libro dello studente con CD audio","T. Marin",2800,50
@@ -12,4 +12,5 @@ id,inventory_number_base,title,author,price,copies
 11,MK-6002,"A marketing alapjai","Dr. Pólya Éva",3500,5
 12,MK-6254,"Jogi alapismeretek 10. osztály","Nagy Árpádné",1600,2
 13,GS-9-10,"Elektronikus bevallás","Keller Ágnes",4800,60
-14,alma-korte,alma,korte,7,7
+14,alma-korte,alma,korte,7,6
+15,kulker-gimi,kulker,technikum,5000,2
