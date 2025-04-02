@@ -140,12 +140,12 @@ export class HttpService {
     return this.http.get<any>(`${this.apiUrl}/users`, { headers });
   }
   
-  addUser( edu_id: string, email: string, name: string ): Observable<any> {
+  addUser( name: string, email: string, edu_id: string, password: string ): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-    const body = { name, email, edu_id };
+    const body = { name, email, edu_id, password };
 
     return this.http.post<any>(`${this.apiUrl}/users`, body, { headers });
   }

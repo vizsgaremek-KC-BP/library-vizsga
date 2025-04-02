@@ -87,7 +87,7 @@ export class UsersComponent implements OnInit {
     }
   
     createUser(): void {
-        this.db.addUser(this.name, this.email, this.edu_id).subscribe(
+        this.db.addUser(this.name, this.email, this.edu_id, this.password).subscribe(
           data => {
             console.log('Felhasználó hozzáadva', data);
             window.location.reload();
